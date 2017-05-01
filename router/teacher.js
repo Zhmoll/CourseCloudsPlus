@@ -1,0 +1,190 @@
+const express = require('express');
+const router = express.Router();
+const mw = require('../lib/middleware');
+const User = require('../model/users');
+const Notice = require('../model/notices');
+const UserCourseRelation = require('../model/user-course-relation');
+const CourseTime = require('../model/course-times');
+const { ResponseError, Response } = require('../lib/response');
+
+// 教师添加课程（完成）
+// post /api/teacher-management/courses
+router.post('/courses',
+  mw.params.exist('cid name intros teachers'),
+  mw.authority.check(10),
+  function (req, res, next) {
+    const teacherid = req.session.userid;
+    const data = _.pick(req.body, ['cid', 'name', 'intros', 'teachers']);
+
+    Course
+      .create(data)
+      .exec((err, course) => {
+        if (err) return next(err);
+        return res.json(new Response(3001, '成功创建课程', course));
+      });
+  }
+);
+
+// 教师修改某课程（完成）
+// put /api/teacher-management/courses/:courseid
+router.put('/courses/:courseid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.findWithPrivateInfo,
+  function (req, res, next) {
+    const course = req.course;
+    const update = _.pick(req.body, ['cid', 'name', 'intros', 'teachers']);
+
+    course
+      .update(update)
+      .exec((err, course) => {
+        if (err) return next(err);
+        return res.json(new Response(3002, '成功修改课程', course));
+      });
+  }
+);
+
+// 教师删除某课程（完成）
+// delete /api/teacher-management/courses/:courseid
+router.delete('/courses/:courseid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.findWithPrivateInfo,
+  function (req, res, next) {
+    const course = req.course;
+    course.deleted = true;
+    course.save((err, course) => {
+      if (err) return next(err);
+      return res.json(new Response(3003, '成功删除课程'));
+    });
+  }
+);
+
+// 教师针对某课程发送通知（完成）
+// post /api/teacher-management/courses/:courseid/notice
+router.post('/courses/:courseid/notice',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  function (req, res, next) {
+    const courseid = req.params.courseid;
+    const userid = req.session.userid;
+
+    const data = _.pick(req.body, ['title', 'content']);
+    data.course = courseid;
+
+    UserCourseRelation.findByCourseid(courseid, (err, relations) => {
+      if (err) return next(err);
+      const receiverid = [];
+      relations.forEach(relation => {
+        receiverid.push(relation.user);
+      });
+
+      Notice.sendNotice(userid, receiverid, data, (err, result) => {
+        if (err) return next(err);
+        res.json(new Response(3004, '课程通知发布成功'));
+      })
+    });
+  }
+);
+
+// 教师针对某课程获取所有上课时间（完成）
+// get /api/teacher-management/courses/:courseid/course-times
+router.get('/courses/:courseid/course-times',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.findWithPrivateInfo,
+  (req, res, next) => {
+    const courseid = req.params.courseid;
+    const course = req.course;
+    course.findCourseTimes((err, show) => {
+      if (err) return next(err);
+      res.json(new Response(3006, '获取上课时间成功', show));
+    });
+  }
+);
+
+// 教师针对某课程添加上课时间（完成）
+// post /api/teacher-management/courses/:courseid/course-times
+router.post('/courses/:courseid/course-times',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  (req, res, next) => {
+    const courseid = req.params.courseid;
+    const data = [];
+    if (!Array.isArray(req.body))
+      return next(new ResponseError(4105, '添加的上课时间参数不正确'));
+    req.body.forEach(item => {
+      const record = _.pick(item, ['location', 'term', 'week', 'weekday', 'rows', 'remark']);
+      if (!record.location || !record.term || !record.week || !record.weekday || !record.rows || !record.remark) {
+        return next(new ResponseError(4105, '添加的上课时间参数不正确'));
+      }
+      data.push(record);
+    });
+    CourseTime
+      .create(data)
+      .exec((err, result) => {
+        if (err) return next(err);
+        res.json(new Response(3005, '添加上课时间成功'));
+      });
+  }
+);
+
+// 教师获得某上课时间（完成）
+// get /api/teacher-management/courses/:courseid/course-times/:coursetimeid
+router.get('/courses/:courseid/course-times/:coursetimeid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.checkCoursetimeRelation,
+  (req, res, next) => {
+    const coursetime = req.coursetime;
+    res.json(new Response(3009, '获取该上课时间成功', coursetime));
+  }
+);
+
+// 教师修改某上课时间（完成）
+// put /api/teacher-management/courses/:courseid/course-times/:coursetimeid
+router.put('/courses/:courseid/course-times/:coursetimeid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.checkCoursetimeRelation,
+  (req, res, next) => {
+    const coursetime = req.coursetime;
+    const update = _.pick(req.body, ['location', 'term', 'week', 'weekday', 'rows', 'remark']);
+
+    coursetime.update(update, (err, updated_coursetime) => {
+      if (err) return next(err);
+      res.json(new Response(3008, '修改上课时间信息成功', updated_coursetime));
+    });
+  }
+);
+
+// 教师删除某上课时间（完成）
+// delete /api/teacher-management/courses/:courseid/course-times/:coursetimeid
+router.delete('/courses/:courseid/course-times/:coursetimeid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.checkCoursetimeRelation,
+  (req, res, next) => {
+    const coursetime = req.coursetime;
+    coursetime.deleted = true;
+    coursetime.save((err, result) => {
+      if (err) return next(err);
+      res.json(new Response(3007, '删除上课时间成功'));
+    });
+  }
+);
+
+// 教师查询某节课的所有教师群发消息（完成）
+// get /api/teacher-management/course/:courseid/notices
+router.get('/course/:courseid/notices',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.notice.findByCourseid,
+  (req, res, next) => {
+    const notices = req.notices;
+    res.json(new Response(3010, '获取该课的所有消息成功', notices));
+  }
+);
+
+
+module.exports = router;
