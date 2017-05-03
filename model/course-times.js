@@ -10,7 +10,7 @@ const schema = {
   // weekday = 5, rows = [3,4,5] 就是周五的三四五节课
   term: { type: String },         // 学年，比如'2016-1' 即2016学年第一学期
   week: { type: Number },         // 第几周
-  weekday: { type: Number },      // 1,2,3,4,5,6,7 分别代表周一、周二……周日
+  weekday: { type: Number },      // 1,2,3,4,5,6,0 分别代表周一、周二……周日
   rows: [{ type: Number }],       // 1,2,3,……,12 分别代表第一、第二……第十二节课
 
   remark: { type: String },       // 备注
