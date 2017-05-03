@@ -97,7 +97,7 @@ router.get('/:courseid/notices',
   mw.notice.findByCourseid,
   (req, res, next) => {
     const notices = req.notices;
-    res.json(new Response(2305, '获取该课的所有消息成功', notices));
+    res.json(new Response(2307, '获取该课的所有消息成功', notices));
   }
 );
 
