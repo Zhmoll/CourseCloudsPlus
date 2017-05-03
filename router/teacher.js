@@ -5,6 +5,7 @@ const User = require('../model/users');
 const Notice = require('../model/notices');
 const UserCourseRelation = require('../model/user-course-relation');
 const CourseTime = require('../model/course-times');
+const CourseTimeLeave = require('../model/course-time-leave');
 const { ResponseError, Response } = require('../lib/response');
 
 // 教师添加课程（完成）
@@ -175,8 +176,8 @@ router.delete('/courses/:courseid/course-times/:coursetimeid',
 );
 
 // 教师查询某节课的所有教师群发消息（完成）
-// get /api/teacher-management/course/:courseid/notices
-router.get('/course/:courseid/notices',
+// get /api/teacher-management/courses/:courseid/notices
+router.get('/courses/:courseid/notices',
   mw.authority.check(10),
   mw.course.checkOwnerRelation,
   mw.notice.findByCourseid,
@@ -186,5 +187,58 @@ router.get('/course/:courseid/notices',
   }
 );
 
+// 教师批准某节课的学生的某请假条（完成）
+// post /api/teacher-management/courses/:courseid/askforleave/:leaveid/allow
+router.post('/courses/:courseid/askforleave/:leaveid/allow',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.checkLeaveCourseRelation,
+  (req, res, next) => {
+    const leave = req.leave;
+
+    if (leave.responsed) {
+      return res.json(new ResponseError(4005, '该请假条已经批复'));
+    }
+
+    const update = _.pick(req.body, ['allow', 'allowBy', 'allowInfo']);
+    update.responsed = true;
+    leave.update(update, (err, updated_leave) => {
+      if (err) return next(err);
+      res.json(new Response(3011, '批复请假条成功', updated_leave));
+    });
+  }
+);
+
+// 教师查询某节课所有的学生请假条（完成）
+// get /api/teacher-management/courses/:courseid/askforleave
+router.get('/api/teacher-management/courses/:courseid/askforleave',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  (req, res, next) => {
+    const courseid = req.params.courseid;
+
+    CourseTimeLeave
+      .find({ course: courseid })
+      .populate({
+        path: 'user',
+        match: { deletd: false },
+        select: 'id cid name nickname avatar'
+      })
+      .populate({
+        path: 'courseTime',
+        match: { deleted: false },
+        select: '-deleted'
+      })
+      .populate({
+        path: 'allowBy',
+        match: { deleted: false },
+        select: 'id uid name avatar'
+      })
+      .exec((err, leaves) => {
+        if (err) return next(err);
+        res.json(new Response(3012, '获取该课程请假条成功', leaves));
+      });
+  }
+);
 
 module.exports = router;

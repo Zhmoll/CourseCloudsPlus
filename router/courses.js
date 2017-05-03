@@ -92,7 +92,7 @@ router.post('/:courseid/course-times/:coursetimeid/askforleave',
 );
 
 // 学生查询某节课的所有教师群发消息（完成）
-// get /api/course/:courseid/notices
+// get /api/courses/:courseid/notices
 router.get('/:courseid/notices',
   mw.authority.check(1),
   mw.course.checkRelation,

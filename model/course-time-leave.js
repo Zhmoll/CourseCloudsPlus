@@ -7,6 +7,7 @@ const schema = {
   course: { type: Schema.Types.ObjectId, index: true, ref: 'Course' },
   courseTime: { type: Schema.Types.ObjectId, index: true, ref: 'CourseTime' },
   createdAt: { type: Date, default: new Date() },
+  responsed: { type: Boolean, default: false },
   allow: { type: Boolean, default: false },
   allowBy: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   allowInfo: { type: String },

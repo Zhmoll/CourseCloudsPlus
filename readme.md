@@ -1,7 +1,5 @@
 # CourseCloudsPlus 开发者文档
 
-[TOC]
-
 ## 一、全局返回码及对应说明
 
 | 返回码  | 返回信息            | 附加对象               |
@@ -18,6 +16,8 @@
 | 2203 | 获取该上课时间成功       | coursetime         |
 | 2204 | 创建请假条完成，请等待教师批复 |                    |
 | 2205 | 获取请假条成功         | leaves             |
+| 2206 | 获取该请假条成功        | leave              |
+| 2207 | 获取课表成功          | show               |
 | 2300 |                 |                    |
 | 2301 | 获取消息成功          | notice             |
 | 2302 | 标记消息已读成功        |                    |
@@ -36,9 +36,13 @@
 | 3008 | 修改上课时间信息成功      | updated_coursetime |
 | 3009 | 获取该上课时间成功       | coursetime         |
 |      | 获取该课的所有消息成功     | notices            |
+| 3011 | 批复请假条成功         | updated_leave      |
+| 3012 | 获取该课程请假条成功      | leaves             |
 | 4001 | 密码错误            |                    |
 | 4002 | 找不到该用户          |                    |
 | 4003 | 微信用户尚未绑定账户      |                    |
+| 4004 | 找不到该请假条         |                    |
+|      | 该请假条已经批复        |                    |
 | 4101 | 缺少参数courseid    |                    |
 | 4102 | 用户尚未参加此课程       |                    |
 | 4103 | 找不到此课程          |                    |
@@ -229,6 +233,30 @@ const schema = {
 `get` `/api/users/:userid`
 
 返回`2100`，`用户公开信息`。
+
+#### 11）、获取用户的某条请假条
+
+`get` `/api/profile/askforleave/:leaveid`
+
+需登录，请假条需与用户相关联。
+
+返回`2206`，`请假条`。
+
+#### 12）、获取用户的所有请假条
+
+`get` `/api/profile/askforleave`
+
+需登录
+
+返回`2205`，`请假条组`。
+
+#### 13）、查询学生课表
+
+`get` `/api/profile/coursetimes`
+
+需登录
+
+返回`2207`，`标准课程表`。
 
 ### 2、消息相关
 
@@ -466,7 +494,7 @@ const schema = {
 };
 ```
 
-#### ⑥、Course Time Leave Schema
+##### ⑥、Course Time Leave Schema
 
 ```javascript
 const schema = {
@@ -489,8 +517,8 @@ const schema = {
 ```json
 {
   "2016-2": {
-    1: {
-      5: [
+    "1": {
+      "5": [
         { 
           "coursetimeid": "{id}",
           "course": {
@@ -521,8 +549,8 @@ const schema = {
 ```json
 {
   "2016-2":{
-    3:{
-      1:[
+    "3":{
+      "1":[
         { 
           "coursetimeid": "1234ABCD1234ABCD",
           "course": {
@@ -558,7 +586,7 @@ const schema = {
           "remark": "请不要旷课！"
         },
       ],
-      2:[
+      "2":[
         { 
           "coursetimeid": "1234ABCD1234ABCD",
           "course": {
@@ -577,7 +605,7 @@ const schema = {
           "remark": "课堂上严禁谈情说爱"
         }
       ],
-      4:[
+      "4":[
         { 
           "coursetimeid": "1234ABCD1234ABCD",
           "course": {
@@ -751,8 +779,26 @@ const schema = {
 
 #### 11）、教师查询某节课的所有教师群发消息
 
-`get` `/api/teacher-management/course/:courseid/notices`
+`get` `/api/teacher-management/courses/:courseid/notices`
 
 需登录为教师，需执教该课程。
 
 返回`3010`，`标准消息组`。
+
+#### 12）、教师批准某节课的学生的某请假条
+
+`post` `/api/teacher-management/courses/:courseid/askforleave/:leaveid/allow`
+
+需登录为教师，需执教该课程，假条需与课程相关联。
+
+发送`{ allow, allowBy, allowInfo }`。
+
+返回`3011`，`请假条`。
+
+#### 13）、教师查询某节课所有的学生请假条
+
+`get` `/api/teacher-management/courses/:courseid/askforleave`
+
+需登录为教师，需执教该课程。
+
+返回`3012`，`请假条组`。

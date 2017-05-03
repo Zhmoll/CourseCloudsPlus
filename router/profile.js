@@ -5,6 +5,8 @@ const User = require('../model/users');
 const { ResponseError, Response } = require('../lib/response');
 const fetchheadimg = require('../lib/fetchheadimg');
 const OAuthApi = require('../wechat/OAuth');
+const UserCourseRelation = require('../model/user-course-relation');
+const CourseTimeLeave = require('../model/course-time-leave');
 
 // 获取用户自身信息（完成）
 // get /api/profile
@@ -117,6 +119,57 @@ router.post('/wechat/login',
         req.session.authority = user.authority;
         res.json(new Response(2004, '微信登录成功'));
       });
+    });
+  }
+);
+
+
+// 学生查询的某个请假条（完成）
+// get /api/profile/askforleave/:leaveid
+router.get('/askforleave/:leaveid',
+  mw.authority.check(1),
+  mw.course.checkLeaveUserRelation,
+  (req, res, next) => {
+    const leave = req.leave;
+    res.json(new Response(2206, '获取该请假条成功', leave));
+  }
+);
+
+// 学生查询的所有请假条（完成）
+// get /api/profile/askforleave
+router.get('/askforleave',
+  mw.authority.check(1),
+  (req, res, next) => {
+    const userid = req.session.userid;
+    CourseTimeLeave
+      .find({ user: userid })
+      .where('deleted').equals(false)
+      .populate({
+        path: 'courseTime',
+        match: { deleted: false },
+        select: '-deleted'
+      })
+      .populate({
+        path: 'allowBy',
+        match: { deletd: false },
+        select: 'id uid name avatar'
+      })
+      .exec((err, leaves) => {
+        if (err) return next(err);
+        res.json(new Response(2205, '获取请假条成功', leaves));
+      });
+  }
+);
+
+// 学生查询课表（完成）
+// get /api/profile/coursetimes
+router.get('/coursetimes',
+  mw.authority.check(1),
+  (req, res, next) => {
+    const userid = req.session.userid;
+    UserCourseRelation.findCourseTimes(userid, (err, show) => {
+      if (err) return next(err);
+      res.json(new Response(2207, '获取课表成功', show));
     });
   }
 );
