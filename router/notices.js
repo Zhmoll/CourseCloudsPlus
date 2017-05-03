@@ -9,7 +9,7 @@ router.get('/inbox',
   mw.authority.check(),
   mw.notice.findReceivedByUserid,
   (req, res, next) => {
-    const notices = notices;
+    const notices = req.notices;
     res.json(new Response(2305, '获取收件箱成功', notices));
   }
 );
@@ -20,7 +20,7 @@ router.get('/outbox',
   mw.authority.check(),
   mw.notice.findSentByUserid,
   (req, res, next) => {
-    const notices = notices;
+    const notices = req.notices;
     res.json(new Response(2306, '获取发件箱成功', notices));
   }
 );

@@ -20,7 +20,7 @@ const schema = {
   password: { type: String },
   openid: { type: String, index: true },
   unionid: { type: String, index: true },
-  authority: { type: Number, default: 1 },
+  authority: { type: Number, default: 0 },
   enable: { type: Boolean, default: false },
   deleted: { type: Boolean, default: false },
 
@@ -75,14 +75,14 @@ const schema = {
   courses_public: { type: Boolean, default: false },
 };
 
-const option = {};
+const option = { versionKey: false };
 const UserSchema = new Schema(schema, option);
 
 // 内部获取 用id
 // 返回一个数据库文档记录
 UserSchema.statics.innerFindById = function (id, callback) {
   return this
-    .findById(userid)
+    .findById(id)
     .where('deleted').equals(false)
     .exec(callback);
 };

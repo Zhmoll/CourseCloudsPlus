@@ -18,7 +18,7 @@ const schema = {
   deleted: { type: Boolean, default: false }
 };
 
-const option = {};
+const option = { versionKey: false };
 const CourseTimeSchema = new Schema(schema, option);
 
 CourseTimeSchema.statics.checkRelation = function (courseid, coursetimeid, callback) {

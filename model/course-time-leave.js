@@ -14,7 +14,7 @@ const schema = {
   deleted: { type: Boolean, default: false }
 };
 
-const option = {};
+const option = { versionKey: false };
 const CourseTimeLeaveSchema = new Schema(schema, option);
 
 CourseTimeLeaveSchema.statics.findByUserIdAndCourseId = function (userid, courseid, callback) {

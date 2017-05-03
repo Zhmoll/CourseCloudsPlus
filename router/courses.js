@@ -82,12 +82,10 @@ router.post('/:courseid/course-times/:coursetimeid/askforleave',
     data.course = req.params.courseid;
     data.courseTime = req.params.coursetimeid;
 
-    CourseTimeLeave
-      .create(data)
-      .exec((err, leave) => {
-        if (err) return next(err);
-        res.json(new Response(2204, '创建请假条完成，请等待教师批复'));
-      });
+    CourseTimeLeave.create(data, (err, leave) => {
+      if (err) return next(err);
+      res.json(new Response(2204, '创建请假条完成，请等待教师批复'));
+    });
   }
 );
 

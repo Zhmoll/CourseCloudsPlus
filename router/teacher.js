@@ -17,12 +17,10 @@ router.post('/courses',
     const teacherid = req.session.userid;
     const data = _.pick(req.body, ['cid', 'name', 'intros', 'teachers']);
 
-    Course
-      .create(data)
-      .exec((err, course) => {
-        if (err) return next(err);
-        return res.json(new Response(3001, '成功创建课程', course));
-      });
+    Course.create(data, (err, course) => {
+      if (err) return next(err);
+      return res.json(new Response(3001, '成功创建课程', course));
+    });
   }
 );
 
@@ -121,12 +119,10 @@ router.post('/courses/:courseid/course-times',
       }
       data.push(record);
     });
-    CourseTime
-      .create(data)
-      .exec((err, result) => {
-        if (err) return next(err);
-        res.json(new Response(3005, '添加上课时间成功'));
-      });
+    CourseTime.create(data, (err, result) => {
+      if (err) return next(err);
+      res.json(new Response(3005, '添加上课时间成功'));
+    });
   }
 );
 

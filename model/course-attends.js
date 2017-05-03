@@ -10,9 +10,8 @@ const schema = {
   enableEnd: { type: Date },
 };
 
-const option = {};
+const option = { versionKey: false };
 const CourseAttendSchema = new Schema(schema, option);
-
 
 const CourseAttendModel = mongoose.model('CourseAttend', CourseAttendSchema);
 module.exports = CourseAttendModel;

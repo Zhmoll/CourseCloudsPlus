@@ -8,9 +8,8 @@ const schema = {
   createdAt: { type: Date, default: new Date() }
 };
 
-const option = {};
+const option = { versionKey: false };
 const CourseAttendRemarkSchema = new Schema(schema, option);
-
 
 const CourseAttendRemarkModel = mongoose.model('CourseAttendRemark', CourseAttendRemarkSchema);
 module.exports = CourseAttendRemarkModel;

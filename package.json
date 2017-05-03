@@ -16,6 +16,7 @@
     "lodash": "^4.17.4",
     "mongoose": "^4.9.4",
     "morgan": "~1.7.0",
+    "request": "^2.81.0",
     "serve-favicon": "~2.3.2",
     "wechat": "^2.1.0",
     "wechat-api": "^1.32.1",

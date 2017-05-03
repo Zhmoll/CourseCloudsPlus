@@ -8,7 +8,7 @@ const schema = {
   deleted: { type: Boolean, default: false }
 };
 
-const option = {};
+const option = { versionKey: false };
 const UserCourseRelationSchema = new Schema(schema, option);
 
 // 根据用户id查找所有他参加的课程

@@ -20,7 +20,7 @@ const schema = {
   deleted: { type: Boolean, default: false }
 };
 
-const option = {};
+const option = { versionKey: false };
 const CourseSchema = new Schema(schema, option);
 
 // 私有查询

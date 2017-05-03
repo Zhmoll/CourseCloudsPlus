@@ -3,6 +3,7 @@ const router = express.Router();
 const mw = require('../lib/middleware');
 const User = require('../model/users');
 const { ResponseError, Response } = require('../lib/response');
+const _ = require('lodash');
 const fetchheadimg = require('../lib/fetchheadimg');
 const OAuthApi = require('../wechat/OAuth');
 const UserCourseRelation = require('../model/user-course-relation');
@@ -36,7 +37,7 @@ router.put('/',
 
     user.update(update, (err, updated_user) => {
       if (err) return next(err);
-      res.json(new Response(2001, '修改用户自身信息成功', updated_user));
+      res.json(new Response(2001, '修改用户自身信息成功'));
     });
   }
 );

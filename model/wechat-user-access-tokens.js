@@ -10,8 +10,7 @@ const schema = {
   create_at: String
 };
 
-const option = {};
-
+const option = { versionKey: false };
 const WechatUserAccessTokenSchema = new Schema(schema, option);
 
 WechatUserAccessTokenSchema.statics.getToken = function (openid, cb) {
