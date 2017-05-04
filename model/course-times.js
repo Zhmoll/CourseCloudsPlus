@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const _ = require('lodash');
 
 const schema = {
   course: { type: Schema.Types.ObjectId, ref: 'Course' },
@@ -23,8 +24,10 @@ const CourseTimeSchema = new Schema(schema, option);
 
 CourseTimeSchema.statics.checkRelation = function (courseid, coursetimeid, callback) {
   return this
-    .findOne({ course: courseid, id: coursetimeid })
+    .findById(coursetimeid)
     .where('deleted').equals(false)
+    .where('course').equals(courseid)
+    .select('-deleted')
     .populate({
       path: 'course',
       match: { deleted: false },

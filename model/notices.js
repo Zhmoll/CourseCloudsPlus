@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const UserNoticeRelation = require('./user-notice-relation');
 const config = require('config-lite');
+const _ = require('lodash');
 
 const schema = {
   title: { type: String },
@@ -48,6 +49,7 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverid, content, callb
 NoticeSchema.statics.findByCourseid = function (courseid, callback) {
   return this
     .find({ course: courseid, deleted: false })
+    .select('-deleted -content -course')
     .populate({
       path: 'from',
       match: { deleted: false },

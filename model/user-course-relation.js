@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const _ = require('lodash');
 
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
@@ -39,17 +40,7 @@ UserCourseRelationSchema.statics.findByCourseid = function (id, callback) {
     .populate({
       path: 'user',
       match: { deleted: false },
-      select: 'id nickname gender avatar description'
-    })
-    .populate({
-      path: 'course',
-      match: { deleted: false },
-      select: 'id cid name teachers',
-      populate: {
-        path: 'teachers',
-        match: { deleted: false },
-        select: 'id name avatar'
-      }
+      select: 'id nickname name gender avatar description'
     })
     .exec(callback);
 };

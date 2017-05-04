@@ -3,6 +3,7 @@ const router = express.Router();
 const mw = require('../lib/middleware');
 const { ResponseError, Response } = require('../lib/response');
 const CourseTimeLeave = require('../model/course-time-leave');
+const _ = require('lodash');
 
 // 获取某一课程信息（完成）
 // get /api/courses/:courseid
@@ -82,10 +83,17 @@ router.post('/:courseid/course-times/:coursetimeid/askforleave',
     data.course = req.params.courseid;
     data.courseTime = req.params.coursetimeid;
 
-    CourseTimeLeave.create(data, (err, leave) => {
-      if (err) return next(err);
-      res.json(new Response(2204, '创建请假条完成，请等待教师批复'));
-    });
+    CourseTimeLeave
+      .findOne(data)
+      .exec((err, result) => {
+        if (err) return next(err);
+        if (result)
+          return res.json(new ResponseError(4006, '已经在该课时申请过请假条'));
+        CourseTimeLeave.create(data, (err, leave) => {
+          if (err) return next(err);
+          res.json(new Response(2204, '创建请假条完成，请等待教师批复'));
+        });
+      })
   }
 );
 

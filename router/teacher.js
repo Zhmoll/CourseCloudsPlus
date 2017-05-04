@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const mw = require('../lib/middleware');
+const Course = require('../model/courses');
 const User = require('../model/users');
 const Notice = require('../model/notices');
 const UserCourseRelation = require('../model/user-course-relation');
 const CourseTime = require('../model/course-times');
 const CourseTimeLeave = require('../model/course-time-leave');
 const { ResponseError, Response } = require('../lib/response');
+const _ = require('lodash');
 
 // 教师添加课程（完成）
 // post /api/teacher-management/courses
@@ -38,7 +40,7 @@ router.put('/courses/:courseid',
       .update(update)
       .exec((err, course) => {
         if (err) return next(err);
-        return res.json(new Response(3002, '成功修改课程', course));
+        return res.json(new Response(3002, '成功修改课程'));
       });
   }
 );
@@ -60,8 +62,8 @@ router.delete('/courses/:courseid',
 );
 
 // 教师针对某课程发送通知（完成）
-// post /api/teacher-management/courses/:courseid/notice
-router.post('/courses/:courseid/notice',
+// post /api/teacher-management/courses/:courseid/notices
+router.post('/courses/:courseid/notices',
   mw.authority.check(10),
   mw.course.checkOwnerRelation,
   function (req, res, next) {
@@ -117,6 +119,7 @@ router.post('/courses/:courseid/course-times',
       if (!record.location || !record.term || !record.week || !record.weekday || !record.rows || !record.remark) {
         return next(new ResponseError(4105, '添加的上课时间参数不正确'));
       }
+      record.course = courseid;
       data.push(record);
     });
     CourseTime.create(data, (err, result) => {
@@ -150,7 +153,7 @@ router.put('/courses/:courseid/course-times/:coursetimeid',
 
     coursetime.update(update, (err, updated_coursetime) => {
       if (err) return next(err);
-      res.json(new Response(3008, '修改上课时间信息成功', updated_coursetime));
+      res.json(new Response(3008, '修改上课时间信息成功'));
     });
   }
 );
@@ -234,6 +237,40 @@ router.get('/api/teacher-management/courses/:courseid/askforleave',
         if (err) return next(err);
         res.json(new Response(3012, '获取该课程请假条成功', leaves));
       });
+  }
+);
+
+// 教师批量添加上课学生（完成）
+// post /api/teacher-management/courses/:courseid/students
+router.post('/courses/:courseid/students',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  (req, res, next) => {
+    const courseid = req.params.courseid;
+    const ids = req.body;
+    const university = req.method.university;
+    const relations = [];
+
+    ids.forEach(userid => {
+      relations.push({ user: userid, course: courseid });
+    });
+
+    UserCourseRelation.create(relations, (err, results) => {
+      if (err) return next(err);
+      res.json(new Response(3013, '批量添加上课学生成功'));
+    });
+  }
+);
+
+// 教师获得某课的上课学生（完成）
+// get /api/teacher-management/courses/:courseid/students
+router.get('/courses/:courseid/students',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.findStudents,
+  (req, res, next) => {
+    const students = req.students;
+    res.json(new Response(3014, '获取该课参与学生成功', students));
   }
 );
 

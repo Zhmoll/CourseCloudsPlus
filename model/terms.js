@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const term_helper = require('../lib/term');
+const _ = require('lodash');
 
 const schema = {
   university: { type: String, required: true, index: true },
