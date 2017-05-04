@@ -93,7 +93,7 @@ router.post('/:courseid/course-times/:coursetimeid/askforleave',
           if (err) return next(err);
           res.json(new Response(2204, '创建请假条完成，请等待教师批复'));
         });
-      })
+      });
   }
 );
 
