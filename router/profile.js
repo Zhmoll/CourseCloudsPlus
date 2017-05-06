@@ -108,6 +108,16 @@ router.post('/wechat/bind',
   }
 );
 
+// 获取微信登录跳转网址
+// get /api/profile/wechat/login
+router.get('/wechat/login',
+  mw.authority.checkNotLogin,
+  (req, res, next) => {
+    const url = OAuthApi.getAuthorizeURL('http://112.74.13.107', 'wechat_login', 'snsapi_base');
+    res.json(new Response(2008, '获取微信登录跳转页成功', { url: url }));
+  }
+);
+
 // 用用户的微信号登录（完成）
 // post /api/profile/wechat/login
 router.post('/wechat/login',
