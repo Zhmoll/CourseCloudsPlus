@@ -32,6 +32,7 @@ function key_today_courses(message, req, res, next) {
     }
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) return next(err);
+      console.log(show);
       const courses = show[time.term][time.week][time.weekday];
       const result = [{ title: `第${time.week}周 ${time.weekday}` }];
 

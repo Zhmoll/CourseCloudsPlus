@@ -75,11 +75,14 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
 
       Promise.all(missions)
         .then(shows => {
-          const results = {};
-          // _.merge(results, shows);
-          callback(null, _.merge(results, shows));
           console.log(1111111111111111);
           console.log(shows);
+          const results = {};
+          
+          _.merge(results, shows);
+          console.log(results);
+          callback(null, result);
+
         })
         .catch(e => {
           return callback(e);
