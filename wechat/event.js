@@ -48,7 +48,14 @@ function key_today_courses(message, req, res, next) {
         case 5: time.weekday = '周五'; break;
         case 6: time.weekday = '周六'; break;
       }
-      const result = [{ title: `第${time.week}周 ${time.weekday}` }];
+      const result = [{ title: `今天是 第${time.week}周 ${time.weekday}` }];
+
+      courses.sort((a, b) => {
+        if (a.rows[0] > b.rows[b])
+          return 1;
+        else
+          return -1;
+      });
 
       courses.forEach(item => {
         const name = item.course.name;
@@ -58,12 +65,17 @@ function key_today_courses(message, req, res, next) {
           teachers.push(teacher.name);
         });
         result.push({
-          title: `课程：${item.course.name}`
+          title: `课程：${item.course.name} - ${item.course.cid}`
           + '\n' + `时间：第${rows}节`
-          + '\n' + `地点：${item.location}`
           + '\n' + `老师：` + teachers.toString()
+          + '\n' + `地点：${item.location}`
         });
       });
+
+      result.push({
+        title: '点我获得完整课程表',
+        url: 'http://courseclouds.zhmoll.com/coursetable.html'
+      })
       res.reply(result);
     });
   });
