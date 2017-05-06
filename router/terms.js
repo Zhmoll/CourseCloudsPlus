@@ -16,3 +16,5 @@ router.get('/currentWeek',
     });
   }
 );
+
+module.exports = router;
