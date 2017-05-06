@@ -1,10 +1,13 @@
+'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const _ = require('lodash');
+const CourseTime = require('./course-times');
 
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Course' },
+  courseTimes: { type: Schema.Types.ObjectId, ref: 'CourseTime' },
   createdAt: { type: Date, default: new Date },
   deleted: { type: Boolean, default: false }
 };
@@ -80,7 +83,8 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
       const show = {};
       relations.forEach(relation => {
         const course = relation.course;
-        const coursetimes = course.courseTimes;
+        const coursetimes = course.coursetimes;
+
         // 拿了course对象，返回了课表
         const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
         coursetimes.forEach(item => {
@@ -103,6 +107,7 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
             remark: remark
           });
         });
+
       });
       callback(null, show);
     });
