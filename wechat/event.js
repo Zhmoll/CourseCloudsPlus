@@ -23,8 +23,6 @@ function key_today_courses(message, req, res, next) {
     if (err) return next(err);
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) return next(err);
-      console.log(show);
-
       let courses;
       if (show && show[time.term] && show[time.term][time.week] &&
         show[time.term][time.week][time.weekday]) {
@@ -50,12 +48,7 @@ function key_today_courses(message, req, res, next) {
       }
       const result = [{ title: `今天是 第${time.week}周 ${time.weekday}` }];
 
-      courses.sort((a, b) => {
-        if (a.rows[0] > b.rows[b])
-          return 1;
-        else
-          return -1;
-      });
+      courses.sort((a, b) => a.rows[0] - b.rows[0]);
 
       courses.forEach(item => {
         const name = item.course.name;
