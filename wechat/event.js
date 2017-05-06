@@ -18,7 +18,7 @@ const _findCourseTimes = (user) => {
   return new Promise((resolve, reject) => {
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) reject(err);
-      resolve(result);
+      resolve(show);
     });
   });
 }
