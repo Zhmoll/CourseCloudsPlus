@@ -54,7 +54,62 @@ UserCourseRelationSchema.statics.checkRelation = function (userid, courseid, cal
     .exec(callback);
 };
 
-// 根据一定配置查询课表
+// 查询用户的所有课表
+UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
+  return this
+    .find({ user: userid, deleted: false })
+    .populate({
+      path: 'course',
+      match: { deleted: false },
+      select: '-deleted',
+      populate: [
+        {
+          path: 'teachers',
+          match: { deleted: false },
+          select: 'id uid name avatar'
+        },
+        {
+          path: 'courseTimes',
+          match: { deleted: false },
+          select: '-deleted'
+        }
+      ]
+    })
+    .exec((err, relations) => {
+      if (err) return callback(err);
+      const show = {};
+      relations.forEach(relation => {
+        const course = relation.course;
+        const coursetimes = course.courseTimes;
+        // 拿了course对象，返回了课表
+        const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
+        coursetimes.forEach(item => {
+          const { id, location, term, week, weekday, rows, remark } = item;
+          // 创建学期
+          if (!show[term])
+            show[term] = {};
+          // 创建周
+          if (!show[term][week])
+            show[term][week] = {};
+          // 创建周几
+          if (!show[term][week][weekday])
+            show[term][week][weekday] = [];
+          // 为周几添加课程
+          show[term][week][weekday].push({
+            coursetimeid: id,
+            course: course_simple,
+            rows: rows,
+            location: location,
+            remark: remark
+          });
+        });
+      });
+      callback(null, show);
+    });
+};
+
+
+// 根据一定配置查询某课课表
 UserCourseRelationSchema.methods.findCourseTimes = function (userid, callback) {
   return this
     .find({ user: userid, deleted: false })
