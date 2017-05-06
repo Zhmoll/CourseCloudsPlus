@@ -1,5 +1,5 @@
 const OAuthApi = require('./OAuth');
-const User = require('../models/users');
+const User = require('../../models/users');
 
 function key_user_center(message, req, res, next) {
   // 确认是否认证了
