@@ -89,49 +89,46 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
 
 // 根据一定配置查询某课课表
 UserCourseRelationSchema.methods.findCourseTimes = function (callback) {
-  const relation = this;
-  relation
-    .populate({
-      path: 'course',
+  return this.populate({
+    path: 'course',
+    match: { deleted: false },
+    select: '-deleted',
+    populate: {
+      path: 'teachers',
       match: { deleted: false },
-      select: '-deleted',
-      populate: {
-        path: 'teachers',
-        match: { deleted: false },
-        select: config.select.simple_teacher_info
-      }
-    })
-    .exec((err, relation) => {
+      select: config.select.simple_teacher_info
+    }
+  }, (err, relation) => {
+    if (err) return callback(err);
+    const course = relation.course;
+    CourseTime.find({ course: course.id, deleted: false }).exec((err, coursetimes) => {
       if (err) return callback(err);
-      const course = relation.course;
-      CourseTime.find({ course: course.id, deleted: false }).exec((err, coursetimes) => {
-        if (err) return callback(err);
-        // 拿了course对象，返回了课表
-        const show = {};
-        const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
-        coursetimes.forEach(coursetime => {
-          const { id, location, term, week, weekday, rows, remark } = coursetime;
-          // 创建学期
-          if (!show[term])
-            show[term] = {};
-          // 创建周
-          if (!show[term][week])
-            show[term][week] = {};
-          // 创建周几
-          if (!show[term][week][weekday])
-            show[term][week][weekday] = [];
-          // 为周几添加课程
-          show[term][week][weekday].push({
-            coursetimeid: id,
-            course: course_simple,
-            rows: rows,
-            location: location,
-            remark: remark
-          });
+      // 拿了course对象，返回了课表
+      const show = {};
+      const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
+      coursetimes.forEach(coursetime => {
+        const { id, location, term, week, weekday, rows, remark } = coursetime;
+        // 创建学期
+        if (!show[term])
+          show[term] = {};
+        // 创建周
+        if (!show[term][week])
+          show[term][week] = {};
+        // 创建周几
+        if (!show[term][week][weekday])
+          show[term][week][weekday] = [];
+        // 为周几添加课程
+        show[term][week][weekday].push({
+          coursetimeid: id,
+          course: course_simple,
+          rows: rows,
+          location: location,
+          remark: remark
         });
-        callback(null, show);
       });
+      callback(null, show);
     });
+  });
 };
 
 
