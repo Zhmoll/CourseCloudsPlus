@@ -289,6 +289,8 @@ const schema = {
 
 `post` `/api/users/login`
 
+发送`{ university, uid, password}`。
+
 返回`2005`，`{ id,avatar,name,nickname,university,description }`。
 
 #### 15）、注销

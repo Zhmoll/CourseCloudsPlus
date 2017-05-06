@@ -9,7 +9,7 @@ function key_user_center(message, req, res, next) {
 
     if (!user) {
       // 微信用户未绑定平台账号
-      const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/users/bind', 'bind', 'snsapi_userinfo');
+      const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register', 'bind', 'snsapi_userinfo');
       return res.reply([{
         title: '请先绑定',
         description: '用户中心绑定',
@@ -19,7 +19,7 @@ function key_user_center(message, req, res, next) {
     }
 
     // 微信用户已绑定平台账号
-    const url = 'http://courseclouds.zhmoll.com/users/center';
+    const url = 'http://courseclouds.zhmoll.com/user-center/';
     return res.reply([{
       title: '用户中心',
       description: '欢迎回来，' + user.name + '！',

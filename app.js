@@ -31,7 +31,7 @@ app.use(session({
 
 router(app);
 
-app.use(wechat);
+app.use('/wechat', wechat);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
