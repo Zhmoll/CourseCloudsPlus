@@ -2,12 +2,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const _ = require('lodash');
+const config = require('config-lite');
 const CourseTime = require('./course-times');
 
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Course' },
-  courseTimes: { type: Schema.Types.ObjectId, ref: 'CourseTime' },
   createdAt: { type: Date, default: new Date },
   deleted: { type: Boolean, default: false }
 };
@@ -61,90 +61,55 @@ UserCourseRelationSchema.statics.checkRelation = function (userid, courseid, cal
 UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
   return this
     .find({ user: userid, deleted: false })
-    .populate({
-      path: 'course',
-      match: { deleted: false },
-      select: '-deleted',
-      populate: [
-        {
-          path: 'teachers',
-          match: { deleted: false },
-          select: 'id uid name avatar'
-        },
-        {
-          path: 'courseTimes',
-          match: { deleted: false },
-          select: '-deleted'
-        }
-      ]
-    })
     .exec((err, relations) => {
       if (err) return callback(err);
       const show = {};
+      const missions = [];
       relations.forEach(relation => {
-        const course = relation.course;
-        const coursetimes = course.coursetimes;
-
-        // 拿了course对象，返回了课表
-        const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
-        coursetimes.forEach(item => {
-          const { id, location, term, week, weekday, rows, remark } = item;
-          // 创建学期
-          if (!show[term])
-            show[term] = {};
-          // 创建周
-          if (!show[term][week])
-            show[term][week] = {};
-          // 创建周几
-          if (!show[term][week][weekday])
-            show[term][week][weekday] = [];
-          // 为周几添加课程
-          show[term][week][weekday].push({
-            coursetimeid: id,
-            course: course_simple,
-            rows: rows,
-            location: location,
-            remark: remark
+        missions.push(new Promise((resolve, reject) => {
+          relation.findCourseTimes((err, show) => {
+            if (err) return reject(err);
+            resolve(show);
           });
-        });
-
+        }));
       });
-      callback(null, show);
+
+      Promise.all(missions)
+        .then(shows => {
+          const results = {};
+          _.merge(results, shows);
+          callback(null, results);
+        })
+        .catch(e => {
+          return callback(err);
+        });
     });
 };
-
 
 // 根据一定配置查询某课课表
-UserCourseRelationSchema.methods.findCourseTimes = function (userid, callback) {
-  return this
-    .find({ user: userid, deleted: false })
+UserCourseRelationSchema.methods.findCourseTimes = function (callback) {
+  const relation = this;
+  relation
     .populate({
       path: 'course',
       match: { deleted: false },
       select: '-deleted',
-      populate: [
-        {
-          path: 'teachers',
-          match: { deleted: false },
-          select: 'id uid name avatar'
-        },
-        {
-          path: 'courseTimes',
-          match: { deleted: false },
-          select: '-deleted'
-        }
-      ]
+      populate: {
+        path: 'teachers',
+        match: { deleted: false },
+        select: config.select.simple_teacher_info
+      }
     })
-    .exec((err, relations) => {
+    .exec((err, relation) => {
       if (err) return callback(err);
-      const show = {};
-      relations.forEach(relation => {
-        const course = relation.course;
-        const coursetimes = course.courseTimes;
+      const course = relation.course;
+      CourseTime.find({ course: course.id, deleted: false }).exec((err, coursetimes) => {
+        if (err) return callback(err);
         // 拿了course对象，返回了课表
+        const show = {};
         const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
-        coursetimes.forEach(item => {
-          const { id, location, term, week, weekday, rows, remark } = item;
+        coursetimes.forEach(coursetime => {
+          const { id, location, term, week, weekday, rows, remark } = coursetime;
           // 创建学期
           if (!show[term])
             show[term] = {};
@@ -163,10 +128,67 @@ UserCourseRelationSchema.methods.findCourseTimes = function (userid, callback) {
             remark: remark
           });
         });
+        callback(null, show);
       });
-      callback(null, show);
     });
 };
+
+
+
+
+// // 根据一定配置查询某课课表
+// UserCourseRelationSchema.methods.findCourseTimes = function (userid, callback) {
+//   return this
+//     .find({ user: userid, deleted: false })
+//     .populate({
+//       path: 'course',
+//       match: { deleted: false },
+//       select: '-deleted',
+//       populate: [
+//         {
+//           path: 'teachers',
+//           match: { deleted: false },
+//           select: 'id uid name avatar'
+//         },
+//         {
+//           path: 'courseTimes',
+//           match: { deleted: false },
+//           select: '-deleted'
+//         }
+//       ]
+//     })
+//     .exec((err, relations) => {
+//       if (err) return callback(err);
+//       const show = {};
+//       relations.forEach(relation => {
+//         const course = relation.course;
+//         const coursetimes = course.courseTimes;
+//         // 拿了course对象，返回了课表
+//         const course_simple = _.pick(course, ['id', 'cid', 'name', 'teachers']);
+//         coursetimes.forEach(item => {
+//           const { id, location, term, week, weekday, rows, remark } = item;
+//           // 创建学期
+//           if (!show[term])
+//             show[term] = {};
+//           // 创建周
+//           if (!show[term][week])
+//             show[term][week] = {};
+//           // 创建周几
+//           if (!show[term][week][weekday])
+//             show[term][week][weekday] = [];
+//           // 为周几添加课程
+//           show[term][week][weekday].push({
+//             coursetimeid: id,
+//             course: course_simple,
+//             rows: rows,
+//             location: location,
+//             remark: remark
+//           });
+//         });
+//       });
+//       callback(null, show);
+//     });
+// };
 
 const UserCourseRelationModel = mongoose.model('UserCourseRelation', UserCourseRelationSchema);
 module.exports = UserCourseRelationModel;
