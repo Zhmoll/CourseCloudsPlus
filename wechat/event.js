@@ -21,20 +21,9 @@ function key_today_courses(message, req, res, next) {
   const user = req.me;
   Term.getCurrentWeek(user.university, (err, time) => {
     if (err) return next(err);
-    switch (time.weekday) {
-      case 0: time.weekday = '周日'; break;
-      case 1: time.weekday = '周一'; break;
-      case 2: time.weekday = '周二'; break;
-      case 3: time.weekday = '周三'; break;
-      case 4: time.weekday = '周四'; break;
-      case 5: time.weekday = '周五'; break;
-      case 6: time.weekday = '周六'; break;
-    }
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) return next(err);
       console.log(show);
-
-      const result = [{ title: `第${time.week}周 ${time.weekday}` }];
 
       if (show && show[time.term] && show[time.term][time.week] &&
         show[time.term][time.week][time.weekday]) {
@@ -48,6 +37,17 @@ function key_today_courses(message, req, res, next) {
         result.push({ title: '恭喜你，今天没课！' });
         return res.reply(result);
       }
+
+      switch (time.weekday) {
+        case 0: time.weekday = '周日'; break;
+        case 1: time.weekday = '周一'; break;
+        case 2: time.weekday = '周二'; break;
+        case 3: time.weekday = '周三'; break;
+        case 4: time.weekday = '周四'; break;
+        case 5: time.weekday = '周五'; break;
+        case 6: time.weekday = '周六'; break;
+      }
+      const result = [{ title: `第${time.week}周 ${time.weekday}` }];
 
       courses.forEach(item => {
         const name = item.course.name;
