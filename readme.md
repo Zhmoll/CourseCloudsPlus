@@ -23,10 +23,11 @@
 | 2000 | 获取用户自身信息成功      | user          |
 | 2001 | 修改用户自身信息成功      |               |
 | 2002 | 修改密码成功          |               |
-| 2003 | 绑定微信用户成功        |               |
-| 2004 | 微信登录成功          |               |
-| 2005 | 登录成功            |               |
+| 2003 | 绑定微信用户成功        | user          |
+| 2004 | 微信登录成功          | user          |
+| 2005 | 登录成功            | user          |
 | 2006 | 注销成功            |               |
+|      | 获取当前周成功         | result        |
 | 2100 | 获取用户公开信息成功      | user          |
 | 2200 | 获取课程成功          |               |
 | 2201 | 获取用户课程成功        |               |
@@ -225,7 +226,7 @@ const schema = {
 
 发送 `{ uid, university, password, code, state }`，其中`code`和`state`需要从url上摘取，其余的内容需要从页面输入框中拿到。
 
-返回`2003`。
+返回`2003`，`{ id,avatar,name,nickname,university,description }`。
 
 #### 6）、用用户的微信号登录
 
@@ -233,7 +234,7 @@ const schema = {
 
 发送`{ code, state }`，其中`code`和`state`需要从url上摘取。
 
-返回`2004`。
+返回`2004`，`{ id,avatar,name,nickname,university,description }`。
 
 #### 7）、修改用户手机号时发送验证短信（暂未完成）
 
@@ -285,7 +286,15 @@ const schema = {
 
 #### 14）、登录
 
+`post` `/api/users/login`
+
+返回`2005`，`{ id,avatar,name,nickname,university,description }`。
+
 #### 15）、注销
+
+`get` `/api/users/logout`
+
+返回`2006`。
 
 ### 2、消息相关
 
@@ -728,9 +737,22 @@ const schema = {
 
 #### 8）、学生查询某节课的所有教师群发消息
 
-`get` `/api/course/:courseid/notices`
+`get` `/api/courses/:courseid/notices`
 
 返回`2305`，`标准消息组`。
+
+#### 9）、学生查询某节课的所有教师群发消息
+
+`get` `/api/term/currentWeek`
+
+返回`2007`，`{ term, week }`。
+
+```json
+{
+  "term": "2016-2",
+  "week": 5
+}
+```
 
 ### 4、教师相关
 

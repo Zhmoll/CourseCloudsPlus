@@ -29,11 +29,25 @@ router.post('/login',
             .update({ enable: true })
             .then((result) => {
               if (err) return next(err);
-              return res.json(new Response(2005, '登陆成功'));
+              return res.json(new Response(2005, '登陆成功', {
+                id: user.id,
+                avatar: user.avatar,
+                name: user.name,
+                nickname: user.nickname,
+                university: user.university,
+                description: user.description
+              }));
             });
         }
         else
-          return res.json(new Response(2005, '登陆成功'));
+          return res.json(new Response(2005, '登陆成功', {
+            id: user.id,
+            avatar: user.avatar,
+            name: user.name,
+            nickname: user.nickname,
+            university: user.university,
+            description: user.description
+          }));
       });
   }
 );

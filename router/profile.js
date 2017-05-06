@@ -93,7 +93,14 @@ router.post('/wechat/bind',
               req.session.openid = user.openid;
               req.session.userid = user.id;
               req.session.authority = user.authority;
-              res.json(new Response(2003, '绑定微信用户成功'));
+              res.json(new Response(2003, '绑定微信用户成功', {
+                id: user.id,
+                avatar: user.avatar,
+                name: user.name,
+                nickname: user.nickname,
+                university: user.university,
+                description: user.description
+              }));
             });
           });
         });
@@ -118,7 +125,14 @@ router.post('/wechat/login',
         req.session.openid = openid;
         req.session.userid = user.id;
         req.session.authority = user.authority;
-        res.json(new Response(2004, '微信登录成功'));
+        res.json(new Response(2004, '微信登录成功', {
+          id: user.id,
+          avatar: user.avatar,
+          name: user.name,
+          nickname: user.nickname,
+          university: user.university,
+          description: user.description
+        }));
       });
     });
   }
