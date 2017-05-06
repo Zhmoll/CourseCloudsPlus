@@ -7,6 +7,7 @@ const Notice = require('../model/notices');
 const UserCourseRelation = require('../model/user-course-relation');
 const CourseTime = require('../model/course-times');
 const CourseTimeLeave = require('../model/course-time-leave');
+const CourseAttend = require('../model/course-attends');
 const { ResponseError, Response } = require('../lib/response');
 const _ = require('lodash');
 
@@ -271,6 +272,19 @@ router.get('/courses/:courseid/students',
   (req, res, next) => {
     const students = req.students;
     res.json(new Response(3014, '获取该课参与学生成功', students));
+  }
+);
+
+// 教师发起签到
+// post /api/teacher-management/courses/:courseid/attends-check
+router.post('/courses/:courseid/attends-check',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  (req, res, next) => {
+    CourseAttend.create({ course: req.params.courseid }, (err, result) => {
+      if (err) return next(err);
+      res.json(new Response(3015, '发起请求签到成功', { content: result.id }));
+    });
   }
 );
 

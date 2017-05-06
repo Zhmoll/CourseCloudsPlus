@@ -59,6 +59,7 @@
 | 3012 | 获取该课程请假条成功      | leaves        |
 | 3013 | 批量添加上课学生成功      |               |
 |      | 获取该课参与学生成功      | students      |
+|      | 发起请求签到成功        |               |
 | 4000 | 您尚未登录           |               |
 | 4001 | 密码错误            |               |
 | 4002 | 找不到该用户          |               |
@@ -932,6 +933,14 @@ const schema = {
 已验证
 
 返回`3014`，`[{ id, nickname, name, gender, avatar, description }]`。
+
+#### 16）、教师发起请求签到
+
+`post` `/api/teacher-management/courses/:courseid/attends-check`
+
+需登录为教师，需执教该课程。
+
+返回`3015`，`{ content }`。
 
 ### 5、管理员相关
 

@@ -1,6 +1,8 @@
 const OAuthApi = require('./OAuth');
 const User = require('../model/users');
 const UserCourseRelation = require('../model/user-course-relation');
+const CourseAttend = require('../model/course-attends');
+const CourseAttendRemark = require('../model/course-attend-remarks');
 const Term = require('../model/terms');
 
 // 用户中心按钮
@@ -68,14 +70,21 @@ function key_today_courses(message, req, res, next) {
       result.push({
         title: '点我获得完整课程表',
         url: 'http://courseclouds.zhmoll.com/coursetable.html'
-      })
+      });
       res.reply(result);
     });
   });
 }
 
+// 签到
+function key_attend_course(message, req, res, next){
+  const user = req.me;
+  //CourseAttend.find
+}
+
 module.exports = (message, req, res, next) => {
   const openid = message.FromUserName;
+  console.log(message);
   User.innerFindByOpenid(openid, (err, user) => {
     if (err) {
       res.reply('服务器遇到了一些麻烦');
@@ -96,6 +105,7 @@ module.exports = (message, req, res, next) => {
     switch (message.EventKey) {
       case 'key_user_center': return key_user_center(message, req, res, next);
       case 'key_today_courses': return key_today_courses(message, req, res, next);
+      case 'key_attend_course': return key_today_courses(message, req, res, next);
     }
   });
 };
