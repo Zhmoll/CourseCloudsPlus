@@ -77,9 +77,43 @@ function key_today_courses(message, req, res, next) {
 }
 
 // 签到
-function key_attend_course(message, req, res, next){
+function key_attend_course(message, req, res, next) {
   const user = req.me;
-  //CourseAttend.find
+  const attendid = message.ScanCodeInfo.ScanResult;
+
+  CourseAttend.findById(attendid).exec((err, courseattend) => {
+    if (!courseattend) {
+      res.reply('找不到该签到');
+    }
+    const now = Date.now();
+    const start = courseattend.createdAt.getTime();
+    if (now - start > 3 * 60 * 1000)
+      res.reply('该签到已结束');
+    CourseAttendRemark
+      .findOne({ user: user.id })
+      .exec((err, check) => {
+        if (err) {
+          res.reply('服务器遇到了一些麻烦');
+          console.error(err);
+          return;
+        }
+        if (!check) {
+          CourseAttendRemark.create({
+            user: user.id,
+            course: courseattend.course,
+            courseAttend: attendid
+          }, (err, result) => {
+            if (err) {
+              res.reply('服务器遇到了一些麻烦');
+              console.error(err);
+              return;
+            }
+            res.reply('签到成功！');
+          });
+        }
+        res.reply('本课已经签过到！');
+      });
+  });
 }
 
 module.exports = (message, req, res, next) => {
@@ -89,6 +123,7 @@ module.exports = (message, req, res, next) => {
     if (err) {
       res.reply('服务器遇到了一些麻烦');
       console.error(err);
+      return;
     }
     // 微信用户未绑定平台账号
     if (!user) {

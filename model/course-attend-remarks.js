@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 const _ = require('lodash');
 
 const schema = {
+  user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   course: { type: Schema.Types.ObjectId, index: true, ref: 'Course' },
-  courseTime: { type: Schema.Types.ObjectId, index: true, ref: 'CourseTime' },
   courseAttend: { type: Schema.Types.ObjectId, index: true, ref: 'CourseAttend' },
   createdAt: { type: Date, default: new Date() }
 };
