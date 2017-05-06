@@ -33,13 +33,22 @@ function key_today_courses(message, req, res, next) {
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) return next(err);
       console.log(show);
-      const courses = show[time.term][time.week][time.weekday];
+
       const result = [{ title: `第${time.week}周 ${time.weekday}` }];
 
-      if (course.length == 0) {
+      if (show && show[time.term] && show[time.term][time.week] &&
+        show[time.term][time.week][time.weekday]) {
+        const courses = show[time.term][time.week][time.weekday];
+        if (course.length == 0) {
+          result.push({ title: '恭喜你，今天没课！' });
+          return res.reply(result);
+        }
+      }
+      else {
         result.push({ title: '恭喜你，今天没课！' });
         return res.reply(result);
       }
+
       courses.forEach(item => {
         const name = item.course.name;
         const rows = item.rows.toString();
