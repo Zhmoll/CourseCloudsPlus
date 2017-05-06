@@ -57,12 +57,11 @@ function key_today_courses(message, req, res, next) {
         item.course.teachers.forEach(teacher => {
           teachers.push(teacher.name);
         });
-        teachers = teachers.toString();
         result.push({
           title: `课程：${item.course.name}`
           + '\n' + `时间：第${rows}节`
           + '\n' + `地点：${item.location}`
-          + '\n' + `老师：` + teachers
+          + '\n' + `老师：` + teachers.toString()
         });
       });
       res.reply(result);
