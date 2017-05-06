@@ -63,7 +63,6 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
     .find({ user: userid, deleted: false })
     .exec((err, relations) => {
       if (err) return callback(err);
-      const show = {};
       const missions = [];
       relations.forEach(relation => {
         missions.push(new Promise((resolve, reject) => {
@@ -83,7 +82,7 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
           console.log(shows);
         })
         .catch(e => {
-          return callback(err);
+          return callback(e);
         });
     });
 };
