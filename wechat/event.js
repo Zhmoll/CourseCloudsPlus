@@ -3,26 +3,6 @@ const User = require('../model/users');
 const UserCourseRelation = require('../model/user-course-relation');
 const Term = require('../model/terms');
 
-// 获取当前周和学期
-const _getCurrentWeek = (user) => {
-  return new Promise((resolve, reject) => {
-    Term.getCurrentWeek(user.university, (err, result) => {
-      if (err) reject(err);
-      resolve(result);
-    });
-  });
-}
-
-// 获取用户课表
-const _findCourseTimes = (user) => {
-  return new Promise((resolve, reject) => {
-    UserCourseRelation.findCourseTimes(user.id, (err, show) => {
-      if (err) reject(err);
-      resolve(show);
-    });
-  });
-}
-
 // 用户中心按钮
 function key_user_center(message, req, res, next) {
   // 微信用户已绑定平台账号
@@ -39,8 +19,8 @@ function key_user_center(message, req, res, next) {
 // 获取今日课表按钮
 function key_today_courses(message, req, res, next) {
   const user = req.me;
-  (async () => {
-    const time = await _getCurrentWeek(user);
+  Term.getCurrentWeek(user.university, (err, time) => {
+    if (err) return next(err);
     switch (time.weekday) {
       case 0: time.weekday = '周日'; break;
       case 1: time.weekday = '周一'; break;
@@ -50,38 +30,35 @@ function key_today_courses(message, req, res, next) {
       case 5: time.weekday = '周五'; break;
       case 6: time.weekday = '周六'; break;
     }
-    const show = await _findCourseTimes(user);
-    const courses = show[time.term][time.week][time.weekday];
+    UserCourseRelation.findCourseTimes(user.id, (err, show) => {
+      if (err) return next(err);
 
-    const result = [{ title: `第${time.week}周 ${time.weekday}` }];
+      const courses = show[time.term][time.week][time.weekday];
 
-    if (course.length == 0) {
-      result.push({ title: '恭喜你，今天没课！' });
-      return res.reply(result);
-    }
-    courses.forEach(item => {
-      const name = item.course.name;
-      const rows = item.rows.toString();
-      const teachers = [];
-      item.course.teachers.forEach(teacher => {
-        teachers.push(teacher.name);
-      });
-      teachers = teachers.toString();
-      result.push({
-        title: `课程：${item.course.name}`
-        + '\n' + `时间：第${rows}节`
-        + '\n' + `地点：${item.location}`
-        + '\n' + `老师：` + teachers
-      });
-    });
-    res.reply(result);
-  })()
-    .catch(e => {
-      if (e) {
-        res.reply('服务器遇到了一些麻烦');
-        console.error(e);
+      const result = [{ title: `第${time.week}周 ${time.weekday}` }];
+
+      if (course.length == 0) {
+        result.push({ title: '恭喜你，今天没课！' });
+        return res.reply(result);
       }
+      courses.forEach(item => {
+        const name = item.course.name;
+        const rows = item.rows.toString();
+        const teachers = [];
+        item.course.teachers.forEach(teacher => {
+          teachers.push(teacher.name);
+        });
+        teachers = teachers.toString();
+        result.push({
+          title: `课程：${item.course.name}`
+          + '\n' + `时间：第${rows}节`
+          + '\n' + `地点：${item.location}`
+          + '\n' + `老师：` + teachers
+        });
+      });
+      res.reply(result);
     });
+  });
 }
 
 module.exports = (message, req, res, next) => {
