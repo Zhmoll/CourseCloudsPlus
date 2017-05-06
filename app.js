@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 
 const router = require('./router');
+const wechat = require('./wechat');
 const config = require('config-lite').session;
 
 var app = express();
@@ -29,6 +30,8 @@ app.use(session({
 }));
 
 router(app);
+
+app.use(wechat);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
