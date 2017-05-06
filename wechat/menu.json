@@ -1,9 +1,49 @@
 {
   "button": [
     {
+      "name": "快速功能",
+      "sub_button": [
+        {
+          "type": "click",
+          "name": "今日课表",
+          "key": "key_today_courses"
+        },
+        {
+          "type": "scancode_push",
+          "name": "课堂签到",
+          "key": "key_attend_course"
+        },
+        {
+          "type": "click",
+          "name": "假条批复",
+          "key": "key_ask_for_leave"
+        }
+      ]
+    },
+    {
       "type": "click",
-      "name": "个人中心",
+      "name": "云课中心",
       "key": "key_user_center"
+    },
+    {
+      "name": "其他",
+      "sub_button": [
+        {
+          "type": "click",
+          "name": "更换绑定用户",
+          "key": "key_bind_user"
+        },
+        {
+          "type": "click",
+          "name": "消息收件箱",
+          "key": "key_user_inbox"
+        },
+        {
+          "type": "click",
+          "name": "用户帮助",
+          "key": "key_user_help"
+        }
+      ]
     }
   ]
 }

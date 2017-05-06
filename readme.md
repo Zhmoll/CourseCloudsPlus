@@ -752,7 +752,7 @@ const schema = {
 
 返回`2305`，`标准消息组`。
 
-#### 9）、学生查询某节课的所有教师群发消息
+#### 9）、学生查询当前周
 
 `get` `/api/term/currentWeek`
 
@@ -935,11 +935,7 @@ const schema = {
 
 ### 5、管理员相关
 
-0）、
-
-1）、
-
-#### 2）、批量添加用户
+#### 0）、批量添加用户
 
 `post` `/api/admin/users`
 
@@ -947,6 +943,18 @@ const schema = {
 
 已验证
 
-发送`[{ uid, name, university, authority }]`
+发送`[{ uid, name, university, authority, ... }]`。
 
 返回`6000`。
+
+#### 0）、批量添加学校学期
+
+`post` `/api/admin/terms`
+
+需管理员身份。
+
+已验证
+
+发送`[{ university, term, start_date }]`。
+
+返回`6001`。

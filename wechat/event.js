@@ -30,6 +30,7 @@ function key_user_center(message, req, res, next) {
 }
 
 module.exports = function (message, req, res, next) {
+  console.log(message);
   switch (message.EventKey) {
     case 'key_user_center': key_user_center(message, req, res, next);
   }
