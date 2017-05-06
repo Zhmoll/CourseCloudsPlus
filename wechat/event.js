@@ -28,7 +28,7 @@ function key_today_courses(message, req, res, next) {
       if (show && show[time.term] && show[time.term][time.week] &&
         show[time.term][time.week][time.weekday]) {
         const courses = show[time.term][time.week][time.weekday];
-        if (course.length == 0) {
+        if (courses.length == 0) {
           result.push({ title: '恭喜你，今天没课！' });
           return res.reply(result);
         }
