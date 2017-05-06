@@ -24,7 +24,7 @@ TermSchema.statics.getCurrentWeek = function (university, callback) {
       callback(null, {
         term: term,
         week: this_week - start_week + 1,
-        weekday: now.getDay
+        weekday: now.getDay()
       });
     });
 };
