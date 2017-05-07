@@ -182,17 +182,18 @@ function key_ask_for_leave(message, req, res, next) {
         console.error(err);
         return;
       }
-      const results = [{ title: '假条批复状态（最近6条假条）' }];
+      const results = [{ title: '假条批复（最近6条假条）' }];
       leaves.forEach((leave, index) => {
         if (index >= 6) return;
+        let weekday;
         switch (leave.courseTime.weekday) {
-          case 0: leave.courseTime.weekday = '周日'; break;
-          case 1: leave.courseTime.weekday = '周一'; break;
-          case 2: leave.courseTime.weekday = '周二'; break;
-          case 3: leave.courseTime.weekday = '周三'; break;
-          case 4: leave.courseTime.weekday = '周四'; break;
-          case 5: leave.courseTime.weekday = '周五'; break;
-          case 6: leave.courseTime.weekday = '周六'; break;
+          case 0: weekday = '周日'; break;
+          case 1: weekday = '周一'; break;
+          case 2: weekday = '周二'; break;
+          case 3: weekday = '周三'; break;
+          case 4: weekday = '周四'; break;
+          case 5: weekday = '周五'; break;
+          case 6: weekday = '周六'; break;
         }
         if (leave.responsed) {
           // 已批复的假条
@@ -201,7 +202,7 @@ function key_ask_for_leave(message, req, res, next) {
           else answer = '不允许请假';
           results.push({
             title: `课程：${leave.course.name} - ${leave.course.cid}`
-            + '\n' + `时间：${leave.courseTime.term}学期第${leave.courseTime.week}周${leave.courseTime.weekday}`
+            + '\n' + `时间：第${leave.courseTime.week}周 ${weekday}`
             + '第' + leave.courseTime.rows.toString() + '节'
             + '\n' + `结果：${answer}`,
             url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
