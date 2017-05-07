@@ -112,12 +112,12 @@ router.post('/wechat/bind',
   }
 );
 
-// 获取微信登录跳转网址
+// 获取微信登录跳转网址（完成）
 // get /api/profile/wechat/login
 router.get('/wechat/login',
   mw.authority.checkNotLogin,
   (req, res, next) => {
-    const url = OAuthApi.getAuthorizeURL('http://112.74.13.107', 'wechat_login', 'snsapi_base');
+    const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/index.html', 'wechat_login', 'snsapi_base');
     res.json(new Response(2008, '获取微信登录跳转页成功', { url: url }));
   }
 );
@@ -152,7 +152,6 @@ router.post('/wechat/login',
   }
 );
 
-
 // 学生查询的某个请假条（完成）
 // get /api/profile/askforleave/:leaveid
 router.get('/askforleave/:leaveid',
@@ -173,6 +172,12 @@ router.get('/askforleave',
     CourseTimeLeave
       .find({ user: userid })
       .where('deleted').equals(false)
+      .select('-deleted')
+      .populate({
+        path: 'course',
+        match: { deleted: false },
+        select: 'id cid name'
+      })
       .populate({
         path: 'courseTime',
         match: { deleted: false },
@@ -180,7 +185,7 @@ router.get('/askforleave',
       })
       .populate({
         path: 'allowBy',
-        match: { deletd: false },
+        match: { deleted: false },
         select: 'id uid name avatar'
       })
       .exec((err, leaves) => {
@@ -204,35 +209,3 @@ router.get('/coursetimes',
 );
 
 module.exports = router;
-
-// // 修改用户手机号 todo
-// // put /api/profile/telephone
-// router.put('/telephone',
-//   mw.authority.check(),
-//   mw.user.findMe,
-//   (req, res, next) => {
-//     const user = req.me;
-//     const telephone = req.body.telephone;
-
-//     user.telephone = telephone;
-//     user.telephone_verified = false;
-//   }
-// );
-
-// // 修改用户邮箱 todo
-// // put /api/profile/email
-// router.put('/email',
-//   mw.authority.check(),
-//   mw.user.findMe,
-//   (req, res, next) => {
-//     const user = req.me;
-//     const email = req.body.email;
-
-//     user.email = email;
-//     user.email_verified = false;
-//     user.save((err, user) => {
-//       if (err) return next(err);
-//       // 生成一个链接用于验证用户邮箱是否正确
-//     });
-//   }
-// );

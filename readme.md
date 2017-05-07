@@ -251,7 +251,7 @@ const schema = {
 
 发送`{ email }`。
 
-#### 9）、验证用户邮箱(暂未完成)
+#### 9）、验证用户邮箱（暂未完成）
 
 `get` `/profile/emailverify?token={token}&userid={userid}`
 
@@ -279,6 +279,34 @@ const schema = {
 
 返回`2205`，`请假条组`。
 
+```json
+[{
+  "id": "{id}",
+  "user": "{userid}",
+  "reason": "{reason}",
+  "course": {
+    "id": "{courseid}",
+    "cid": "{cid}",
+    "name": "{name}"
+  },
+  "courseTime": {
+    "id": "{coursetimeid}",
+    "location": "{location}",
+    "term": "{term}",
+    "week": "{week}",
+    "weekday": "{weekday}",
+    "rows": [],
+    "remark": "{remark}",
+    "createdAt": "{createdAt}"
+  },
+  "createdAt": "{createdAt}",
+  "responsed": "{responsed}",
+  "allow": "{allow}",
+  "allowBy": "{allowBy}",
+  "allowInfo": "allowInfo"
+}]
+```
+
 #### 13）、查询学生课表
 
 `get` `/api/profile/coursetimes`
@@ -290,6 +318,8 @@ const schema = {
 #### 14）、登录
 
 `post` `/api/users/login`
+
+已验证
 
 发送`{ university, uid, password}`。
 
@@ -343,7 +373,17 @@ const schema = {
 
 #### 1）、返回信息标准
 
-##### ①、用户所有消息列表
+见下。
+
+#### 2）、获取用户收件箱的所有消息
+
+`get` `/api/notices/inbox`
+
+需登录
+
+已验证
+
+返回`2305`，`用户收件箱所有消息列表`。
 
 ```json
 [{
@@ -355,13 +395,13 @@ const schema = {
       "id": "{courseid}",
       "cid": "{cid}",
       "name": "{name}",
-      "teachers": {
+      "teachers": [{
         "id": "{teacherid}",
         "uid": "{uid}",
         "name": "{name}",
         "avatar": "{avatar}"
       }
-    },
+    }],
     "from":{
       "id": "{userid}",
       "nickname": "{nickname}",
@@ -373,7 +413,45 @@ const schema = {
 }]
 ```
 
-##### ②、用户某条具体消息
+#### 3）、获取用户发件箱的所有消息
+
+`get` `/api/notices/outbox`
+
+需登录
+
+已验证
+
+返回`2306`，`用户发件箱所有消息列表`。
+
+```json
+[{
+  "id": "{noticeid}",
+  "title": "{title}",
+  "createdAt": "{createdAt}",
+  "course": {
+    "id": "{courseid}",
+    "cid": "{cid}",
+    "name": "{name}",
+    "teachers": [{
+      "id": "{teacherid}",
+      "uid": "{uid}",
+      "name": "{name}",
+      "avatar": "{avatar}"
+    }]
+  },
+  "from": "{userid}",
+}]
+```
+
+#### 4）、获取用户的某一条接收的消息
+
+`get` `/api/notices/inbox/:noticeid`
+
+需登录，获取的消息需要是用户收到的
+
+已验证
+
+返回`2301`，`用户某条具体消息`。
 
 ```json
 {
@@ -386,63 +464,66 @@ const schema = {
       "id": "{courseid}",
       "cid": "{cid}",
       "name": "{name}",
-      "teachers": {
+      "teachers": [{
         "id": "{teacherid}",
         "uid": "{uid}",
         "name": "{name}",
         "avatar": "{avatar}"
-      }
-    }
-  },
-  "from":{
-    "id": "{userid}",
-    "nickname": "{nickname}",
-    "avatar": "{avatar}"
+      }]
+    },
+    "from":{
+      "id": "{userid}",
+      "nickname": "{nickname}",
+      "avatar": "{avatar}"
+    },
   },
   "to": "{userid}",
   "done": "{done}"
 }
 ```
 
-#### 2）、获取用户收件箱的所有消息
-
-`get` `/api/notices/inbox`
-
-需登录
-
-已验证
-
-返回`2305`，`用户所有消息列表`。
-
-#### 3）、获取用户发件箱的所有消息
-
-`get` `/api/notices/outbox`
-
-需登录
-
-已验证
-
-返回`2306`，`用户所有消息列表`。
-
-#### 4）、获取用户的某一条接收的消息
-
-`get` `/api/notices/inbox/:noticeid`
-
-需登录，获取的消息需要是用户拥有的
-
-已验证
-
-返回`2301`，`用户某条具体消息`。
-
-#### 5）、获取用户的某一条接收的消息
+#### 5）、获取用户的某一条发送的消息
 
 `get` `/api/notices/outbox/:noticeid`
 
-需登录，获取的消息需要是用户拥有的
+需登录，获取的消息需要是用户发送的
 
 已验证
 
 返回`2301`，`用户某条具体消息`。
+
+```json
+{
+  "notice":{
+    "id": "{noticeid}",
+    "title": "{title}",
+    "content": "{content}",
+    "createdAt": "{createdAt}",
+    "course": {
+      "id": "{courseid}",
+      "cid": "{cid}",
+      "name": "{name}",
+      "teachers": [{
+        "id": "{teacherid}",
+        "uid": "{uid}",
+        "name": "{name}",
+        "avatar": "{avatar}"
+      }]
+    },
+    "from":{
+      "id": "{userid}",
+      "nickname": "{nickname}",
+      "avatar": "{avatar}"
+    },
+  },
+  "to": [{
+    "id": "{userid}",
+    "nickname": "{nickname}",
+    "avatar": "{avatar}"
+  }],
+  "done": "{done}"
+}
+```
 
 #### 6）、标记某条接收的消息已读
 
@@ -498,7 +579,6 @@ const schema = {
   name: { type: String },
   intros: { type: String },
   teachers: { type: [Schema.Types.ObjectId], ref: 'User' },
-  courseTimes: { type: [Schema.Types.ObjectId], ref: 'CourseTime' },
   deleted: { type: Boolean, default: false }
 };
 ```
@@ -540,11 +620,7 @@ const schema = {
 ```javascript
 const schema = {
   course: { type: Schema.Types.ObjectId, index: true, ref: 'Course' },
-  courseTime: { type: Schema.Types.ObjectId, index: true, ref: 'CourseTime' },
-  createdAt: { type: Date, default: new Date() },
-  enable: { type: Boolean, default: false },
-  enableStart: { type: Date },
-  enableEnd: { type: Date },
+  createdAt: { type: Date, default: new Date() }
 };
 ```
 
@@ -704,7 +780,7 @@ const schema = {
 
 返回`2200`，`课程信息`。
 
-#### 3）、获取用户参加的某一课程的具体信息（暂时无用）
+#### 3）、获取用户参加的某一课程的具体信息（暂时无用，同上一接口）
 
 `get` `/api/courses/:courseid/detail`
 
@@ -722,11 +798,11 @@ const schema = {
 
 #### 5）、获取用户参加的某一课程的某次上课时间
 
+`get` `/api/courses/:courseid/course-times/:coursetimeid`
+
 需登录为学生，需参加该课程，需课程与课程时间相关联
 
 已验证
-
-`get` `/api/courses/:courseid/course-times/:coursetimeid`
 
 返回`2203`，`课时信息`。
 
@@ -748,15 +824,41 @@ const schema = {
 
 返回`2205`，`标准请假条对象组`。
 
+```json
+[{
+  "id": "{id}",
+  "user": "{userid}",
+  "reason": "{reason}",
+  "course": "{courseid}",
+  "courseTime": {
+    "id": "{coursetimeid}",
+    "location": "{location}",
+    "term": "{term}",
+    "week": "{week}",
+    "weekday": "{weekday}",
+    "rows": [],
+    "remark": "{remark}",
+    "createdAt": "{createdAt}"
+  },
+  "createdAt": "{createdAt}",
+  "responsed": "{responsed}",
+  "allow": "{allow}",
+  "allowBy": "{allowBy}",
+  "allowInfo": "allowInfo"
+}]
+```
+
 #### 8）、学生查询某节课的所有教师群发消息
 
 `get` `/api/courses/:courseid/notices`
 
-返回`2305`，`标准消息组`。
+返回`2305`，`标准消息组`。参考用户收件箱所有消息的格式。
 
 #### 9）、学生查询当前周
 
 `get` `/api/term/currentWeek`
+
+需登录，需为学生。
 
 返回`2007`，`{ term, week }`。
 
