@@ -212,7 +212,7 @@ function key_ask_for_leave(message, req, res, next) {
           // 未批复的假条
           results.push({
             title: `课程：${leave.course.name} - ${leave.course.cid}`
-            + '\n' + `时间：${leave.courseTime.term}学期第${leave.courseTime.week}周${leave.courseTime.weekday}`
+            + '\n' + `时间：第${leave.courseTime.week}周 ${weekday}`
             + '第' + leave.courseTime.rows.toString() + '节'
             + '\n' + `状态：未批复`,
             url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
