@@ -29,9 +29,9 @@
       "name": "其他",
       "sub_button": [
         {
-          "type": "click",
+          "type": "view",
           "name": "更换绑定用户",
-          "key": "key_bind_user"
+          "url": "http://courseclouds.zhmoll.com/user-center/register.html"
         },
         {
           "type": "click",

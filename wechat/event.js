@@ -7,6 +7,15 @@ const UserNoticeRelation = require('../model/user-notice-relation');
 const CourseTimeLeave = require('../model/course-time-leave');
 const Term = require('../model/terms');
 
+// 订阅
+function subscribe(message, req, res, next) {
+  const user = req.me;
+  if (!user) {
+    return res.reply('欢迎关注云课平台！请点击下方“云课中心”按钮绑定学生身份。');
+  }
+  res.reply(`欢迎回到云课平台，${user.name}！点击下方按钮看看你不在的这段时间发生了什么吧！`);
+}
+
 // 用户中心按钮
 function key_user_center(message, req, res, next) {
   // 微信用户已绑定平台账号
@@ -235,24 +244,32 @@ module.exports = (message, req, res, next) => {
       console.error(err);
       return;
     }
-    // 微信用户未绑定平台账号
-    if (!user) {
-      const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register', 'wechat-bind', 'snsapi_userinfo');
-      return res.reply([{
-        title: '请先绑定',
-        description: '用户中心绑定',
-        picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
-        url: url
-      }]);
-    }
     // 分发事件
     req.me = user;
-    switch (message.EventKey) {
-      case 'key_user_center': return key_user_center(message, req, res, next);
-      case 'key_today_courses': return key_today_courses(message, req, res, next);
-      case 'key_attend_course': return key_attend_course(message, req, res, next);
-      case 'key_user_inbox': return key_user_inbox(message, req, res, next);
-      case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
+    switch (message.Event) {
+      case 'CLICK': {
+        // 微信用户未绑定平台账号
+        if (!user) {
+          const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register', 'wechat-bind', 'snsapi_userinfo');
+          return res.reply([{
+            title: '绑定云课平台账号',
+            description: '绑定微信号和云课平台账号，无需登录即可享受云课平台全功能服务，消息通知第一时间抵达微信！',
+            picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+            url: url
+          }]);
+        }
+        // 绑定了就允许之下的操作
+        switch (message.EventKey) {
+          case 'key_user_center': return key_user_center(message, req, res, next);
+          case 'key_today_courses': return key_today_courses(message, req, res, next);
+          case 'key_attend_course': return key_attend_course(message, req, res, next);
+          case 'key_user_inbox': return key_user_inbox(message, req, res, next);
+          case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
+        }
+        return;
+      }
+      case 'subscribe': return subscribe(message, req, res, next);
     }
+
   });
 };
