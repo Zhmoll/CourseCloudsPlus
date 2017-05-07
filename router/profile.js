@@ -91,7 +91,7 @@ router.post('/wechat/bind',
               update.avatar = url;
               update.enable = true;
 
-              user.update(wechatuser, (err, updated_user) => {
+              user.update(update, (err, updated_user) => {
                 if (err) return next(err);
                 req.session.openid = user.openid;
                 req.session.userid = user.id;
