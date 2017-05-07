@@ -165,7 +165,7 @@ router.get('/courses/:courseid/course-times/:coursetimeid/notices',
   mw.authority.check(10),
   mw.course.checkOwnerRelation,
   mw.course.checkCoursetimeRelation,
-  mw.course.findByCourseid,
+  mw.course.findWithPrivateInfo,
   (req, res, next) => {
     const coursetime = req.coursetime;
     const course = req.course;
