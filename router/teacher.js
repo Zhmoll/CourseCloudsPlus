@@ -161,7 +161,7 @@ router.put('/courses/:courseid/course-times/:coursetimeid',
 
 // 教师为某上课时间群发通知
 // get /api/teacher-management/courses/:courseid/course-times/:coursetimeid/notices
-router.get('/courses/:courseid/course-times/:coursetimeid',
+router.get('/courses/:courseid/course-times/:coursetimeid/notices',
   mw.authority.check(10),
   mw.course.checkOwnerRelation,
   mw.course.checkCoursetimeRelation,
