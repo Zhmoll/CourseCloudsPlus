@@ -30,12 +30,12 @@
       "sub_button": [
         {
           "type": "view",
-          "name": "更换绑定用户",
+          "name": "更换绑定",
           "url": "http://courseclouds.zhmoll.com/user-center/register.html"
         },
         {
           "type": "click",
-          "name": "消息收件箱",
+          "name": "收件箱",
           "key": "key_user_inbox"
         },
         {

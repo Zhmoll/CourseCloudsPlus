@@ -13,7 +13,7 @@ function subscribe(message, req, res, next) {
   if (!user) {
     return res.reply('欢迎关注云课平台！请点击下方“云课中心”按钮绑定学生身份。');
   }
-  res.reply(`欢迎回到云课平台，${user.name}！点击下方按钮看看你不在的这段时间发生了什么吧！`);
+  res.reply(`你好，${user.name}，欢迎回到云课平台！\n点击下方按钮看看有什么新鲜事吧！`);
 }
 
 // 用户中心按钮

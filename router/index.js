@@ -1,7 +1,7 @@
 const cors = require('cors');
 
 module.exports = app => {
-  app.use('/api', cors());
+  app.use('/api', cors({ credentials: true }));
   app.use('/api/profile', require('./profile'));
   app.use('/api/users', require('./users'));
   app.use('/api/courses', require('./courses'));
