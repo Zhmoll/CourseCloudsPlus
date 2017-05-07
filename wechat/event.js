@@ -20,7 +20,7 @@ function subscribe(message, req, res, next) {
 function key_user_center(message, req, res, next) {
   // 微信用户已绑定平台账号
   const user = req.me;
-  const url = 'http://courseclouds.zhmoll.com/user-center/';
+  const url = 'http://courseclouds.zhmoll.com/user-center/index.html';
   return res.reply([{
     title: '用户中心',
     description: '欢迎回来，' + user.name + '！',
@@ -250,7 +250,7 @@ module.exports = (message, req, res, next) => {
       case 'CLICK': {
         // 微信用户未绑定平台账号
         if (!user) {
-          const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register', 'wechat-bind', 'snsapi_userinfo');
+          const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register.html', 'wechat-bind', 'snsapi_userinfo');
           return res.reply([{
             title: '绑定云课平台账号',
             description: '绑定微信号和云课平台账号，无需登录即可享受云课平台全功能服务，消息通知第一时间抵达微信！',
