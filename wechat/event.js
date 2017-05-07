@@ -4,6 +4,7 @@ const UserCourseRelation = require('../model/user-course-relation');
 const CourseAttend = require('../model/course-attends');
 const CourseAttendRemark = require('../model/course-attend-remarks');
 const UserNoticeRelation = require('../model/user-notice-relation');
+const CourseTimeLeave = require('../model/course-time-leave');
 const Term = require('../model/terms');
 
 // 用户中心按钮
@@ -160,6 +161,68 @@ function key_user_inbox(message, req, res, next) {
   });
 }
 
+// 假条批复查询
+function key_ask_for_leave(message, req, res, next) {
+  const user = req.me;
+  CourseTimeLeave
+    .find({ user: user.id, deleted: false })
+    .populate({
+      path: 'course',
+      match: { deleted: false },
+      select: 'id cid name'
+    })
+    .populate({
+      path: 'courseTime',
+      match: { deleted: false },
+      select: '-deleted'
+    })
+    .exec((err, leaves) => {
+      if (err) {
+        res.reply('服务器遇到了一些麻烦');
+        console.error(err);
+        return;
+      }
+      const results = [{ title: '假条批复状态（最近6条假条）' }];
+      leaves.forEach((leave, index) => {
+        if (index >= 6) return;
+        switch (leave.courseTime.weekday) {
+          case 0: leave.courseTime.weekday = '周日'; break;
+          case 1: leave.courseTime.weekday = '周一'; break;
+          case 2: leave.courseTime.weekday = '周二'; break;
+          case 3: leave.courseTime.weekday = '周三'; break;
+          case 4: leave.courseTime.weekday = '周四'; break;
+          case 5: leave.courseTime.weekday = '周五'; break;
+          case 6: leave.courseTime.weekday = '周六'; break;
+        }
+        if (leave.responsed) {
+          // 已批复的假条
+          let answer;
+          if (leave.allow) answer = '允许请假';
+          else answer = '不允许请假';
+          results.push({
+            title: `课程：${leave.course.name} - ${leave.course.cid}`
+            + '\n' + `时间：${leave.courseTime.term}学期第${leave.courseTime.week}周${leave.courseTime.weekday}`
+            + '第' + leave.courseTime.rows.toString() + '节'
+            + '\n' + `结果：${answer}`,
+            url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
+          });
+        }
+        else {
+          // 未批复的假条
+          results.push({
+            title: `课程：${leave.course.name} - ${leave.course.cid}`
+            + '\n' + `时间：${leave.courseTime.term}学期第${leave.courseTime.week}周${leave.courseTime.weekday}`
+            + '第' + leave.courseTime.rows.toString() + '节'
+            + '\n' + `状态：未批复`,
+            url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
+          });
+        }
+      });
+      results.push({ title: '点击查看完整假条批复信息', url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html' });
+      res.reply(results);
+    });
+}
+
 module.exports = (message, req, res, next) => {
   const openid = message.FromUserName;
   console.log(message);
@@ -186,6 +249,7 @@ module.exports = (message, req, res, next) => {
       case 'key_today_courses': return key_today_courses(message, req, res, next);
       case 'key_attend_course': return key_attend_course(message, req, res, next);
       case 'key_user_inbox': return key_user_inbox(message, req, res, next);
+      case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
     }
   });
 };

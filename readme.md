@@ -360,12 +360,12 @@ const schema = {
         "name": "{name}",
         "avatar": "{avatar}"
       }
-    }
-  },
-  "from":{
-    "id": "{userid}",
-    "nickname": "{nickname}",
-    "avatar": "{avatar}"
+    },
+    "from":{
+      "id": "{userid}",
+      "nickname": "{nickname}",
+      "avatar": "{avatar}"
+    },
   },
   "to": "{userid}",
   "done": "{done}"
