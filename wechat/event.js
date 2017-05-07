@@ -235,6 +235,18 @@ function key_ask_for_leave(message, req, res, next) {
     });
 }
 
+// 更改绑定信息
+function key_change_bind(message, req, res, next) {
+  const user = req.me;
+  const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register.html', 'wechat-bind', 'snsapi_userinfo');
+  return res.reply([{
+    title: '更换用户绑定',
+    description: `您现在是以${user.university}${user.uid}${user.name}的身份绑定该微信公众号的，若要切换身份，请点击进入。`,
+    picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+    url: url
+  }]);
+}
+
 module.exports = (message, req, res, next) => {
   const openid = message.FromUserName;
   console.log(message);
@@ -265,6 +277,7 @@ module.exports = (message, req, res, next) => {
           case 'key_attend_course': return key_attend_course(message, req, res, next);
           case 'key_user_inbox': return key_user_inbox(message, req, res, next);
           case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
+          case 'key_change_bind': return key_change_bind(messave, req, res, next);
         }
         return;
       }
