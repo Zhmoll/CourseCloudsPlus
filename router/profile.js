@@ -83,7 +83,7 @@ router.post('/wechat/bind',
           const update = _.pick(wechatuser,
             ['openid', 'unionid', 'nickname', 'gender', 'city', 'province']);
 
-          User.update({ openid: update.openid }, { $unset: { openid: 1 } }).exec(err => {
+          User.update({ openid: update.openid }, { $unset: { openid: 1, unionid: 1 } }).exec(err => {
             if (err) return next(err);
 
             fetchheadimg(wechatuser.headimgurl, (err, url) => {
