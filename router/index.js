@@ -2,6 +2,10 @@ const cors = require('cors');
 
 module.exports = app => {
   app.use('*', cors({ credentials: true }));
+  app.use('/api',(req,res,next)=>{
+    console.log(req.body);
+    next();
+  });
   app.use('/api/profile', require('./profile'));
   app.use('/api/users', require('./users'));
   app.use('/api/courses', require('./courses'));
