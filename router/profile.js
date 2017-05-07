@@ -83,24 +83,28 @@ router.post('/wechat/bind',
           const update = _.pick(wechatuser,
             ['openid', 'unionid', 'nickname', 'gender', 'city', 'province']);
 
-          fetchheadimg(wechatuser.headimgurl, (err, url) => {
+          User.update({ openid: update.openid }, { $unset: { openid: 1 } }).exec(err => {
             if (err) return next(err);
-            update.avatar = url;
-            update.enable = true;
 
-            user.update(wechatuser, (err, updated_user) => {
+            fetchheadimg(wechatuser.headimgurl, (err, url) => {
               if (err) return next(err);
-              req.session.openid = user.openid;
-              req.session.userid = user.id;
-              req.session.authority = user.authority;
-              res.json(new Response(2003, '绑定微信用户成功', {
-                id: user.id,
-                avatar: user.avatar,
-                name: user.name,
-                nickname: user.nickname,
-                university: user.university,
-                description: user.description
-              }));
+              update.avatar = url;
+              update.enable = true;
+
+              user.update(wechatuser, (err, updated_user) => {
+                if (err) return next(err);
+                req.session.openid = user.openid;
+                req.session.userid = user.id;
+                req.session.authority = user.authority;
+                res.json(new Response(2003, '绑定微信用户成功', {
+                  id: user.id,
+                  avatar: user.avatar,
+                  name: user.name,
+                  nickname: user.nickname,
+                  university: user.university,
+                  description: user.description
+                }));
+              });
             });
           });
         });
