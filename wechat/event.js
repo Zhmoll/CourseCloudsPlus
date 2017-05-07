@@ -204,6 +204,7 @@ function key_ask_for_leave(message, req, res, next) {
             title: `课程：${leave.course.name} - ${leave.course.cid}`
             + '\n' + `时间：第${leave.courseTime.week}周 ${weekday}`
             + '第' + leave.courseTime.rows.toString() + '节'
+            + '\n' + `理由：${leave.reason}`
             + '\n' + `结果：${answer}`,
             url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
           });
@@ -214,6 +215,7 @@ function key_ask_for_leave(message, req, res, next) {
             title: `课程：${leave.course.name} - ${leave.course.cid}`
             + '\n' + `时间：第${leave.courseTime.week}周 ${weekday}`
             + '第' + leave.courseTime.rows.toString() + '节'
+            + '\n' + `理由：${leave.reason}`
             + '\n' + `状态：未批复`,
             url: 'http://courseclouds.zhmoll.com/user-center/ask-for-leave.html?leaveid=' + leave.id
           });
