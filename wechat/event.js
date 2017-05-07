@@ -3,6 +3,7 @@ const User = require('../model/users');
 const UserCourseRelation = require('../model/user-course-relation');
 const CourseAttend = require('../model/course-attends');
 const CourseAttendRemark = require('../model/course-attend-remarks');
+const UserNoticeRelation = require('../model/user-notice-relation');
 const Term = require('../model/terms');
 
 // 用户中心按钮
@@ -31,11 +32,19 @@ function key_today_courses(message, req, res, next) {
         courses = show[time.term][time.week][time.weekday];
         if (courses.length == 0) {
           result.push({ title: '恭喜你，今天没课！' });
+          result.push({
+            title: '点我获得完整课程表',
+            url: 'http://courseclouds.zhmoll.com/coursetable.html'
+          });
           return res.reply(result);
         }
       }
       else {
         result.push({ title: '恭喜你，今天没课！' });
+        result.push({
+          title: '点我获得完整课程表',
+          url: 'http://courseclouds.zhmoll.com/coursetable.html'
+        });
         return res.reply(result);
       }
 
@@ -116,6 +125,41 @@ function key_attend_course(message, req, res, next) {
   });
 }
 
+// 收件箱
+function key_user_inbox(message, req, res, next) {
+  const user = req.me;
+  UserNoticeRelation.findByReceiverId(user.id, (err, relations) => {
+    if (err) {
+      res.reply('服务器遇到了一些麻烦');
+      console.error(err);
+      return;
+    }
+    const results = [{ title: `消息收件箱（最近6条消息）` }];
+    relations.forEach((relation, index) => {
+      if (index >= 6) return;
+      if (relation.notice.course) {
+        // 课程相关群发
+        results.push({
+          title: `${relation.notice.title}` +
+          '\n' + `发送：${relation.notice.from.nickname}` +
+          '\n' + `来自课堂：${relation.notice.course.name}`,
+          url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
+        });
+      }
+      else {
+        // 非课程相关群发
+        results.push({
+          title: `${relation.notice.title}` +
+          '\n' + `发送：${relation.notice.from.nickname}`,
+          url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
+        });
+      }
+    });
+    results.push({ title: '点击查看完整消息收件箱', url: 'http://courseclouds.zhmoll.com/user-center/inbox' });
+    res.reply(results);
+  });
+}
+
 module.exports = (message, req, res, next) => {
   const openid = message.FromUserName;
   console.log(message);
@@ -140,7 +184,8 @@ module.exports = (message, req, res, next) => {
     switch (message.EventKey) {
       case 'key_user_center': return key_user_center(message, req, res, next);
       case 'key_today_courses': return key_today_courses(message, req, res, next);
-      case 'key_attend_course': return key_today_courses(message, req, res, next);
+      case 'key_attend_course': return key_attend_course(message, req, res, next);
+      case 'key_user_inbox': return key_user_inbox(message, req, res, next);
     }
   });
 };

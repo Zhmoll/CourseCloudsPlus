@@ -9,7 +9,7 @@
           "key": "key_today_courses"
         },
         {
-          "type": "scancode_push",
+          "type": "scancode_waitmsg",
           "name": "课堂签到",
           "key": "key_attend_course"
         },

@@ -16,7 +16,7 @@ const UserNoticeRelationSchema = new Schema(schema, option);
 // 获取属于该用户接收的所有消息
 UserNoticeRelationSchema.statics.findByReceiverId = function (id, callback) {
   return this
-    .find({ to: mongoose.Types.ObjectId(id) })
+    .find({ to: id })
     .where('deleted').equals(false)
     .select('-deleted')
     .populate({
