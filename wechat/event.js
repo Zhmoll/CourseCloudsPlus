@@ -140,17 +140,17 @@ function key_user_inbox(message, req, res, next) {
       if (relation.notice.course) {
         // 课程相关群发
         results.push({
-          title: `${relation.notice.title}` +
-          '\n' + `发送：${relation.notice.from.nickname}` +
-          '\n' + `来自课堂：${relation.notice.course.name}`,
+          title: `标题：${relation.notice.title}` +
+          '\n' + `来自：${relation.notice.from.nickname}` +
+          '\n' + `课堂：${relation.notice.course.name}`,
           url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
         });
       }
       else {
         // 非课程相关群发
         results.push({
-          title: `${relation.notice.title}` +
-          '\n' + `发送：${relation.notice.from.nickname}`,
+          title: `标题：${relation.notice.title}` +
+          '\n' + `来自：${relation.notice.from.nickname}`,
           url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
         });
       }
