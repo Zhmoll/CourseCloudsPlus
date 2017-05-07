@@ -1,0 +1,543 @@
+<body style="overflow: hidden;">
+<div class="mask"
+     style="width: 100%; height: 628px; background-color: rgba(0, 0, 0, 0.8); position: fixed; top: 0px; left: 0px; z-index: 999; padding-top: 314px; display: none;">
+    <img src="http://7xqjce.com1.z0.glb.clouddn.com/loading.gif"
+         style="width: 50px; display: block; margin: 0px auto 10px; background-color: rgba(0, 0, 0, 0);">
+    <p style="color:#fff; text-align: center;">正在加载...</p></div>
+﻿
+
+
+<meta charset="UTF-8">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0,  user-scalable=no">
+
+<!-- maximum-scale=1.0, -->
+
+<title>杭电助手课表系统</title>
+
+<link type="text/css" rel="stylesheet" href="resource/gettable/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="resource/gettable/css/me3.css">
+
+<style>
+
+    #week {
+
+        width: 133%;
+
+        max-width: 133%;
+
+    }
+
+</style>
+
+
+<nav class="navbar navbar-fixed-top">
+
+    <div id="list">
+
+        <!-- <select name="select1" id="ulist">
+
+            <option value="week1">第 1 周</option>
+
+            <option value="week2">第 2 周</option>
+
+            <option value="week3">第 3 周</option>
+
+            <option value="week4">第 4 周</option>
+
+            <option value="week5">第 5 周</option>
+
+            <option value="week6">第 6 周</option>
+
+            <option value="week7">第 7 周</option>
+
+            <option value="week8">第 8 周</option>
+
+            <option value="week9">第 9 周</option>
+
+            <option value="week10">第 10 周</option>
+
+            <option value="week11">第 11 周</option>
+
+            <option value="week12">第 12 周</option>
+
+            <option value="week13">第 13 周</option>
+
+            <option value="week14">第 14 周</option>
+
+            <option value="week15">第 15 周</option>
+
+            <option value="week16">第 16 周</option>
+
+        </select>   -->
+
+        <!-- <img src="resource/gettable/image/next1.png" alt="">  -->
+
+        <p><span>第 10 周</span> &nbsp;<img src="resource/gettable/image/next1.png" alt="下拉箭头" alert="下拉箭头"></p>
+
+        <ul id="ulist" style="display: none;">
+
+            <li>第 1 周</li>
+
+            <li>第 2 周</li>
+
+            <li>第 3 周</li>
+
+            <li>第 4 周</li>
+
+            <li>第 5 周</li>
+
+            <li>第 6 周</li>
+
+            <li>第 7 周</li>
+
+            <li>第 8 周</li>
+
+            <li>第 9 周</li>
+
+            <li>第 10 周</li>
+
+            <li>第 11 周</li>
+
+            <li>第 12 周</li>
+
+            <li>第 13 周</li>
+
+            <li>第 14 周</li>
+
+            <li>第 15 周</li>
+
+            <li>第 16 周</li>
+
+        </ul>
+
+
+    </div>
+
+
+</nav>
+
+
+<div id="div1">
+    <div class="course"
+         style="background-color: rgb(255, 169, 48); position: absolute; left: 262px; top: 491px; width: 86px; height: 90px;">
+        <p style="padding-top: 19px;">经济学原理#姜建红@第3教研楼101</p><span id="oSpanTeacher"
+                                                                  style="position: absolute; text-indent: -999px;">姜建红</span><span
+            id="oSpanSelectcode" style="position: absolute; text-indent: -999px;">(2016-2017-2)-C1209260-04092-1</span>
+    </div>
+    <div class="course"
+         style="background-color: rgb(255, 125, 84); position: absolute; left: 349px; top: 176px; width: 86px; height: 90px;">
+        <p style="padding-top: 19px;">信息论与编码#汪云路@第6教研楼中101</p><span id="oSpanTeacher"
+                                                                    style="position: absolute; text-indent: -999px;">汪云路</span><span
+            id="oSpanSelectcode" style="position: absolute; text-indent: -999px;">(2016-2017-2)-A2701220-40895-1</span>
+    </div>
+    <div class="course"
+         style="background-color: rgb(0, 143, 209); position: absolute; left: 349px; top: 86px; width: 86px; height: 90px;">
+        <p style="padding-top: 19px;">信息安全管理与测评#余旺科@第3教研楼201</p><span id="oSpanTeacher"
+                                                                      style="position: absolute; text-indent: -999px;">余旺科</span><span
+            id="oSpanSelectcode" style="position: absolute; text-indent: -999px;">(2016-2017-2)-A2705380-41521-1</span>
+    </div>
+    <div class="course"
+         style="background-color: rgb(255, 177, 54); position: absolute; left: 349px; top: 311px; width: 86px; height: 90px;">
+        <p style="padding-top: 19px;">汉语与中国传统文化#曹莉亚@第7教研楼北118</p><span id="oSpanTeacher"
+                                                                       style="position: absolute; text-indent: -999px;">曹莉亚</span><span
+            id="oSpanSelectcode" style="position: absolute; text-indent: -999px;">(2016-2017-2)-D1209640-16002-1</span>
+    </div>
+</div>
+
+<img id="oimg" src="resource/gettable/image/san.png" alt="" style="display: block; top: 560px;">
+<div id="timeC" style="display: block; left: 122px; top: 562px;"></div>
+<div id="timeL" style="display: block; left: 122px; width: 139px; top: 564px;"></div>
+<table id="week" class="table table-bordered" style="position:absolute;">
+    <thead>
+    <tr id="tr">
+
+        <th id="th2"></th>
+
+        <th id="th1" class="weekToday" style="width: 97.05px;"><a href="javascript:;">周一</a></th>
+
+        <th style="width: 158.1px; background-color: rgb(0, 227, 227);"><a href="javascript:;">周二</a></th>
+
+        <th style="width: 97.05px;"><a href="javascript:;">周三</a></th>
+
+        <th style="width: 97.05px;"><a href="javascript:;">周四</a></th>
+
+        <th style="width: 97.05px;"><a href="javascript:;">周五</a></th>
+
+        <th style="width: 97.05px;"><a href="javascript:;">周六</a></th>
+
+        <th style="width: 97.05px;"><a href="javascript:;">周日</a></th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr>
+
+        <td><span>8:05</span><br>1</td>
+
+        <td id="td1"></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+
+    </tr>
+
+    <tr>
+
+        <td><span>8:55</span><br>2</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>10:00</span><br>3</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>10:50</span><br>4</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>11:40</span><br>5</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>13:30</span><br>6</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>14:20</span><br>7</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>15:15</span><br>8</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>16:00</span><br>9</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>18:30</span><br>10</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>19:20</span><br>11</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>20:10</span><br>12</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    </tbody>
+
+</table>
+
+<div class="alert" id="alert">
+
+    <div id="alertDiv"></div>
+
+</div>
+
+<script src="resource/gettable/js/jquery-1.11.0.min.js"></script>
+
+<script src="resource/gettable/js/bootstrap.min.js"></script>
+
+<script>
+    var gettableData = {
+        "5": [{
+            "selectcode": "(2016-2017-2)-A2700030-40821-1",
+            "distribute": "每",
+            "startweek": 1,
+            "endweek": 4,
+            "course": "信息安全学科前沿",
+            "time": "8:05~9:40",
+            "teacher": "游林",
+            "position": "第7教研楼北218",
+            "startsection": 1,
+            "endsection": 2
+        }],
+        "4": [{
+            "selectcode": "(2016-2017-2)-A2701220-40895-1",
+            "distribute": "每",
+            "startweek": 1,
+            "endweek": 16,
+            "course": "信息论与编码",
+            "time": "10:00~11:35",
+            "teacher": "汪云路",
+            "position": "第6教研楼中101",
+            "startsection": 3,
+            "endsection": 4
+        }, {
+            "selectcode": "(2016-2017-2)-A2705380-41521-1",
+            "distribute": "每",
+            "startweek": 1,
+            "endweek": 16,
+            "course": "信息安全管理与测评",
+            "time": "8:05~9:40",
+            "teacher": "余旺科",
+            "position": "第3教研楼201",
+            "startsection": 1,
+            "endsection": 2
+        }, {
+            "selectcode": "(2016-2017-2)-D1209640-16002-1",
+            "distribute": "每",
+            "startweek": 1,
+            "endweek": 16,
+            "course": "汉语与中国传统文化",
+            "time": "13:30~15:05",
+            "teacher": "曹莉亚",
+            "position": "第7教研楼北118",
+            "startsection": 6,
+            "endsection": 7
+        }, {
+            "selectcode": "(2016-2017-2)-W0001034-00000-13",
+            "distribute": "单",
+            "startweek": 3,
+            "endweek": 15,
+            "course": "形势与政策4",
+            "time": "15:15~16:50",
+            "teacher": "苏晶",
+            "position": "第11教研楼307",
+            "startsection": 8,
+            "endsection": 9
+        }],
+        "3": [{
+            "selectcode": "(2016-2017-2)-C1209260-04092-1",
+            "distribute": "每",
+            "startweek": 1,
+            "endweek": 16,
+            "course": "经济学原理",
+            "time": "18:30~20:05",
+            "teacher": "姜建红",
+            "position": "第3教研楼101",
+            "startsection": 10,
+            "endsection": 11
+        }, {
+            "selectcode": "(2016-2017-2)-W0001134-41451-1",
+            "distribute": "单",
+            "startweek": 3,
+            "endweek": 9,
+            "course": "大学生职业发展与就业指导4",
+            "time": "15:15~16:50",
+            "teacher": "卞广旭",
+            "position": "第3教研楼315",
+            "startsection": 8,
+            "endsection": 9
+        }],
+        "6": [{
+            "selectcode": "(2016-2017-2)-W0001250-04079-74",
+            "distribute": "每",
+            "startweek": 4,
+            "endweek": 4,
+            "course": "体质健康测试",
+            "time": "8:05~9:40",
+            "teacher": "党琤琤",
+            "position": "西北田径场",
+            "startsection": 1,
+            "endsection": 2
+        }]
+    };
+    var weeknum = 10;
+    var timenow = 1144;
+    var stuNo = 14084122;
+    var apierror = 0;
+    var urll = "./index.php?i=2&c=entry&do=Classinfo&m=gettable";
+    var weekend = 1;
+</script>
+<script type="text/javascript">
+    var WINDOW_HEIGHT = window.innerHeight;
+    $('body').prepend('<div class="mask" style="width: 100%;height: ' + WINDOW_HEIGHT + 'px; background-color: rgba(0,0,0,0.8);position: fixed;top:0;left: 0;z-index: 999;" ><img src="http://7xqjce.com1.z0.glb.clouddn.com/loading.gif"><p style="color:#fff; text-align: center;">正在加载...</p ></div>');
+    $(".mask img").css({
+        "width": "50px",
+        "display": "block",
+        "margin": "0 auto",
+        "margin-bottom": "10px",
+        "background-color": "rgba(0,0,0,0)"
+    });
+    $(".mask").css("padding-top", ( WINDOW_HEIGHT - $("#loading img").height() ) / 2 + "px");
+    $(function () {
+        $(".mask").fadeOut(500);
+    })
+</script>
+<script src="resource/gettable/js/me02.js"></script>
+
+
+</body>

@@ -1,0 +1,19 @@
+.picture_title_left {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 80px auto 80px auto;
+}
+
+.log1 {
+    width: 100%;
+    height: 100%;
+    background: url(../i/背景.jpeg);
+    background-size: 100% 100%;
+    background-attachment: fixed
+}
+
+.top_imagine {
+    margin: 50px auto 30px auto;
+}

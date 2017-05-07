@@ -1,0 +1,551 @@
+<!doctype html>
+<html class="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>登录</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+    <link rel="stylesheet" href="assets/css/course.css">
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/me3.css">
+</head>
+<body style="text-align:center;">
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a
+        href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+<!--  页头下拉选项以及左右按钮-->
+<header data-am-sticky data-am-widget="header"
+        class="am-header am-header-default">
+    <div class="am-u">
+        <!-- 左边侧滑栏-->
+        <div class="am-header-left am-header-nav" id="left-top-coin">
+            <a href="index.html" class="">
+                <i class="am-header-icon am-icon-home"></i>
+            </a>
+        </div>
+
+        <select data-am-selected="{maxHeight: 200,btnWidth: '24%', btnSize: 'sm', btnStyle: 'secondary'}" id="selected">
+            <option value="1">第1周</option>
+            <option value="2">第2周</option>
+            <option value="3">第3周</option>
+            <option value="4">第4周</option>
+            <option value="5">第5周</option>
+            <option value="6">第6周</option>
+            <option value="7">第7周</option>
+            <option value="8">第8周</option>
+            <option value="9">第9周</option>
+            <option value="10">第10周</option>
+            <option value="11">第11周</option>
+            <option value="12">第12周</option>
+            <option value="13">第13周</option>
+            <option value="14">第14周</option>
+            <option value="15">第15周</option>
+            <option value="16">第16周</option>
+            <option value="17">第17周</option>
+        </select>
+        <!--
+        <h1 class="am-header-title">
+            <a href="#title-link" class="title">
+
+            </a>
+        </h1>
+    -->
+        <!-- 右边侧滑栏 -->
+        <div class="am-header-right am-header-nav">
+            <a href="#right-link" class="">
+                <i class="am-header-icon am-icon-bars"></i>
+            </a>
+        </div>
+
+
+        <!-- 左边侧边栏内容 -->
+        <div id="doc-oc-demo3" class="am-offcanvas" style="">
+            <div class="am-offcanvas-bar">
+                <div class="picture_title_left" style=" ">
+                    <img src="assets/i/头像.jpg">
+                </div>
+
+                <div class="am-offcanvas-content">
+                    <p>
+                        我不愿让你一个人 <br/>
+                        承受这世界的残忍 <br/>
+                        我不愿眼泪陪你到 永恒 <br/>
+                    </p>
+                    <p><a href="http://music.163.com/#/song?id=385554" target="_blank">网易音乐</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- 页面内容 -->
+<div id="div1"></div>
+<!--
+<table id="week" class="table table-bordered" style="position:absolute;">
+
+
+
+
+
+
+
+    <thead>
+
+    <tr id="tr">
+
+        <th id="2th"></th>
+
+        <th id="1th" class="weekToday" style="width: 74.25px;"><a href="javascript:;">周一</a></th>
+
+        <th style="width: 112.5px; background-color: rgb(0, 227, 227);"><a href="javascript:;">周二</a></th>
+
+        <th style="width: 74.25px;"><a href="javascript:;">周三</a></th>
+
+        <th style="width: 74.25px;"><a href="javascript:;">周四</a></th>
+
+        <th style="width: 74.25px;"><a href="javascript:;">周五</a></th>
+
+        <th style="width: 74.25px;"><a href="javascript:;">周六</a></th>
+
+        <th style="width: 74.25px;"><a href="javascript:;">周日</a></th>
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    <tr>
+
+        <td><span>8:05</span><br>1</td>
+
+        <td id="1td"></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+
+    </tr>
+
+    <tr>
+
+        <td><span>8:55</span><br>2</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>10:00</span><br>3</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>10:50</span><br>4</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>11:40</span><br>5</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>13:30</span><br>6</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>14:20</span><br>7</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>15:15</span><br>8</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>16:00</span><br>9</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>18:30</span><br>10</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>19:20</span><br>11</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    <tr>
+
+        <td><span>20:10</span><br>12</td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td></td>
+    </tr>
+
+    </tbody>
+
+</table>
+-->
+
+<table id="week" class="am-table am-table-bordered am-table-centered am-text-middle am-table-compact"
+       style="font-size: 8px">
+    <thead>
+    <tr id="tr">
+        <th id="2th"></th>
+        <th id="1th">星期一</th>
+        <th>星期二</th>
+        <th>星期三</th>
+        <th>星期四</th>
+        <th>星期五</th>
+        <th>星期六</th>
+        <th>星期日</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="1td" class="td1">第1节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第2节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第3节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第4节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第5节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第6节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第7节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第8节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第9节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第10节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第11节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第12节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td class="td1">第13节</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    </tbody>
+</table>
+
+
+<!-- 以上页面内容 -->
+<script src="assets/js/course.js"></script>
+<!--[if lt IE 9]>
+<script src="assets/jsadd/jquery-1.11.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+
+<script src="assets/js/course.js"></script>
+</body>
+</html>

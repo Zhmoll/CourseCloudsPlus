@@ -1,0 +1,24 @@
+.td1 {
+    font-size: 4px;
+}
+
+#week, #div1 {
+    position: absolute;
+    transition: left 1s;
+    -moz-transition: left 1s;
+    -webkit-transition: left 1s;
+    -o-transition: left 1s;
+}
+select {
+    border-collapse: collapse;
+    position: absolute;
+    margin-left: auto;
+    text-align: center;
+}
+.picture_title_left{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto 3% auto;
+}

@@ -1,0 +1,39 @@
+
+html,body{
+	width:100%;
+
+}
+body:before {
+
+	  z-index: -1;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: url('http://7xlw4w.com1.z0.glb.clouddn.com/546693334340279398.jpg');
+	  background-size: cover;
+}
+#div1 {
+	font-family:宋体; 
+	font-size:10px;
+}
+#week , #div1 {
+	position:absolute;
+	transition: left 1s;
+	-moz-transition: left 1s;	
+	-webkit-transition: left 1s;	
+	-o-transition: left 1s;	
+}
+#div1 {
+	top: 0;
+}
+
+
+.course{
+	text-align:center;
+	color:white;
+	font-size:10px;
+	position:absolute;
+	z-index:2;
+
+}
