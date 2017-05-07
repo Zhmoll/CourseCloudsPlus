@@ -277,7 +277,7 @@ module.exports = (message, req, res, next) => {
           case 'key_attend_course': return key_attend_course(message, req, res, next);
           case 'key_user_inbox': return key_user_inbox(message, req, res, next);
           case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
-          case 'key_change_bind': return key_change_bind(messave, req, res, next);
+          case 'key_change_bind': return key_change_bind(message, req, res, next);
         }
         return;
       }
