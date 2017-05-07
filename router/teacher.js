@@ -159,6 +159,50 @@ router.put('/courses/:courseid/course-times/:coursetimeid',
   }
 );
 
+// 教师为某上课时间群发通知
+// get /api/teacher-management/courses/:courseid/course-times/:coursetimeid/notices
+router.get('/courses/:courseid/course-times/:coursetimeid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  mw.course.checkCoursetimeRelation,
+  mw.course.findByCourseid,
+  (req, res, next) => {
+    const coursetime = req.coursetime;
+    const course = req.course;
+    const courseid = course.id;
+    const userid = req.session.userid;
+
+    let weekday;
+    switch (coursetime.weekday) {
+      case 0: weekday = '周日'; break;
+      case 1: weekday = '周一'; break;
+      case 2: weekday = '周二'; break;
+      case 3: weekday = '周三'; break;
+      case 4: weekday = '周四'; break;
+      case 5: weekday = '周五'; break;
+      case 6: weekday = '周六'; break;
+    }
+
+    data.title = `${course.name}上课时间通知`;
+    data.content = `时间：${coursetime.term}学期 第${coursetime.week}周 ${weekday} 第${coursetime.rows.toString()}节` +
+      '\n' + `地点：${coursetime.location}`;
+    if (course.remark) data.content += '\n备注：' + course.remark;
+
+    UserCourseRelation.findByCourseid(courseid, (err, relations) => {
+      if (err) return next(err);
+      const receiverid = [];
+      relations.forEach(relation => {
+        receiverid.push(relation.user);
+      });
+
+      Notice.sendNotice(userid, receiverid, data, (err, result) => {
+        if (err) return next(err);
+        res.json(new Response(3016, '上课时间通知发布成功'));
+      })
+    });
+  }
+);
+
 // 教师删除某上课时间（完成）
 // delete /api/teacher-management/courses/:courseid/course-times/:coursetimeid
 router.delete('/courses/:courseid/course-times/:coursetimeid',
