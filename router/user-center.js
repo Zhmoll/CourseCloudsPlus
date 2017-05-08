@@ -9,7 +9,6 @@ function checkLogin(req, res, next) {
   if (!req.session.userid) {
     req.session.url = path.join('http://courseclouds.zhmoll.com/', req.originalUrl);
     const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/wechat_login', 'wechat_login', 'snsapi_base');
-    console.log(url);
     res.redirect(url);
     return;
   }
