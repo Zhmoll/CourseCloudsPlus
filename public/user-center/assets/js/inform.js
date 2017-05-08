@@ -1,4 +1,11 @@
 window.onload = function () {
+    if(localStorage.signin)
+    {
+        $("#name").text(localStorage.name);
+    }
+    else {
+        $("#name").text('');
+    }
     //教务通知
     $.get("http://courseclouds.zhmoll.com/api/courses/" + localStorage.courseid + "/notices", function (data1) {
         if (data1.code == 2305) {

@@ -1,4 +1,10 @@
 window.onload = function () {
+    if (localStorage.signin) {
+        $("#name").text(localStorage.name);
+    }
+    else {
+        $("#name").text('');
+    }
     //发件箱
     $.get("../api/notices/outbox", function (data1) {
         if (data1.code == 2305) {

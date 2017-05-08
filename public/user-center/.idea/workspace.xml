@@ -21,8 +21,8 @@
       <file leaf-file-name="leave.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="26" column="72" lean-forward="true" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+            <state relative-caret-position="0">
+              <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -96,7 +96,7 @@
       <file leaf-file-name="inform.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-662">
+            <state relative-caret-position="0">
               <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
               <folding />
             </state>
@@ -175,8 +175,8 @@
         <option value="$PROJECT_DIR$/receivemessage.html" />
         <option value="$PROJECT_DIR$/sendmessage.html" />
         <option value="$PROJECT_DIR$/leave.html" />
-        <option value="$PROJECT_DIR$/assets/js/sendmessage.js" />
         <option value="$PROJECT_DIR$/assets/js/inform.js" />
+        <option value="$PROJECT_DIR$/assets/js/sendmessage.js" />
         <option value="$PROJECT_DIR$/assets/js/leave.js" />
       </list>
     </option>
@@ -398,12 +398,12 @@
       <workItem from="1494158456642" duration="1395000" />
       <workItem from="1494169290778" duration="730000" />
       <workItem from="1494206647691" duration="13855000" />
-      <workItem from="1494229277655" duration="7971000" />
+      <workItem from="1494229277655" duration="8103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="210354000" />
+    <option name="totallyTimeSpent" value="210486000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -734,6 +734,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/sendmessage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -742,18 +750,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-662">
-          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="26" column="72" lean-forward="true" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+        <state relative-caret-position="0">
+          <caret line="0" column="29" lean-forward="false" selection-start-line="0" selection-start-column="29" selection-end-line="0" selection-end-column="29" />
           <folding />
         </state>
       </provider>

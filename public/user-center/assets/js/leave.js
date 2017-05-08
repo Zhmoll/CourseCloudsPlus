@@ -1,12 +1,4 @@
 window.onload = function () {
-    if (typeof(localStorage.signin) == "undefined") {
-        window.location.href = "register.html";
-    }
-    else {
-        if (localStorage.signin == 0) {
-            window.location.href = "register.html";
-        }
-    }
     if (localStorage.signin) {
         $("#name").text(localStorage.name);
     }
