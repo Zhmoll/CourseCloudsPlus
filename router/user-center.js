@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const OAuthApi = require('../wechat/OAuth');
 const User = require('../model/users');
+const path = require('path');
 const fs = require('fs');
 
 router.get('/wechat_login', (req, res, next) => {
@@ -35,9 +36,7 @@ router.get('/login.html', express.static('../public/user-center'));
 // 登录
 router.use((req, res, next) => {
   if (!req.session.userid) {
-    console.log(req)
-    console.log(req.url)
-    const url = OAuthApi.getAuthorizeURL(req.url, 'wechat_login', 'snsapi_base');
+    const url = OAuthApi.getAuthorizeURL(path.join('http://courseclouds.zhmoll.com/', req.originalUrl), 'wechat_login', 'snsapi_base');
     return res.redirect(url);
   }
   next();
