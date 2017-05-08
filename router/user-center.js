@@ -51,5 +51,5 @@ router.get('/leave.html', checkLogin);
 router.get('/receivemessage.html', checkLogin);
 router.get('/sendmessage.html', checkLogin);
 
-router.use(express.static('../public'));
+router.use(express.static('../public/user-center/'));
 module.exports = router;
