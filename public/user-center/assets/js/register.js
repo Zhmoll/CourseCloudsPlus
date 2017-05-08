@@ -26,10 +26,13 @@ document.ready = function click_button() {
                 localStorage.id = data.body.id;
                 localStorage.name = data.body.name;
                 localStorage.nickname = data.body.nickname;
-                localStorage.signin = true;
+                localStorage.signin = 1;
                 window.location.href = "index.html";
             }
-            else alert(data.message);
+            else {
+                localStorage.signin=0;
+                alert(data.message);
+            }
         })
     })
 }

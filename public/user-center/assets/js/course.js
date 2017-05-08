@@ -20,19 +20,26 @@ var flag = IsPC(); //true为PC端，false为手机端
 week();//课程函数
 
 $(".course").click(function () {
-    localStorage.courseid=this.eq(0).attr('id');
+    localStorage.courseid=this.getAttribute('value');
+    window.location.href='inform.html';
 })
 
 function week() {
+    alert("点击任意课程可查看课程通知以及所有假条");
     var $oTd = $("#1td");
-    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek",course_get);
-    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes",data_course);
-    alert(data_course.message);
-    var getcourse = course_get.body;//课程信息数组
-    var weeknum = data_course.body.week;//当前周数
-    var yearnum = data_course.body.term;//当前学期
+    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek",function (data) {
+        localStorage.getcoursemobil=data;
+        alert(data.message)
+
+    });
+    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes",function (data) {
+        localStorage.getweekmobil=data;
+    });
 
 
+    var getcourse = localStorage.getcoursemobil.body;//课程信息数组
+    var weeknum = localStorage.getweekmobil.body.week;//当前周数
+    var yearnum = localStorage.getweekmobil.body.term;//当前学期
     var weeknum_string = weeknum.toString();
 
     var weekday = new Date().getDay();
@@ -51,8 +58,8 @@ function week() {
     function addCourse(day, col, num, course, color, teacher,id) {
         //参数:day指周几, col指从第几节课开始,num指几节课,course指什么课
         var oDiv = $('<div></div>');
-        $(oDiv).attr('id', id);
-        $(oDiv).attr("class",'course');
+        $(oDiv).attr('class', 'course');
+        $(oDiv).attr("value",id);
         var oP = $('<p></p>');
         //var oSpanWeekDay = $('<span id=oSpanWeekDay></span>');
         var oSpanSelectcode = $('<span id=oSpanSelectcode></span>');
@@ -226,3 +233,8 @@ function week() {
 
     });
 }
+
+
+
+
+

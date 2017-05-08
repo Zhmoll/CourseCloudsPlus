@@ -1,60 +1,68 @@
-//class=" + "ui-list"+"&nbsp"+"ui-list-pure"+"ui-border-tb" +"&nbsp"+ "
 window.onload = function () {
-    $.post("http://courseclouds.zhmoll.com/api/users/login", {
-        "university": "杭州电子科技大学",
-        "password": 14051534,
-        "uid": 14051534
-    }, function (data) {
-        if (data.code == 2005) {
-            alert(data.message + "data.message");
-            $.get("http://courseclouds.zhmoll.com/api/notices/inbox", function (data1) {
-                if (data1.code == 2306) {
-                    alert(data1.message);
-                    jQuery.each(data1, function (i, j) {
-                        //alert('success');
-                        var title = j.notice.title;
-                        var date = j.notice.course.teacher.name;//date未定义
-                        var inform = j.notice.course.name;//inform未定义
-                        //addInform(title,date,inform);
-                        $("#div1").append("<ul class=" + "ul1"+" id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>"+title+"</span><span class=" + "date>"+date+"</span></p><h4>"+inform+"</h4></li></ul>");
-                        $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
-                    });
-
-                }
-                else
-                    alert(data1.message);
-            })
+    if (typeof(localStorage.signin) == "undefined") {
+        window.location.href = "register.html";
+    }
+    else {
+        if (localStorage.signin==0) {
+            window.location.href = "register.html";
         }
-        else
-            alert(data.message);
-        $(".ul1").css({
-            "margin-bottom":0+"px"
-        })
+    }
+    if(localStorage.signin)
+    {
+        $("#name").text(localStorage.name);
+    }
+    else {
+        $("#name").text('');
+    }
+    //教务通知
+    $.get("http://courseclouds.zhmoll.com/api/courses/" + localStorage.courseid + "/notices", function (data1) {
+        if (data1.code == 2305) {
+            alert(data1.message);
+            for (i = 0; i < data1.body.length; i++) {
+                name=data1.body[i].notice.course.name;
+                title = data1.body[i].notice.title;
+                createdAt = data1.body[i].notice.createdAt;
+                from = data1.body[i].from.nickname;
+                $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "课程名：" + name + "。" + "</span><span class=" + "date>" + "发件人：" + from + "</span></p><h4>" + "消息：" + title + "</h4></li></ul>");
+                $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+            }
+
+        }
+        else {
+            $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "无消息" + "</h4></li></ul>");
+            $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+            alert(data1.message);
+
+        }
+
+    })
+    $(".ul1").css({
+        "margin-bottom": 0 + "px"
+    })
+    //假条通知
+    $.get("http://courseclouds.zhmoll.com/api/courses/" + localStorage.courseid + "/askforleave", function (data1) {
+        if (data1.code == 2205) {
+            alert(data1.message);
+            for (i = 0; i < data1.body.length; i++) {
+                id = data1.body[i].id;
+                reason = data1.body[i].reason;
+                course = data1.body[i].courseTime.weekday;
+                courseid = data1.body[i].course;
+                allow = data1.body[i].allow;
+                allowby = data1.body[i].allowBy;
+                $("#div2").append("<ul class=" + "ul2" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "课程名：" + courseid + "。" + "</span><span class=" + "date>" + "请假原因：" + reason + "</span></p><h4>" + "是否批准:" + allow + "；批准人：" + allowby + "</h4></li></ul>");
+                $(".ul2").addClass("ui-list ui-list-pure ui-border-tb");
+            }
+
+        }
+        else {
+            $("#div2").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "无消息" + "</h4></li></ul>");
+            $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+            alert(data1.message);
+
+        }
+    })
+    $(".ul2").css({
+        "margin-bottom": 0 + "px"
     })
 };
-
-// else
-// {
-//     alert(data.message);
-//     window.location.href='register.html';
-// }
-// var data = [{
-//     'notice': {
-//         'title': '五一放假',
-//         'date': "五月一日",
-//         'inform': "全体师生五一放假"
-//     }
-// }, {
-//     'notice': {
-//         'title': '六一放假',
-//         'date': "五月一日",
-//         'inform': "全体师生五一放假"
-//     }
-// },
-//     {
-//         'notice': {
-//             'title': '七一放假',
-//             'date': "五月一日",
-//             'inform': "全体师生五一放假"
-//         }
-//     }];

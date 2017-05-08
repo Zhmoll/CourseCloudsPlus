@@ -40,18 +40,16 @@ var flag = IsPC(); //true为PC端，false为手机端
 function week() {
     var $oTd = $("#1td");
     $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (data) {
-        alert(data.message);
-        var data_week1=data;
+        localStorage.getcourseweb=data;
     });
     //服务器需要给出的数据
-    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
-        alert(data_course.message);
+    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data) {
+        localStorage.getweekweb=data;
     });
-    var getcourse = data_week1.body;//课程信息数组
-    var weeknum = data_week1.body.week;//当前周数
-    var yearnum = data_week.body.term;//当前学期
-
-
+    var getcourse = localStorage.getcourseweb.body;//课程信息数组
+    var weeknum = localStorage.getweekweb.body.week;//当前周数
+    var yearnum = localStorage.getweekweb.body.term;//当前学期
+    alert(localStorage.getweekweb.message);
     var weeknum_string = weeknum.toString();
 
     var weekday = new Date().getDay();
@@ -251,7 +249,6 @@ window.onload = function () {
         if (localStorage.signin==0) {
             window.location.href = "login.html";
         }
-
     }
 
     $("#name").text(localStorage.name);
