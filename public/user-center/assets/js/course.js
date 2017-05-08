@@ -27,17 +27,19 @@ function week() {
     var $oTd = $("#1td");
     $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (course_get) {
         if (course_get && course_get.code != 2007) {
-            return alert(course_get.message);
+            alert(course_get.message);
+            return;
         }
         $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
             if (data_course && data_course.code != 2207) {
-                return alert(data_course.message);
+                alert(data_course.message);
+                return;
             }
             var getcourse = data_course.body;//课程信息数组
-            console.log(getcourse['2016-2'][1][1][0].name);
+            alert(getcourse['2016-2'][1][1][0].name);
             var weeknum = course_get.body.week;//当前周数
             var yearnum = course_get.body.term;//当前学期
-            console.log(weeknum);
+            alert(weeknum);
 
             var weeknum_string = weeknum.toString();
 
