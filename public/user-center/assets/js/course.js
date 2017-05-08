@@ -26,7 +26,7 @@ $(document).ready(function () {
       reCourse(choose_term, choose_week);
       $(".course").click(function () {
         localStorage.courseid=this.attr("id");
-        window.location.href="inform.html"
+        window.location.href="inform.html";
       })
     });
   });

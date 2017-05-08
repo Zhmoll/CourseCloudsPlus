@@ -22,7 +22,7 @@ window.onload = function () {
         else {
             $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "无消息" + "</h4></li></ul>");
             $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
-            alert(data1.message);
+            alert(data.message);
 
         }
 

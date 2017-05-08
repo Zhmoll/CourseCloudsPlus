@@ -1,6 +1,3 @@
-
-
-
 var $oTd = $("#1td");
 var $aTh = $("#tr th:not('#2th')");
 
@@ -9,15 +6,6 @@ var choose_week;
 var courses;
 
 $(document).ready(function () {
-    if (typeof(localStorage.signin) == "undefined") {
-        window.location.href = "login.html";
-        alert("请先登录");
-    }
-    else {
-        if (localStorage.signin==0) {
-            window.location.href = "login.html";
-        }
-    }
 
     $("#name").text(localStorage.name);
     $("#profile").attr("src", localStorage.profile);
@@ -35,14 +23,14 @@ $(document).ready(function () {
         })
     })
 
-    $.get("../api/term/currentWeek", function (current_week_time, status) {
+    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (current_week_time, status) {
         if (current_week_time && current_week_time.code != 2007) {
-            alert(current_week_time.message);
+            alert("current_week_time.message:"+current_week_time.message);
             return;
         }
-        $.get("../api/profile/coursetimes", function (data, status) {
+        $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data, status) {
             if (data && data.code != 2207) {
-                alert(data.message);
+                alert("data.message"+data.message);
                 return;
             }
             courses = data.body;
@@ -54,8 +42,8 @@ $(document).ready(function () {
             $("#selected").val(to_week);
             reCourse(choose_term, choose_week);
             $(".course").click(function () {
-                localStorage.courseid=this.attr("id");
-                window.location.href="inform.html"
+                localStorage.courseid = this.attr("id");
+                window.location.href = "inform.html"
             })
         });
     });
@@ -176,7 +164,7 @@ function reCourse(term, week) {
             for (var j = 0; j < today_courses.length; j++) {	//循环第几节课
                 var current_course = today_courses[j];
                 var teachers = [];
-                current_course.course.teachers.forEach(function(teacher) {
+                current_course.course.teachers.forEach(function (teacher) {
                     teachers.push(teacher.name);
                 });
                 var iCourse = current_course.course.name + '#' + teachers.toString() + '@' + current_course.location;
