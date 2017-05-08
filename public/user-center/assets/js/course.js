@@ -20,7 +20,7 @@ var flag = IsPC(); //true为PC端，false为手机端
 week();//课程函数
 
 $(".course").click(function () {
-    this.eq(0).attr('id')
+    localStorage.courseid=this.eq(0).attr('id');
 })
 
 function week() {
