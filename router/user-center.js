@@ -29,8 +29,8 @@ router.get('/wechat_login', (req, res, next) => {
   });
 });
 
-router.get('/registry.html', express.static('../public'));
-router.get('/login.html', express.static('../public'));
+router.get('/registry.html', express.static('../public/user-center'));
+router.get('/login.html', express.static('../public/user-center'));
 
 // 登录
 router.use((req, res, next) => {
@@ -43,5 +43,5 @@ router.use((req, res, next) => {
   next();
 });
 
-router.use(express.static('../public'));
+router.use(express.static('../public/user-center'));
 module.exports = router;
