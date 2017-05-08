@@ -1,7 +1,4 @@
-const cors = require('cors');
-
 module.exports = app => {
-  app.use('*', cors({ credentials: true }));
   app.use('/api',(req,res,next)=>{
     console.log(req.body);
     next();
