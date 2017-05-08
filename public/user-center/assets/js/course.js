@@ -35,7 +35,211 @@ function week() {
                 alert(data_course.message);
                 return;
             }
-            var getcourse = data_course.body;//课程信息数组
+            var getcourse = {
+                "2016-2": {
+                    "1": {
+                        "1": [
+                            {
+                                "coursetimeid": "590b0def77f8d723b41901a0",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北110",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    },
+                    "3": {
+                        "1": [
+                            {
+                                "coursetimeid": "590b12f01879b5243c63a2ee",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    6,
+                                    7
+                                ],
+                                "location": "七教北120",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    },
+                    "4": {
+                        "4": [
+                            {
+                                "coursetimeid": "590b12991879b5243c63a2ed",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北110",
+                                "remark": "不要迟到"
+                            }
+                        ],
+                        "5": [
+                            {
+                                "coursetimeid": "590b0def77f8d723b41901a1",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北110",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    },
+                    "5": {
+                        "1": [
+                            {
+                                "coursetimeid": "590b12991879b5243c63a2ec",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北110",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    },
+                    "6": {
+                        "1": [
+                            {
+                                "coursetimeid": "590b12991879b5243c63a2eb",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北120",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    },
+                    "12": {
+                        "0": [
+                            {
+                                "coursetimeid": "590b0def77f8d723b419019e",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    6,
+                                    7,
+                                    8
+                                ],
+                                "location": "七教北120",
+                                "remark": "不要迟到啊"
+                            },
+                            {
+                                "coursetimeid": "590b0def77f8d723b419019f",
+                                "course": {
+                                    "id": "590b072bbb9239048cdd1184",
+                                    "cid": "A-11223344",
+                                    "name": "数据结构",
+                                    "teachers": [
+                                        {
+                                            "_id": "590b04ce9c6f330b3cc9993c",
+                                            "uid": "22222",
+                                            "name": "张老师"
+                                        }
+                                    ]
+                                },
+                                "rows": [
+                                    3,
+                                    4,
+                                    5
+                                ],
+                                "location": "七教北110",
+                                "remark": "不要迟到"
+                            }
+                        ]
+                    }
+                }
+            }
             var weeknum = course_get.body.week;//当前周数
             var yearnum = course_get.body.term;//当前学期
 
