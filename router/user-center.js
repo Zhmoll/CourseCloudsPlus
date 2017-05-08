@@ -5,6 +5,15 @@ const User = require('../model/users');
 const path = require('path');
 const fs = require('fs');
 
+function checkLogin(req, res, next) {
+  if (!req.session.userid) {
+    req.session.url = path.join('http://courseclouds.zhmoll.com/', req.originalUrl);
+    const url = OAuthApi.getAuthorizeURL(path.join('http://courseclouds.zhmoll.com/user-center/wechat_login'), 'wechat_login', 'snsapi_base');
+    return res.redirect(url);
+  }
+  next();
+}
+
 router.get('/wechat_login', (req, res, next) => {
   const { code, state } = req.body;
   if (!code) {
@@ -30,18 +39,15 @@ router.get('/wechat_login', (req, res, next) => {
   });
 });
 
-router.get('/registry.html', express.static('../public/user-center'));
-router.get('/login.html', express.static('../public/user-center'));
-
-// 登录
-router.use((req, res, next) => {
-  if (!req.session.userid) {
-    req.session.url = path.join('http://courseclouds.zhmoll.com/', req.originalUrl);
-    const url = OAuthApi.getAuthorizeURL(path.join('http://courseclouds.zhmoll.com/user-center/wechat_login'), 'wechat_login', 'snsapi_base');
-    return res.redirect(url);
-  }
-  next();
-});
+router.get('/course.html', checkLogin);
+router.get('/courseform.html', checkLogin);
+router.get('/index.html', checkLogin);
+router.get('/inform.html', checkLogin);
+router.get('/iscroll.html', checkLogin);
+router.get('/landing.html', checkLogin);
+router.get('/leave.html', checkLogin);
+router.get('/receivemessage.html', checkLogin);
+router.get('/sendmessage.html', checkLogin);
 
 router.use(express.static('../public/user-center'));
 module.exports = router;
