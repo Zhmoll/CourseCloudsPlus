@@ -34,6 +34,7 @@ function week() {
                 return alert(data_course.message);
             }
             var getcourse = data_course.body;//课程信息数组
+            // console.log(getcourse['2016-2'][3][1][0].name);
             var weeknum = course_get.body.week;//当前周数
             var yearnum = course_get.body.term;//当前学期
 
@@ -43,7 +44,7 @@ function week() {
             if (weekday == 0) {
                 weekday = 7;
             }
-            
+
             var $aTh = $("#tr th:not('#2th')");
             var dayNum = weeknum;   //将周数的初始化赋值为后台传来的当前周数
             var year = yearnum;
