@@ -35,6 +35,8 @@ router.get('/login.html', express.static('../public'));
 // 登录
 router.use((req, res, next) => {
   if (!req.session.userid) {
+    console.log(req)
+    console.log(req.url)
     const url = OAuthApi.getAuthorizeURL(req.url, 'wechat_login', 'snsapi_base');
     return res.redirect(url);
   }
