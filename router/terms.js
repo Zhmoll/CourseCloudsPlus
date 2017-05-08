@@ -12,7 +12,6 @@ router.get('/currentWeek',
     const university = user.university;
     Term.getCurrentWeek(university, (err, result) => {
       if (err) return next(err);
-      console.log(result);
       res.json(new Response(2007, '获取当前周成功', result));
     });
   }

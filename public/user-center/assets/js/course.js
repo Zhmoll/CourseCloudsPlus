@@ -34,9 +34,10 @@ function week() {
                 return alert(data_course.message);
             }
             var getcourse = data_course.body;//课程信息数组
-            // console.log(getcourse['2016-2'][3][1][0].name);
+            console.log(getcourse['2016-2'][1][1][0].name);
             var weeknum = course_get.body.week;//当前周数
             var yearnum = course_get.body.term;//当前学期
+            console.log(weeknum);
 
             var weeknum_string = weeknum.toString();
 
