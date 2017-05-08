@@ -1,8 +1,8 @@
 $(document).ready(function () {
   $('button').click(function () {
-    var university = $('#university').text();
-    var uid = $('#uid').text();
-    var password = $('#password').text()
+    var university = $('#university').val();
+    var uid = $('#uid').val();
+    var password = $('#password').val()
     $.post('../api/users/login', {
       university: university,
       uid: uid,
