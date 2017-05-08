@@ -14,7 +14,7 @@ window.onload = function () {
                 if (data1.body.authority < 10) {
                     return alert('请确保你有登录教师管理平台的权限');
                 }
-                localStorage.signin = 1;
+                localStorage.signin = true;
                 localStorage.id = data1.body.id;
                 localStorage.name = data1.body.name;
                 localStorage.nickname = data1.body.nickname;

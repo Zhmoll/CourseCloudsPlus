@@ -10,6 +10,13 @@ $(document).ready(function () {
     }, function (data, status) {
       console.log(data);
       alert(data.message);
+      localStorage.signin = true;
+      localStorage.userid = data.body.id;
+      localStorage.avatar = data.body.avatar;
+      localStorage.name = data.body.name;
+      localStorage.nickname = data.body.nickname;
+      localStorage.university = data.body.university;
+      window.location.href = 'index.html';
     });
   });
 });
