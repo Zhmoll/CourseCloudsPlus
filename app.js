@@ -34,8 +34,6 @@ app.use(session({
 router(app);
 app.use('/wechat', wechat);
 
-app.use(express.static('public'));
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
