@@ -1,4 +1,24 @@
+/**
+ * Created by Administrator on 2017-5-7.
+ */
+function acck() {
+    //alert("success");
+    $.post("http://courseclouds.zhmoll.com/api/users/login", {
+        "university": "杭州电子科技大学",
+        "password": 14051534,
+        "uid": 14051534
+    }, function (data) {
+        //alert("success11");
+        //alert(data.message);
+        if (data.code == 2005) {
+            alert(data.message + "data.message");
+            week();
+        }
+        else
+            alert(data.message);
+    });
 
+}
 //判断是手机端还是web端
 function IsPC() {
     var userAgentInfo = navigator.userAgent;
@@ -17,20 +37,19 @@ function IsPC() {
 var flag = IsPC(); //true为PC端，false为手机端
 
 
-week();//课程函数
-
-$(".course").click(function () {
-    this.eq(0).attr('id')
-})
-
 function week() {
     var $oTd = $("#1td");
-    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek",course_get);
-    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes",data_course);
-    alert(data_course.message);
-    var getcourse = course_get.body;//课程信息数组
-    var weeknum = data_course.body.week;//当前周数
-    var yearnum = data_course.body.term;//当前学期
+    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (data) {
+        alert(data.message);
+        var data_week1=data;
+    });
+    //服务器需要给出的数据
+    $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
+        alert(data_course.message);
+    });
+    var getcourse = data_week1.body;//课程信息数组
+    var weeknum = data_week1.body.week;//当前周数
+    var yearnum = data_week.body.term;//当前学期
 
 
     var weeknum_string = weeknum.toString();
@@ -48,11 +67,10 @@ function week() {
     var colorArr1 = ['rgb(255,125,84)', 'rgb(0,143,209)', 'rgb(255, 177,54)', 'rgb(245,72,130)', 'rgb(255,75,90)', 'rgb(180,89,212)', 'rgb(0,179,190)', 'rgb(44,110,213)', 'rgb(0,173,95)', 'rgb(255,131,0)', 'rgb(241,70,78)', 'rgb(196,65,163)', 'rgb(255,195,56)', 'rgb(222,48,119)', 'rgb(254,91,94)', 'rgb(128,88,189)', 'rgb(66,114,215)', 'rgb(0,181,233)', 'rgb(0,178,111)', 'rgb(87,184,70)', 'rgb(255,224,72)', 'rgb(255,137,47)', 'rgb(255,95,61)', 'rgb(228,93,39)', 'rgb(255,169,48)', 'rgb(255,115,133)', 'rgb(118, 190,172)', 'rgb(147, 206, 97)', 'rgb(217,144,181)', 'rgb(97, 189, 230)', 'rgb(238, 196, 115)', 'rgb(138, 216, 162)', 'rgb(202, 165, 158)', 'rgb(222, 196, 145)', 'rgb(97, 189, 230)', 'rgb(134, 167, 234)', 'rgb(165, 156, 219)', 'rgb(118, 190,172)', 'rgb(147, 206, 97)', 'rgb(217,144,181)', 'rgb(97, 189, 230)', 'rgb(238, 196, 115)', 'rgb(138, 216, 162)', 'rgb(202, 165, 158)', 'rgb(145, 180, 215)', 'rgb(222, 196, 145)'];
 
     //创建课程浮层
-    function addCourse(day, col, num, course, color, teacher,id) {
+    function addCourse(day, col, num, course, color, teacher) {
         //参数:day指周几, col指从第几节课开始,num指几节课,course指什么课
         var oDiv = $('<div></div>');
-        $(oDiv).attr('id', id);
-        $(oDiv).attr("class",'course');
+        $(oDiv).attr('id', 'course1');
         var oP = $('<p></p>');
         //var oSpanWeekDay = $('<span id=oSpanWeekDay></span>');
         var oSpanSelectcode = $('<span id=oSpanSelectcode></span>');
@@ -174,8 +192,6 @@ function week() {
 
                     var iCourse = dataObj[year][dayNum][i][j]['course']["name"] + '#' + dataObj[year][dayNum][i][j]['course']["teachers"][0]["name"] + '@' + dataObj[year][dayNum][i][j]['location'];
 
-                    var id=dataObj[year][dayNum][i][j]['course']["id"];
-
                     var weekday = i;
 
                     var teacher = dataObj[year][dayNum][i][j]['course']['teachers']["name"];
@@ -187,7 +203,7 @@ function week() {
                     var iNum = dataObj[year][dayNum][i][j]['rows'].length;
                     //alert("success10")
 
-                    addCourse(weekday, iCol, iNum, iCourse, colorArr1[colorNum], teacher,id);
+                    addCourse(weekday, iCol, iNum, iCourse, colorArr1[colorNum], teacher);
                     //alert("success1")
                     colorNum++;
                     if (colorNum == 25) {
@@ -226,3 +242,32 @@ function week() {
 
     });
 }
+window.onload = function () {
+    if (typeof(localStorage.signin) == "undefined") {
+        window.location.href = "login.html";
+        alert("请先登录");
+    }
+    else {
+        if (localStorage.signin==0) {
+            window.location.href = "login.html";
+        }
+
+    }
+
+    $("#name").text(localStorage.name);
+    $("#profile").attr("src", localStorage.profile);
+
+    $("#loginout").click(function () {
+            $.get("http://courseclouds.zhmoll.com/api/users/logout", function (data) {
+                if (data.code == 2006) {
+                    localStorage.signin = 0;
+                    window.location.href = "login.html";
+                }
+                else {
+                    localStorage.signin = 0;
+                    window.location.href = "login.html";
+                }
+            })
+        })
+    week();
+};
