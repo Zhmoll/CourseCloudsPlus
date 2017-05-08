@@ -147,7 +147,7 @@ function key_user_inbox(message, req, res, next) {
     const results = [{ title: `消息收件箱（最近6条消息）` }];
     relations.forEach((relation, index) => {
       if (index >= 6) return;
-      const sendtime = relation.notice.createdAt.toLocaleTimeString() + relation.notice.createdAt.toLocaleTimeString();
+      const sendtime = relation.notice.createdAt.toLocaleDateString() + relation.notice.createdAt.toLocaleTimeString();
       if (relation.notice.course) {
         // 课程相关群发
         results.push({
