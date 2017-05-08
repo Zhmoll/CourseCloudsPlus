@@ -43,7 +43,7 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverids, content, call
             missions.push((receiverid) => {
               return User.findById(receiverid).then(user => {
                 if (user.openid)
-                  wechatApi.sendNotice(notice, user.openid, sender);
+                  wechatApi.sendNoticeTemplate(notice, user.openid, sender);
               });
             });
           });
@@ -62,7 +62,7 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverids, content, call
           User.findById(receiverids).exec((err, receiver) => {
             if (err) return callback(err);
             if (receiver.openid)
-              wechatApi.sendNotice(notice, receiver.openid, sender);
+              wechatApi.sendNoticeTemplate(notice, receiver.openid, sender);
             UserNoticeRelation
               .create({ notice: notice.id, to: receiverids }, callback);
           });
