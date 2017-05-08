@@ -1,8 +1,9 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 
 const MongoStore = require('connect-mongo')(session);
@@ -12,12 +13,13 @@ const router = require('./router');
 const wechat = require('./wechat');
 const config = require('config-lite').session;
 
-var app = express();
+const app = express();
 
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
+app.use(cors({ credentials: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({
