@@ -30,7 +30,9 @@ function week() {
             return alert(course_get.message);
         }
         $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
-
+            if (data_course && data_course.code != 2207) {
+                return alert(data_course.message);
+            }
             var getcourse = data_course.body;//课程信息数组
             var weeknum = course_get.body.week;//当前周数
             var yearnum = course_get.body.term;//当前学期
