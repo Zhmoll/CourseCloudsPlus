@@ -53,7 +53,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
       'backgroundColor': color,
       "position": "absolute",
       'left': left,
-      "font-size": "1px",
+      "font-size": "10px",
       'top': $("#1td").offset().top + 2 + ($("#1td").height() + 10.2) * (col - 1) + 'px'
     });
     oDiv.width($aTh.width() + 11);//某节课的宽度
@@ -74,7 +74,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
     $(oDiv).append(oSpanTeacher);
     $(oDiv).append(oSpanSelectcode);
     if (day == weekday) {
-      oP.css('fontSize', '4px');
+      oP.css('fontSize', '12px');
     }
     oP.css('paddingTop', parseInt((oDiv.height() - oP.height()) / 2) + 'px');
   }
