@@ -65,4 +65,6 @@ window.onload = function () {
     $(".ul2").css({
         "margin-bottom": 0 + "px"
     })
+
+    localStorage.courseid='';
 };
