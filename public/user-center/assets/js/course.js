@@ -31,11 +31,9 @@ function week() {
         }
         $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
 
-            alert(data_course.message);
-            var getcourse = course_get.body;//课程信息数组
-            var weeknum = data_course.body.week;//当前周数
-            var yearnum = data_course.body.term;//当前学期
-
+            var getcourse = data_course.body;//课程信息数组
+            var weeknum = course_get.body.week;//当前周数
+            var yearnum = course_get.body.term;//当前学期
 
             var weeknum_string = weeknum.toString();
 
