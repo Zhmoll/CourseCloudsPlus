@@ -55,7 +55,7 @@ function key_today_courses(message, req, res, next) {
           result.push({ title: '恭喜你，今天没课！' });
           result.push({
             title: '点我获得完整课程表',
-            url: 'http://courseclouds.zhmoll.com/coursetable.html'
+            url: 'http://courseclouds.zhmoll.com/user-center/course.html'
           });
           return res.reply(result);
         }
@@ -64,7 +64,7 @@ function key_today_courses(message, req, res, next) {
         result.push({ title: '恭喜你，今天没课！' });
         result.push({
           title: '点我获得完整课程表',
-          url: 'http://courseclouds.zhmoll.com/coursetable.html'
+          url: 'http://courseclouds.zhmoll.com/user-center/course.html'
         });
         return res.reply(result);
       }
@@ -88,7 +88,7 @@ function key_today_courses(message, req, res, next) {
 
       result.push({
         title: '点我获得完整课程表',
-        url: 'http://courseclouds.zhmoll.com/coursetable.html'
+        url: 'http://courseclouds.zhmoll.com/user-center/course.html'
       });
       res.reply(result);
     });
