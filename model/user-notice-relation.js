@@ -19,6 +19,7 @@ UserNoticeRelationSchema.statics.findByReceiverId = function (id, callback) {
     .find({ to: id })
     .where('deleted').equals(false)
     .select('-deleted')
+    .sort('-id')
     .populate({
       path: 'notice',
       // match: { deleted: false },

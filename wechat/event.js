@@ -147,11 +147,13 @@ function key_user_inbox(message, req, res, next) {
     const results = [{ title: `消息收件箱（最近6条消息）` }];
     relations.forEach((relation, index) => {
       if (index >= 6) return;
+      const sendtime = relation.notice.createdAt.toLocaleTimeString() + relation.notice.createdAt.toLocaleTimeString();
       if (relation.notice.course) {
         // 课程相关群发
         results.push({
           title: `标题：${relation.notice.title}` +
           '\n' + `来自：${relation.notice.from.nickname}` +
+          '\n' + `时间：${sendtime}` +
           '\n' + `课堂：${relation.notice.course.name}`,
           url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
         });
@@ -160,7 +162,8 @@ function key_user_inbox(message, req, res, next) {
         // 非课程相关群发
         results.push({
           title: `标题：${relation.notice.title}` +
-          '\n' + `来自：${relation.notice.from.nickname}`,
+          '\n' + `来自：${relation.notice.from.nickname}` +
+          '\n' + `时间：${sendtime}`,
           url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
         });
       }
