@@ -36,7 +36,8 @@ router.get('/login.html', express.static('../public/user-center'));
 // 登录
 router.use((req, res, next) => {
   if (!req.session.userid) {
-    const url = OAuthApi.getAuthorizeURL(path.join('http://courseclouds.zhmoll.com/', req.originalUrl), 'wechat_login', 'snsapi_base');
+    req.session.url = path.join('http://courseclouds.zhmoll.com/', req.originalUrl);
+    const url = OAuthApi.getAuthorizeURL(path.join('http://courseclouds.zhmoll.com/user-center/wechat_login'), 'wechat_login', 'snsapi_base');
     return res.redirect(url);
   }
   next();
