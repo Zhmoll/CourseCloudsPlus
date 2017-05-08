@@ -146,10 +146,12 @@ function key_user_inbox(message, req, res, next) {
       return;
     }
     const results = [{ title: `消息收件箱（最近6条消息）` }];
+    if (relations.length == 0) {
+      results.push({ title: '你暂时还没有收到任何消息' });
+    }
     relations.forEach((relation, index) => {
       if (index >= 6) return;
-
-      const sendtime = moment(relation.notice.createdAt).add('hours', 8).format('YY年MM月DD日 HH:mm:ss');
+      const sendtime = moment(relation.notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
       if (relation.notice.course) {
         // 课程相关群发
         results.push({
@@ -197,6 +199,9 @@ function key_ask_for_leave(message, req, res, next) {
         return;
       }
       const results = [{ title: '假条批复（最近6条假条）' }];
+      if (leaves.length == 0) {
+        results.push({ title: '你还没有申请过假条' });
+      }
       leaves.forEach((leave, index) => {
         if (index >= 6) return;
         let weekday;

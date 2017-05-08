@@ -172,6 +172,7 @@ router.get('/askforleave',
     CourseTimeLeave
       .find({ user: userid })
       .where('deleted').equals(false)
+      .sort('-createdAt')
       .select('-deleted')
       .populate({
         path: 'course',

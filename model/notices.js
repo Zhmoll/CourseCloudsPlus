@@ -89,6 +89,7 @@ NoticeSchema.statics.findBySenderId = function (senderid, callback) {
   return this
     .find({ from: senderid })
     .where('deleted').equals(false)
+    .sort('-createdAt')
     .select('id title course createdAt')
     .populate({
       path: 'course',

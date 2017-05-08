@@ -1,7 +1,7 @@
 {
   "button": [
     {
-      "name": "快速功能",
+      "name": "快捷功能",
       "sub_button": [
         {
           "type": "click",
@@ -12,6 +12,11 @@
           "type": "scancode_waitmsg",
           "name": "课堂签到",
           "key": "key_attend_course"
+        },
+        {
+          "type": "click",
+          "name": "收件箱",
+          "key": "key_user_inbox"
         },
         {
           "type": "click",
@@ -32,11 +37,6 @@
           "type": "click",
           "name": "更换绑定",
           "key": "key_change_bind"
-        },
-        {
-          "type": "click",
-          "name": "收件箱",
-          "key": "key_user_inbox"
         },
         {
           "type": "click",
