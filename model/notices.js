@@ -67,84 +67,86 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverids, content, call
               .create({ notice: notice.id, to: receiverids }, callback);
           });
         });
-      };
+      }
+    });
+}
 
-      // 获取属于该课程的群发的所有消息
-      NoticeSchema.statics.findByCourseid = function (courseid, callback) {
-        return this
-          .find({ course: courseid, deleted: false })
-          .select('-deleted -content -course')
-          .populate({
-            path: 'from',
-            match: { deleted: false },
-            select: 'id uid name avatar'
-          })
-          .exec(callback);
-      };
+// 获取属于该课程的群发的所有消息
+NoticeSchema.statics.findByCourseid = function (courseid, callback) {
+  return this
+    .find({ course: courseid, deleted: false })
+    .select('-deleted -content -course')
+    .populate({
+      path: 'from',
+      match: { deleted: false },
+      select: 'id uid name avatar'
+    })
+    .exec(callback);
+};
 
-      // 获取属于该用户发送的所有消息
-      NoticeSchema.statics.findBySenderId = function (senderid, callback) {
-        return this
-          .find({ from: senderid })
-          .where('deleted').equals(false)
-          .select('id title course createdAt')
-          .populate({
-            path: 'course',
-            match: { deleted: false },
-            select: 'id cid name teachers',
-            populate: {
-              path: 'teachers',
-              match: { deleted: false },
-              select: config.select.simple_teacher_info
-            }
-          })
-          .exec(callback);
-      };
+// 获取属于该用户发送的所有消息
+NoticeSchema.statics.findBySenderId = function (senderid, callback) {
+  return this
+    .find({ from: senderid })
+    .where('deleted').equals(false)
+    .select('id title course createdAt')
+    .populate({
+      path: 'course',
+      match: { deleted: false },
+      select: 'id cid name teachers',
+      populate: {
+        path: 'teachers',
+        match: { deleted: false },
+        select: config.select.simple_teacher_info
+      }
+    })
+    .exec(callback);
+};
 
-      // 获取该用户发送的某一条消息
-      NoticeSchema.statics.findOneBySenderIdAndNoticeId = function (userid, noticeid, callback) {
-        return this
-          .findById(noticeid)
-          .where('from').equals(userid)
-          .where('deleted').equals(false)
-          .select('-deleted')
-          .populate({
-            path: 'course',
-            match: { deleted: false },
-            select: 'id cid name teachers',
-            populate: {
-              path: 'teachers',
-              match: { deleted: false },
-              select: config.select.simple_teacher_info
-            }
-          })
-          .populate({
-            path: 'from',
-            match: { deleted: false },
-            select: config.select.simple_user_info
-          })
-          .exec((err, notice) => {
-            if (err) return callback(err);
-            if (!notice) return callback(null, notice);
-            const noticeid = notice.id;
-            UserNoticeRelation
-              .find({ notice: noticeid })
-              .populate({
-                path: 'to',
-                match: { deleted: false },
-                select: config.select.simple_user_info
-              })
-              .exec((err, relations) => {
-                if (err) return callback(err);
-                const tos = [];
-                relations.forEach(relation => {
-                  tos.push(relation.to);
-                });
-                notice.to = tos;
-                callback(null, notice);
-              });
+// 获取该用户发送的某一条消息
+NoticeSchema.statics.findOneBySenderIdAndNoticeId = function (userid, noticeid, callback) {
+  return this
+    .findById(noticeid)
+    .where('from').equals(userid)
+    .where('deleted').equals(false)
+    .select('-deleted')
+    .populate({
+      path: 'course',
+      match: { deleted: false },
+      select: 'id cid name teachers',
+      populate: {
+        path: 'teachers',
+        match: { deleted: false },
+        select: config.select.simple_teacher_info
+      }
+    })
+    .populate({
+      path: 'from',
+      match: { deleted: false },
+      select: config.select.simple_user_info
+    })
+    .exec((err, notice) => {
+      if (err) return callback(err);
+      if (!notice) return callback(null, notice);
+      const noticeid = notice.id;
+      UserNoticeRelation
+        .find({ notice: noticeid })
+        .populate({
+          path: 'to',
+          match: { deleted: false },
+          select: config.select.simple_user_info
+        })
+        .exec((err, relations) => {
+          if (err) return callback(err);
+          const tos = [];
+          relations.forEach(relation => {
+            tos.push(relation.to);
           });
-      };
+          notice.to = tos;
+          callback(null, notice);
+        });
+    });
+};
 
-      const NoticeModel = mongoose.model('Notice', NoticeSchema);
-      module.exports = NoticeModel;
+const NoticeModel = mongoose.model('Notice', NoticeSchema);
+module.exports = NoticeModel;
