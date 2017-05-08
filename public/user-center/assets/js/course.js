@@ -43,6 +43,7 @@ function week() {
             if (weekday == 0) {
                 weekday = 7;
             }
+            
             var $aTh = $("#tr th:not('#2th')");
             var dayNum = weeknum;   //将周数的初始化赋值为后台传来的当前周数
             var year = yearnum;

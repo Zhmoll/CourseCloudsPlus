@@ -203,7 +203,6 @@ router.get('/coursetimes',
     const userid = req.session.userid;
     UserCourseRelation.findCourseTimes(userid, (err, show) => {
       if (err) return next(err);
-      console.log(show);
       res.json(new Response(2207, '获取课表成功', show));
     });
   }
