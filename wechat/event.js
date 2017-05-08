@@ -37,6 +37,17 @@ function key_today_courses(message, req, res, next) {
     UserCourseRelation.findCourseTimes(user.id, (err, show) => {
       if (err) return next(err);
       let courses;
+      let weekday;
+      switch (time.weekday) {
+        case 0: weekday = '周日'; break;
+        case 1: weekday = '周一'; break;
+        case 2: weekday = '周二'; break;
+        case 3: weekday = '周三'; break;
+        case 4: weekday = '周四'; break;
+        case 5: weekday = '周五'; break;
+        case 6: weekday = '周六'; break;
+      }
+      const result = [{ title: `今天是 第${time.week}周 ${weekday}` }];
       if (show && show[time.term] && show[time.term][time.week] &&
         show[time.term][time.week][time.weekday]) {
         courses = show[time.term][time.week][time.weekday];
@@ -57,17 +68,6 @@ function key_today_courses(message, req, res, next) {
         });
         return res.reply(result);
       }
-
-      switch (time.weekday) {
-        case 0: time.weekday = '周日'; break;
-        case 1: time.weekday = '周一'; break;
-        case 2: time.weekday = '周二'; break;
-        case 3: time.weekday = '周三'; break;
-        case 4: time.weekday = '周四'; break;
-        case 5: time.weekday = '周五'; break;
-        case 6: time.weekday = '周六'; break;
-      }
-      const result = [{ title: `今天是 第${time.week}周 ${time.weekday}` }];
 
       courses.sort((a, b) => a.rows[0] - b.rows[0]);
 
