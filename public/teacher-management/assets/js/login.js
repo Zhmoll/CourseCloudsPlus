@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2017-5-8.
- */
 window.onload = function () {
     $("#submit").click(function () {
         if ($("#user-name").val() == '' || $("#user-password").val() == '') {
@@ -12,17 +9,27 @@ window.onload = function () {
             "uid": $("#user-name").val(),
             "password": $("#user-password").val()
         };
-        $.post("http://courseclouds.zhmoll.com/api/users/login", data, function (data1, state) {
-            if (data1.code == 2005) {
-                alert(data1.message);
-                localStorage.signin=1;
-                localStorage.id=data1.body.id;
-                localStorage.name = data1.body.name;
-                localStorage.nickname = data1.body.nickname;
-                localStorage.profile=data1.body.avatar;
-                window.location.href = "index.html";
+
+        if (localStorage.signin) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        $.post("../api/users/login", data, function (data, state) {
+            if (data.code == 2005) {
+                if (data.body.authority < 10) {
+                    return alert('请确保你有登录教师管理平台的权限');
+                }
+                localStorage.signin = true;
+                localStorage.id = data.body.id;
+                localStorage.name = data.body.name;
+                localStorage.nickname = data.body.nickname;
+                localStorage.profile = data.body.avatar;
+                window.location.href = 'index.html';
             }
-            else alert(data1.message);
-        })
-    })
+            else {
+                alert(data.message);
+            }
+        });
+    });
 };
