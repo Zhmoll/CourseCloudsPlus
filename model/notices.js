@@ -16,6 +16,7 @@ const schema = {
 const option = { versionKey: false };
 const NoticeSchema = new Schema(schema, option);
 
+// 发送消息
 NoticeSchema.statics.sendNotice = function (senderid, receiverid, content, callback) {
   if (!content.title || !content.content)
     return callback(new Error('消息内容不完整'));
@@ -46,6 +47,7 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverid, content, callb
     });
 };
 
+// 获取属于该课程的群发的所有消息
 NoticeSchema.statics.findByCourseid = function (courseid, callback) {
   return this
     .find({ course: courseid, deleted: false })
@@ -99,7 +101,27 @@ NoticeSchema.statics.findOneBySenderIdAndNoticeId = function (userid, noticeid, 
       match: { deleted: false },
       select: config.select.simple_user_info
     })
-    .exec(callback);
+    .exec((err, notice) => {
+      if (err) return callback(err);
+      if (!notice) return callback(null, notice);
+      const noticeid = notice.id;
+      UserNoticeRelation
+        .find({ notice: noticeid })
+        .populate({
+          path: 'to',
+          match: { deleted: false },
+          select: config.select.simple_user_info
+        })
+        .exec((err, relations) => {
+          if (err) return callback(err);
+          const tos = [];
+          relations.forEach(relation => {
+            tos.push(relation.to);
+          });
+          notice.to = tos;
+          callback(null, notice);
+        });
+    });
 };
 
 const NoticeModel = mongoose.model('Notice', NoticeSchema);

@@ -14,17 +14,16 @@ const option = { versionKey: false };
 const WechatUserAccessTokenSchema = new Schema(schema, option);
 
 WechatUserAccessTokenSchema.statics.getToken = function (openid, cb) {
-  return this.findOne({ openid: openid }, function (err, result) {
-    if (err) throw err;
+  this.findOne({ openid: openid }, function (err, result) {
+    if (err) return cb(err);
     cb(null, result);
   });
 };
 
 WechatUserAccessTokenSchema.statics.setToken = function (openid, token, cb) {
-  var query = { openid: openid };
   var options = { upsert: true };
-  this.update(query, token, options, function (err, result) {
-    if (err) throw err;
+  this.update({ openid: openid }, token, options, function (err, result) {
+    if (err) return cb(err);
     return cb(null);
   });
 };
