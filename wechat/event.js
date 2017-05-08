@@ -6,6 +6,7 @@ const CourseAttendRemark = require('../model/course-attend-remarks');
 const UserNoticeRelation = require('../model/user-notice-relation');
 const CourseTimeLeave = require('../model/course-time-leave');
 const Term = require('../model/terms');
+const moment = require('moment');
 
 // 订阅
 function subscribe(message, req, res, next) {
@@ -147,7 +148,8 @@ function key_user_inbox(message, req, res, next) {
     const results = [{ title: `消息收件箱（最近6条消息）` }];
     relations.forEach((relation, index) => {
       if (index >= 6) return;
-      const sendtime = relation.notice.createdAt.toLocaleDateString() + relation.notice.createdAt.toLocaleTimeString();
+
+      const sendtime = moment(relation.notice.createdAt).add('hours', 8).format('YY年MM月DD日 HH:mm:ss');
       if (relation.notice.course) {
         // 课程相关群发
         results.push({
