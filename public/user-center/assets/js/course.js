@@ -27,7 +27,7 @@ function week() {
     var $oTd = $("#1td");
     $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (course_get) {
         if (course_get && course_get.code != 2007) {
-            alert(course_get.message);
+            return alert(course_get.message);
         }
         $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data_course) {
 
