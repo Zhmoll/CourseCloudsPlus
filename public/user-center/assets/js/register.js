@@ -12,7 +12,6 @@ document.ready = function click_button() {
             alert("用户名和密码不能为空");
             return;
         }
-
         var data = {
             "uid": document.getElementById("id").value,
             "university": $('#selected option:selected').val(),
@@ -27,6 +26,7 @@ document.ready = function click_button() {
                 localStorage.name = data.body.name;
                 localStorage.nickname = data.body.nickname;
                 localStorage.signin = 1;
+                localStorage.profile=data.body.avatar;
                 window.location.href = "index.html";
             }
             else {

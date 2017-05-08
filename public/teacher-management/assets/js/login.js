@@ -18,7 +18,6 @@ window.onload = function () {
                 localStorage.signin=1;
                 localStorage.id=data1.body.id;
                 localStorage.name = data1.body.name;
-                alert(localStorage.name);
                 localStorage.nickname = data1.body.nickname;
                 localStorage.profile=data1.body.avatar;
                 window.location.href = "index.html";
