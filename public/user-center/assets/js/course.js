@@ -54,7 +54,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
       "position": "absolute",
       'left': left,
       "font-size": "10px",
-      'top': $("#1td").offset().top + 1.3 + ($("#1td").height() + 10) * (col - 1) + 'px'
+      'top': $("#1td").offset().top + 1.3 + ($("#1td").height() + 9.4) * (col - 1) + 'px'
     });
     oDiv.width($aTh.width() + 11);//某节课的宽度
     if (num == 2)
