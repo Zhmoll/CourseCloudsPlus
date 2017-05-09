@@ -284,7 +284,6 @@ module.exports = (message, req, res, next) => {
         switch (message.EventKey) {
           case 'key_user_center': return key_user_center(message, req, res, next);
           case 'key_today_courses': return key_today_courses(message, req, res, next);
-          case 'key_attend_course': return key_attend_course(message, req, res, next);
           case 'key_user_inbox': return key_user_inbox(message, req, res, next);
           case 'key_ask_for_leave': return key_ask_for_leave(message, req, res, next);
           case 'key_change_bind': return key_change_bind(message, req, res, next);
@@ -292,7 +291,11 @@ module.exports = (message, req, res, next) => {
         return;
       }
       case 'subscribe': return subscribe(message, req, res, next);
+      case 'scancode_waitmsg': {
+        switch (message.EventKey) {
+          case 'key_attend_course': return key_attend_course(message, req, res, next);
+        }
+      }
     }
-
   });
 };
