@@ -1,6 +1,7 @@
 const OAuthApi = require('./OAuth');
 const User = require('../model/users');
 const UserCourseRelation = require('../model/user-course-relation');
+const Course = require('../model/courses');
 const CourseAttend = require('../model/course-attends');
 const CourseAttendRemark = require('../model/course-attend-remarks');
 const UserNoticeRelation = require('../model/user-notice-relation');
@@ -57,7 +58,7 @@ function _showToReplys(time, show) {
     case 5: weekday = '周五'; break;
     case 6: weekday = '周六'; break;
   }
-  const result = [{ title: `今天是 第${time.week}周 ${weekday}` }];
+  const result = [{ title: `今天是 ${time.term}学期 第${time.week}周 ${weekday}` }];
   if (show && show[time.term] && show[time.term][time.week] &&
     show[time.term][time.week][time.weekday]) {
     courses = show[time.term][time.week][time.weekday];
@@ -275,9 +276,18 @@ function key_ask_for_leave(message, req, res, next) {
 function key_change_bind(message, req, res, next) {
   const user = req.me;
   const url = OAuthApi.getAuthorizeURL('http://courseclouds.zhmoll.com/user-center/register.html', 'wechat-bind', 'snsapi_userinfo');
+  let identity;
+  if (user.authority == 0)
+    identity = '未认证用户';
+  else if (0 <= user.authority && user.authority < 10)
+    identity = '学生';
+  else if (10 <= user.authority && user.authority < 100)
+    identity = '教师';
+  else
+    identity = '管理员';
   return res.reply([{
     title: '更换用户绑定',
-    description: `您现在是以${user.university}${user.uid}${user.name}的身份绑定该微信公众号的，若要切换身份，请点击进入。`,
+    description: `您现在是以${user.university} ${user.uid} ${user.name}的${identity}身份绑定该微信公众号的，若要切换身份，请点击进入进行修改。`,
     picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
     url: url
   }]);
