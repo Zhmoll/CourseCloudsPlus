@@ -49,12 +49,12 @@ window.onload = function () {
             }
             var element = '<span class="data">第' + coursetimes[i].week + '周 '
                 + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ';
-            if (coursetimes[i].id == coursetimeid) {
-                $("#coursetime").append('<span class="data">第' + coursetimes[i].week + '周 '
+            if (coursetimes[i]._id == coursetimeid) {
+                $("#coursetime").append('<span class="data" style="color: red;">第' + coursetimes[i].week + '周 '
                     + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
             }
             else {
-                $("#coursetime").append('<span class="data" style="color: red;">第' + coursetimes[i].week + '周 '
+                $("#coursetime").append('<span class="data">第' + coursetimes[i].week + '周 '
                     + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
             }
         }
