@@ -30,6 +30,7 @@ const api = new WechatApi(
 // });
 
 api.sendNoticeTemplate = (notice, openid, sender) => {
+  console.log('send')
   var templateId = 'Hd_qSGrxVhzPYidVJs7j4B9rq5NBa1U6dJpbQ70wHyw';
   // URL置空，则在发送后,点击模板消息会进入一个空白页面（ios）, 或无法点击（android）
   // {{first.DATA}}
@@ -60,10 +61,9 @@ api.sendNoticeTemplate = (notice, openid, sender) => {
       "color": "#173177"
     }
   };
-  return api.sendTemplate('ox9xPt0eMSkEGZ_M0qQ8oADBCeF8', templateId, url, data, (err, result) => {
+  return api.sendTemplate(openid, templateId, url, data, (err, result) => {
     if (err)
-      return console.error(err);
-    console.log(result);
+      return console.log(err);
   });
 }
 

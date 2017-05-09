@@ -102,9 +102,8 @@ router.post('/courses/:courseid/notices',
       if (err) return next(err);
       const receiverid = [];
       relations.forEach(relation => {
-        receiverid.push(relation.user);
+        receiverid.push(relation.user.id);
       });
-
       Notice.sendNotice(userid, receiverid, data, (err, result) => {
         if (err) return next(err);
         res.json(new Response(3004, '课程通知发布成功'));
@@ -452,7 +451,6 @@ router.get('/coursetimes',
                 remark: remark
               });
             });
-            console.log(show);
             res.json(new Response(3017, '教师获得课表成功', show));
           })
           .catch(e => {

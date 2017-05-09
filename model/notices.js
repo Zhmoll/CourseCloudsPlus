@@ -35,24 +35,19 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverids, content, call
 
         User.findById(senderid).exec((err, sender) => {
           if (err) return callback(err);
-          receiverids.forEach(receiverid => {
-            toRelations.push({
-              notice: notice.id,
-              to: receiverid
-            });
-            missions.push((receiverid) => {
-              return User.findById(receiverid).then(user => {
-                if (user.openid)
-                  wechatApi.sendNoticeTemplate(notice, user.openid, sender);
+          User
+            .find({ _id: { $in: receiverids }, deleted: false })
+            .exec((err, receivers) => {
+              if (err) return callback(err);
+              receivers.forEach(receiver => {
+                toRelations.push({
+                  notice: notice.id,
+                  to: receiver.id
+                });
+                if (receiver.openid)
+                  wechatApi.sendNoticeTemplate(notice, receiver.openid, sender);
               });
-            });
-          });
-          Promise.all(missions)
-            .then(() => {
-              UserNoticeRelation.create(toRelations, callback);
-            })
-            .catch(e => {
-              if (e) return callback(e);
+              return UserNoticeRelation.create(toRelations, callback);
             });
         });
       }
@@ -61,7 +56,7 @@ NoticeSchema.statics.sendNotice = function (senderid, receiverids, content, call
           if (err) return callback(err);
           User.findById(receiverids).exec((err, receiver) => {
             if (err) return callback(err);
-            if (receiver.openid)
+            if (receiver && receiver.openid)
               wechatApi.sendNoticeTemplate(notice, receiver.openid, sender);
             UserNoticeRelation
               .create({ notice: notice.id, to: receiverids }, callback);
