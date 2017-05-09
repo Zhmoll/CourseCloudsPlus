@@ -19,6 +19,7 @@ window.onload = function () {
 
         var course = data.body;
         coursename_full=course.name;
+        document.title=course.name;
         $("#courseid").text(course.cid);
         $("#coursename").text(course.name);
         $("#courseintros").text(course.intros);
@@ -169,6 +170,6 @@ window.onload = function () {
         }
 
     });
-    document.title=coursename_full;
+
     // $(document).attr("title",coursename_full);
 };
