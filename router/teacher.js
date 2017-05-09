@@ -9,6 +9,8 @@ const CourseTime = require('../model/course-times');
 const CourseTimeLeave = require('../model/course-time-leave');
 const CourseAttend = require('../model/course-attends');
 const CourseAttendRemark = require('../model/course-attend-remarks');
+const xlsx = require('node-xlsx');
+const querystring = require('querystring');
 const { ResponseError, Response } = require('../lib/response');
 const _ = require('lodash');
 
@@ -343,10 +345,30 @@ router.get('/courses/:courseid/attends-check/:attendid',
       .findOne({ course: courseid, id: attendid })
       .exec((err, attend) => {
         if (err) return next(err);
-        if (!attend) 
+        if (!attend)
           return next(new ResponseError(4203, '找不到该签到'));
-        
-        // CourseAttendRemark.find
+
+        CourseAttendRemark
+          .find({ courseAttend: attendid })
+          .populate({
+            path: 'user',
+            match: { deleted: false },
+            select: 'id uid name university'
+          })
+          .exec((err, remarks) => {
+            if (err) return next(err);
+            const results = [['id', '学校', '学号', '姓名']];
+
+            remarks.forEach(remark => {
+              results.push([remark.user.id, remark.user.university, remark.user.uid, remark.user.name]);
+            });
+
+            const buffer = xlsx.build([{ name: '签到结果', data: results }]);
+            const filename = '签到结果.xlsx';
+            res.setHeader('Content-Type', 'application/octet-stream');
+            res.setHeader('Content-Disposition', 'attachment;filename=' + querystring.escape(filename));
+            return res.end(buffer);
+          });
       });
   }
 );
