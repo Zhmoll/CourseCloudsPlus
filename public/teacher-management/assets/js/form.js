@@ -1,4 +1,5 @@
 var course_id
+var coursetimeid
 function getQueryString(name) {
     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
     var r = window.location.search.substr(1).match(reg);
@@ -7,10 +8,26 @@ function getQueryString(name) {
     }
     return null;
 }
+coursetimeid = getQueryString("coursetimeid")
 course_id = getQueryString("course");
 $(document).ready(function () {
+
+    $("#name").text(localStorage.name);
+    $("#profile").attr("src", localStorage.profile);
+    $("#loginout").click(function () {
+        $.get("../api/users/logout", function (data) {
+            if (data.code == 2006) {
+                localStorage.signin = 0;
+                window.location.href = "login.html";
+            }
+            else {
+                localStorage.signin = 0;
+                window.location.href = "login.html";
+            }
+        })
+    });
     if (course_id == null) {
-        window.location.href("index.html");
+        window.location.href="index.html";
     }
     //alert(course_id);
     $("#leave").click(function () {
@@ -29,6 +46,40 @@ $(document).ready(function () {
         }, 200);
     });
 
+    $("#delete").click(function () {
+        $.ajax({
+            url: '/api/teacher-management/courses/' + course_id + '/course-times/' + coursetimeid,
+            type: 'delete',
+            dataType: 'json',
+            success: function (data, status) {
+                alert(data.message);
+            }
+        })
+    });
+    $("#sign").click(function () {
+        $.post("/api/teacher-management/courses/"+course_id+"/attends-check",{},function (data) {
+            $('#sign_picture').html('');
+            $('#sign_picture').qrcode(data.body.content);
+            //alert(data.body.content);
+        })
+    });
+
+    $.get("../api/courses/" + course_id, function (data1) {
+
+        var coursename = data1.body.name;
+        $.get("../api/teacher-management/courses/" + course_id + "/course-times/" + coursetimeid, function (data) {
+            if (data.code == 3009) {
+                $("#course_name").text(coursename + "。");
+                $("#course_time").text("第" + data.body.weekday + "周 " + "第" + data.body.rows.join(",") + "节");
+                $("#location").text(data.body.location);
+            }
+            else {
+                window.location.href = "index.html";
+            }
+        })
+    })
+
+
     $.get("../api/teacher-management/courses/" + course_id + "/askforleave", function (data1) {
         if (data1.code == 3012) {
             console.log(data1.body)
@@ -40,9 +91,16 @@ $(document).ready(function () {
                 var id = data1.body[i]._id;
                 var reason = data1.body[i].reason
                 if (data1.body[i].responsed) {
-                    var responsed = "已经批准过了"
-                    $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
-                    $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+                    if (data1.body[i].allow) {
+                        var responsed = "已批准"
+                        $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
+                        $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+                    }
+                    else {
+                        var responsed = "未通过";
+                        $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
+                        $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+                    }
                 }
 
                 else {
@@ -69,7 +127,7 @@ $(document).ready(function () {
         //拒绝假条
         $(".no").click(function () {
             var leaveid = $(this).attr("mycourse");
-            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", {"allow": true}, function (data) {
+            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", {"allow": false}, function (data) {
                 $('#' + leaveid).html("");
                 $('#' + leaveid).html(data.message);
             })
@@ -79,11 +137,32 @@ $(document).ready(function () {
 
     //发送通知
     $("#form_send").click(function () {
-        var title=$("#form_send_title").val();
-        $.post("../api/teacher-management/courses/"+course_id+"/notices",{"title":title,"content":$("#form_send_detigal").val()},function (data) {
+        var title = $("#form_send_title").val();
+        $.post("../api/teacher-management/courses/" + course_id + "/notices", {
+            "title": title,
+            "content": $("#form_send_detigal").val()
+        }, function (data) {
             alert(data.message);
             location.reload();
         })
-
+    });
+    $("#submit").click(function () {
+        $.ajax({
+            url: '../api/teacher-management/courses/' + course_id + '/course-times/' + coursetimeid,
+            type: 'put',
+            data: {
+                "location": $("#course-location").val(),
+                "term": $("#term").val(),
+                "week": $("#week").val().replace(/[^0-9]/ig, ""),
+                "weekday": $("#weekday").val().replace(/[^0-9]/ig, "") == 7 ? 0 : $("#weekday").val().replace(/[^0-9]/ig, ""),
+                "rows": $("#rows").val().split(","),
+                "remark": ''
+            },
+            dataType: 'json',
+            success: function (data, status) {
+                alert(data.message);
+            }
+        })
     })
+
 });
