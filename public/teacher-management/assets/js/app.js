@@ -327,13 +327,15 @@ $('.tpl-skiner-content-bar').find('span').on('click', function() {
 
 
 
+window.onload=function () {
+    $('.tpl-header-switch-button').on('click', function() {
+        $('.tpl-content-wrapper').addClass('active');
+    })
+}
 // 侧边菜单开关
 
 
 function autoLeftNav() {
-
-
-
     $('.tpl-header-switch-button').on('click', function() {
         if ($('.left-sidebar').is('.active')) {
             if ($(window).width() > 1024) {
@@ -342,7 +344,7 @@ function autoLeftNav() {
             $('.left-sidebar').removeClass('active');
         } else {
 
-            $('.left-sidebar').addClass('active');
+            $('.left-sidebar').addClass('');
             if ($(window).width() > 1024) {
                 $('.tpl-content-wrapper').addClass('active');
             }
@@ -350,7 +352,7 @@ function autoLeftNav() {
     })
 
     if ($(window).width() < 1024) {
-        $('.left-sidebar').addClass('active');
+        $('.left-sidebar').addClass('');
     } else {
         $('.left-sidebar').removeClass('active');
     }
