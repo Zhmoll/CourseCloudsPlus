@@ -18,15 +18,11 @@
 </head>
 <body class="log1">
 
-<header class="ui-header ui-header-stable ui-border-b">
-    <i class="ui-icon-return" onclick="history.back()"></i>
-    <h1 id="name">layout</h1><a href="index.html">
-    <button class="ui-btn">回首页</button>
-</a>
-</header>
+
 
 
 <center>
+
     <div class="demo-block top_imagine">
         <div class="ui-avatar" style="width:100px;height: 100px;">
             <span style="" class="title_imagine"></span>
@@ -40,44 +36,52 @@
     <div class="demo-block">
         <ul class="ui-list ui-border-tb">
             <li class="ui-border-t">
-                <a href="inform.html">
+
                     <div class="ui-avatar">
                         <span style="" class="title_imagine"></span>
                     </div>
-                    <div class="ui-list-info">
+                    <div class="ui-list-info"><a href="inform.html">
                         <h4 class="ui-nowrap">假条</h4>
-                        <p class="ui-nowrap">收件箱的所有消息</p>
+                        <p class="ui-nowrap">所有假条</p></a>
                     </div>
-                </a>
+
             </li>
-            <li class="ui-border-t"><a href="sendmessage.html">
+            <li class="ui-border-t">
                 <div class="ui-avatar">
                     <span class="title_imagine"></span>
                 </div>
-                <div class="ui-list-info">
+                <div class="ui-list-info"><a href="sendmessage.html">
                     <h4 class="ui-nowrap">发件箱</h4>
-                    <p class="ui-nowrap">发送的所有消息</p>
-                </div></a>
+                    <p class="ui-nowrap">发送的所有消息</p></a>
+                </div>
             </li>
             <li class="ui-border-t">
                 <div class="ui-avatar">
                     <span class="title_imagine"></span>
                 </div>
-                <div class="ui-list-info">
+                <div class="ui-list-info"><a href="receivemessage.html">
                     <h4 class="ui-nowrap">收件箱</h4>
-                    <a href="receivemessage.html"><p class="ui-nowrap">收到的所有消息</p></a>
+                    <p class="ui-nowrap">收到的所有消息</p></a>
                 </div>
             </li>
             <li class="ui-border-t">
                 <div class="ui-avatar">
                     <span class="title_imagine"></span>
                 </div>
-                <div class="ui-list-info">
+                <div class="ui-list-info"><a href="course.html">
                     <h4 class="ui-nowrap">课表</h4>
-                    <a href="course.html"><p class="ui-nowrap">查看整周课表</p></a>
+                    <p class="ui-nowrap">查看整周课表</p></a>
                 </div>
             </li>
         </ul>
     </div>
 </div>
+
+<footer class="ui-footer ui-footer-btn">
+    <ul class="ui-tiled ui-border-t">
+        <li data-href="index.html" class="ui-border-r"><div>回主页</div></li>
+        <li data-href="" class=""><div id="name" style="color: black">姓名</div></li>
+        <li data-href="course.html"><div>查课表</div></li>
+    </ul>
+</footer>
 </body>

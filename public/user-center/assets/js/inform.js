@@ -1,12 +1,4 @@
 window.onload = function () {
-    if (typeof(localStorage.signin) == "undefined") {
-        window.location.href = "register.html";
-    }
-    else {
-        if (localStorage.signin==0) {
-            window.location.href = "register.html";
-        }
-    }
     if(localStorage.signin)
     {
         $("#name").text(localStorage.name);
@@ -40,7 +32,7 @@ window.onload = function () {
         "margin-bottom": 0 + "px"
     })
     //假条通知
-    $.get("http://courseclouds.zhmoll.com/api/courses/" + localStorage.courseid + "/askforleave", function (data1) {
+    $.get("../api/courses/" + localStorage.courseid + "/askforleave", function (data1) {
         if (data1.code == 2205) {
             alert(data1.message);
             for (i = 0; i < data1.body.length; i++) {

@@ -7,7 +7,6 @@ window.onload = function () {
                 var title = j.notice.title;
                 var name = j.notice.course.teacher.name;//date未定义
                 var inform = j.notice.course.name;//inform未定义
-
                 $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + title + "</td> <td class=" + "am-text-middle" + ">" + name + "</td> <td class=" + "am-text-middle" + ">2016-09-26</td> <td class=" + "am-text-middle" + "> <div class=" + "tpl-table-black-operation" + "> <a href=" + "javascript:;" + "> <i class=" + "am-icon-pencil" + "></i> 同意 </a> <a href=" + "javascript:;" + "class=" + "tpl-table-black-operation-del" + "> <i class=" + "am-icon-trash" + "></i> 拒绝 </a> </div> </td> </tr>");
                 $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
             });
