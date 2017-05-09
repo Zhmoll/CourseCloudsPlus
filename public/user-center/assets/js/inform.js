@@ -110,29 +110,29 @@ window.onload = function () {
             var leave_id = data.body[i]._id;
             var courseid = data.body[i].courseTime._id;
             //var weekday;
-            switch (coursetimes[i].weekday) {
-                case 0:
-                    weekday = '周日';
-                    break;
-                case 1:
-                    weekday = '周一';
-                    break;
-                case 2:
-                    weekday = '周二';
-                    break;
-                case 3:
-                    weekday = '周三';
-                    break;
-                case 4:
-                    weekday = '周四';
-                    break;
-                case 5:
-                    weekday = '周五';
-                    break;
-                case 6:
-                    weekday = '周六';
-                    break;
-            }
+            // switch (coursetimes[i].weekday) {
+            //     case 0:
+            //         weekday = '周日';
+            //         break;
+            //     case 1:
+            //         weekday = '周一';
+            //         break;
+            //     case 2:
+            //         weekday = '周二';
+            //         break;
+            //     case 3:
+            //         weekday = '周三';
+            //         break;
+            //     case 4:
+            //         weekday = '周四';
+            //         break;
+            //     case 5:
+            //         weekday = '周五';
+            //         break;
+            //     case 6:
+            //         weekday = '周六';
+            //         break;
+            // }
             // $("#coursetime").append('<p><span  style="color: red;">第' + coursetimes[i].week + '周 ' + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> </p>');
             //
             // $("#myleave").append('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + teacher + '</span></p> <p><span>上课时间：</span><span class="date">' + date + '</span></p> <p><span>请假原因：</span><span class="date">' + content + '</span></p><p><span>请假时间：</span><span class="date">' + content + '</span></p><p><span style="color: red">已允许</span></p></li>')
