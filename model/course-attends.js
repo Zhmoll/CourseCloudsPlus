@@ -4,7 +4,7 @@ const _ = require('lodash');
 
 const schema = {
   course: { type: Schema.Types.ObjectId, index: true, ref: 'Course' },
-  createdAt: { type: Date, default: new Date() }
+  createdAt: { type: Date, default: Date.now }
 };
 
 const option = { versionKey: false };

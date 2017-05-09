@@ -8,7 +8,7 @@ const CourseTime = require('./course-times');
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Course' },
-  createdAt: { type: Date, default: new Date },
+  createdAt: { type: Date, default: Date.now },
   deleted: { type: Boolean, default: false }
 };
 

@@ -9,7 +9,7 @@ const _ = require('lodash');
 const schema = {
   title: { type: String },
   content: { type: String },
-  createdAt: { type: Date, default: new Date() },
+  createdAt: { type: Date, default: Date.now },
   from: { type: Schema.Types.ObjectId, ref: 'User' },
   course: { type: Schema.Types.ObjectId, ref: 'Course' },
   deleted: { type: Boolean, default: false }
