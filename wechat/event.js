@@ -46,7 +46,7 @@ function key_user_center(message, req, res, next) {
   }]);
 }
 
-function _showToReplys(time, show) {
+function _showToReplys(time, show, authority) {
   let courses;
   let weekday;
   switch (time.weekday) {
@@ -58,7 +58,7 @@ function _showToReplys(time, show) {
     case 5: weekday = '周五'; break;
     case 6: weekday = '周六'; break;
   }
-  const result = [{ title: `今天是 ${time.term}学期 第${time.week}周 ${weekday}` }];
+  const result = [{ title: `${time.term}学期 第${time.week}周 ${weekday}` }];
   if (show && show[time.term] && show[time.term][time.week] &&
     show[time.term][time.week][time.weekday]) {
     courses = show[time.term][time.week][time.weekday];
@@ -87,12 +87,17 @@ function _showToReplys(time, show) {
     item.course.teachers.forEach(teacher => {
       teachers.push(teacher.name);
     });
+    let url;
+    if (authority == 1)
+      url = `http://courseclouds.zhmoll.com/user-center/inform.html?courseid=${item.course.id}&coursetimeid=${item.id}`;
+    else if (authority == 10)
+      url = `http://courseclouds.zhmoll.com/teacher-management/form.html?course=${item.course.id}&coursetimeid=${item.id}`
     result.push({
       title: `课程：${item.course.name} - ${item.course.cid}`
       + '\n' + `时间：第${rows}节`
       + '\n' + `老师：` + teachers.toString()
       + '\n' + `地点：${item.location}`,
-      url: `http://courseclouds.zhmoll.com/user-center/inform.html?courseid=${item.course.id}&coursetimeid=${item.id}`
+      url: url
     });
   });
   result.push({
@@ -116,7 +121,7 @@ function key_today_courses(message, req, res, next) {
     else if (user.authority == 10) {
       Course.findCourseTimesByTeacherid(user.id, (err, show) => {
         if (err) return next(err);
-        res.reply(_showToReplys(time, show));
+        res.reply(_showToReplys(time, show, user.authority));
       });
     }
   });
@@ -207,6 +212,8 @@ function key_user_inbox(message, req, res, next) {
 // 假条批复查询
 function key_ask_for_leave(message, req, res, next) {
   const user = req.me;
+  if (user.authority != 1)
+    return res.reply('你不是学生，不需要请假哟！');
   CourseTimeLeave
     .find({ user: user.id, deleted: false })
     .populate({
