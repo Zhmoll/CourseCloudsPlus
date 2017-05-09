@@ -22,7 +22,7 @@ $(document).ready(function () {
       var to_term = current_week_time.body.term;
       choose_term = to_term;
       choose_week = to_week;
-      $("#selected").val(to_week);
+        $("select option[value='"+to_week+"']").attr("select","selected");
       reCourse(choose_term, choose_week);
       $(".course").click(function () {
         localStorage.courseid=this.attr("id");

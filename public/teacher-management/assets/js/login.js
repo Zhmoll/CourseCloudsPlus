@@ -9,7 +9,7 @@ window.onload = function () {
             "uid": $("#user-name").val(),
             "password": $("#user-password").val()
         };
-        $.post("http://courseclouds.zhmoll.com/api/users/login", data, function (data1, state) {
+        $.post("../api/users/login", data, function (data1, state) {
             if (data1.code == 2005) {
                 if (data1.body.authority < 10) {
                     return alert('请确保你有登录教师管理平台的权限');

@@ -6,12 +6,10 @@ var choose_week;
 var courses;
 
 $(document).ready(function () {
-
     $("#name").text(localStorage.name);
     $("#profile").attr("src", localStorage.profile);
-
     $("#loginout").click(function () {
-        $.get("http://courseclouds.zhmoll.com/api/users/logout", function (data) {
+        $.get("../api/users/logout", function (data) {
             if (data.code == 2006) {
                 localStorage.signin = 0;
                 window.location.href = "login.html";
@@ -21,14 +19,14 @@ $(document).ready(function () {
                 window.location.href = "login.html";
             }
         })
-    })
+    });
 
-    $.get("http://courseclouds.zhmoll.com/api/term/currentWeek", function (current_week_time, status) {
+    $.get("../api/term/currentWeek", function (current_week_time, status) {
         if (current_week_time && current_week_time.code != 2007) {
             alert("current_week_time.message:"+current_week_time.message);
             return;
         }
-        $.get("http://courseclouds.zhmoll.com/api/profile/coursetimes", function (data, status) {
+        $.get("../api/profile/coursetimes", function (data, status) {
             if (data && data.code != 2207) {
                 alert("data.message"+data.message);
                 return;
@@ -39,11 +37,10 @@ $(document).ready(function () {
             var to_term = current_week_time.body.term;
             choose_term = to_term;
             choose_week = to_week;
-            $("#selected").val(to_week);
+            $(" select option[value='"+to_week+"']").attr("select","selected");
             reCourse(choose_term, choose_week);
             $(".course").click(function () {
-                localStorage.courseid = this.attr("id");
-                window.location.href = "inform.html"
+                window.location.href = "form.html"+"?course="+this.attr("id");
             })
         });
     });
