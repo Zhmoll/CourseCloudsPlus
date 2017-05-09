@@ -22,7 +22,7 @@ $(document).ready(function () {
       var to_term = current_week_time.body.term;
       choose_term = to_term;
       choose_week = to_week;
-        $("select option[value='"+to_week+"']").attr("select","selected");
+      $("select option[value='"+to_week+"']").attr("select","selected");
       reCourse(choose_term, choose_week);
       $(".course").click(function () {
         localStorage.courseid=this.attr("id");
@@ -48,7 +48,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
   $aTh.width(0.15 * $(window).width());//课表的宽度
   //$aTh.eq(weekday-1).css("width",0.30*$(window).width());//当天的课表宽度
   var left = $aTh.eq(day - 1).offset().left;//课表到页边左距离
-  if (!isPC()) {
+  if (isPC()) {
     oDiv.css({
       'backgroundColor': color,
       "position": "absolute",
