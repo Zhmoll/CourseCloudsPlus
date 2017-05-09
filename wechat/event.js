@@ -115,7 +115,7 @@ function key_today_courses(message, req, res, next) {
     if (user.authority == 1) {
       UserCourseRelation.findCourseTimes(user.id, (err, show) => {
         if (err) return next(err);
-        res.reply(_showToReplys(time, show));
+        res.reply(_showToReplys(time, show, user.authority));
       });
     }
     else if (user.authority == 10) {
