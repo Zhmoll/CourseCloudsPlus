@@ -5,7 +5,7 @@ const _ = require('lodash');
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
   courseAttend: { type: Schema.Types.ObjectId, index: true, ref: 'CourseAttend' },
-  createdAt: { type: Date, default: new Date() }
+  createdAt: { type: Date, default: Date.now }
 };
 
 const option = { versionKey: false };
