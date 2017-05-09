@@ -128,10 +128,11 @@ function key_attend_course(message, req, res, next) {
               console.error(err);
               return;
             }
-            res.reply('签到成功！');
+            return res.reply('签到成功！');
           });
         }
-        res.reply('本课已经签过到！');
+        else
+          res.reply('本课已经签过到！');
       });
   });
 }
