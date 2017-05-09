@@ -161,8 +161,8 @@ window.onload = function () {
     });
     $("#leave_click").click(function () {
         if($("#leave_reason").val()!=''){
-            alert($("#leave_reason").val());
-            $.post("../api/courses/"+courseid+"/course-times/"+coursetimeid+"/askforleave",$("#leave_reason").val(),function (data) {
+            //alert($("#leave_reason").val());
+            $.post("../api/courses/"+courseid+"/course-times/"+coursetimeid+"/askforleave",{"reason":$("#leave_reason").val()},function (data) {
                 alert(data.message);
             })
         }
