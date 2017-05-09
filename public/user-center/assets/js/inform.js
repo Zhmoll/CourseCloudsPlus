@@ -37,11 +37,25 @@ window.onload = function () {
         }
         var coursetimes = data.body; // 是数组
         for (i = 0; i < coursetimes.length; i++) {
+            var weekday;
+            switch (coursetimes[i].weekday) {
+                case 0: weekday = '周日'; break;
+                case 1: weekday = '周一'; break;
+                case 2: weekday = '周二'; break;
+                case 3: weekday = '周三'; break;
+                case 4: weekday = '周四'; break;
+                case 5: weekday = '周五'; break;
+                case 6: weekday = '周六'; break;
+            }
+            var element = '<span class="data">第' + coursetimes[i].week + '周 '
+                + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ';
             if (coursetimes[i].id == coursetimeid) {
-                $("#coursetime").append('<p class="data">第' + coursetimes[i].week + '周 周' + coursetimes[i].weekday == 0 ? 7 : coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</p> ');
+                $("#coursetime").append('<span class="data">第' + coursetimes[i].week + '周 '
+                    + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
             }
             else {
-                $("#coursetime").append('<p class="data" style="color: red">第' + coursetimes[i].week + '周 周' + coursetimes[i].weekday == 0 ? 7 : coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</p> ');
+                $("#coursetime").append('<span class="data" style="color: red;">第' + coursetimes[i].week + '周 '
+                    + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
             }
         }
     });
@@ -54,7 +68,7 @@ window.onload = function () {
     // remark:
     // createdAt:
 
-// 获取历史通知
+    // 获取历史通知
     $.get("../api/courses/" + courseid + "/notices", function (data) {
         if (data.code != 2307) {
             alert(data.message);
@@ -62,7 +76,7 @@ window.onload = function () {
             return;
         }
     });
-// 获取假条反馈
+    // 获取假条反馈
     $.get("../api/courses/" + courseid + "/askforleave", function (data) {
         if (data.code != 2205) {
             alert(data.message);
