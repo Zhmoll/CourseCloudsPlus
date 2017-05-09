@@ -4,7 +4,6 @@ const _ = require('lodash');
 
 const schema = {
   user: { type: Schema.Types.ObjectId, index: true, ref: 'User' },
-  course: { type: Schema.Types.ObjectId, index: true, ref: 'Course' },
   courseAttend: { type: Schema.Types.ObjectId, index: true, ref: 'CourseAttend' },
   createdAt: { type: Date, default: new Date() }
 };

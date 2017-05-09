@@ -8,6 +8,7 @@ const UserCourseRelation = require('../model/user-course-relation');
 const CourseTime = require('../model/course-times');
 const CourseTimeLeave = require('../model/course-time-leave');
 const CourseAttend = require('../model/course-attends');
+const CourseAttendRemark = require('../model/course-attend-remarks');
 const { ResponseError, Response } = require('../lib/response');
 const _ = require('lodash');
 
@@ -329,6 +330,24 @@ router.post('/courses/:courseid/attends-check',
       if (err) return next(err);
       res.json(new Response(3015, '发起请求签到成功', { content: result.id }));
     });
+  }
+);
+
+// 教师获得签到结果
+router.get('/courses/:courseid/attends-check/:attendid',
+  mw.authority.check(10),
+  mw.course.checkOwnerRelation,
+  (req, res, next) => {
+    const { courseid, attendid } = req.params;
+    CourseAttend
+      .findOne({ course: courseid, id: attendid })
+      .exec((err, attend) => {
+        if (err) return next(err);
+        if (!attend) 
+          return next(new ResponseError(4203, '找不到该签到'));
+        
+        // CourseAttendRemark.find
+      });
   }
 );
 
