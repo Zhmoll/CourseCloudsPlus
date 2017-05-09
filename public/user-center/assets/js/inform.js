@@ -38,10 +38,10 @@ window.onload = function () {
         var coursetimes = data.body; // 是数组
         for (i = 0; i < coursetimes.length; i++) {
             if (coursetimes[i].id == coursetimeid) {
-                $("#coursetime").append('<p class="data">第' + coursetimes[i].weekday + '周 第' + coursetimes[i].rows.join(",") + '节 ' + course.teachers[i].name + '</p> ');
+                $("#coursetime").append('<p class="data">第' + coursetimes[i].week + '周 第' + coursetimes[i].rows.join(",") + '节 ' + course.teachers[i].name + '</p> ');
             }
             else {
-                $("#coursetime").append('<span class="data" style="color: red">第' + coursetimes[i].week + '周 周' + coursetimes[i].weekday == 0 ? 7 : coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</span> ');
+                $("#coursetime").append('<p class="data" style="color: red">第' + coursetimes[i].week + '周 周' + coursetimes[i].weekday == 0 ? 7 : coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</p> ');
             }
         }
     });
