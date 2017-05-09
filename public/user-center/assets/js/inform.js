@@ -47,15 +47,12 @@ window.onload = function () {
                 case 5: weekday = '周五'; break;
                 case 6: weekday = '周六'; break;
             }
-            var element = '<span class="data">第' + coursetimes[i].week + '周 '
-                + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ';
+            var element = '<span class="data">第' + coursetimes[i].week + '周 ' + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ';
             if (coursetimes[i]._id == coursetimeid) {
-                $("#coursetime").append('<span class="data" style="color: red;">第' + coursetimes[i].week + '周 '
-                    + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
+                $("#coursetime").append('<p><span  style="color: red;">第' + coursetimes[i].week + '周 ' + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> </p>');
             }
             else {
-                $("#coursetime").append('<span class="data">第' + coursetimes[i].week + '周 '
-                    + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> ');
+                $("#coursetime").append('<p><span >第' + coursetimes[i].week + '周 ' + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> </p>');
             }
         }
     });
