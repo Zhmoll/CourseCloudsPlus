@@ -9,8 +9,7 @@ function getQueryString(name) {
 }
 course_id = getQueryString("course");
 $(document).ready(function () {
-    if(course_id==null)
-    {
+    if (course_id == null) {
         window.location.href("index.html");
     }
     //alert(course_id);
@@ -39,7 +38,6 @@ $(document).ready(function () {
                 //var course=data1.body[i].course.name.
                 var data = "第" + data1.body[i].courseTime.weekday + "周 " + "第" + data1.body[i].courseTime.rows.join(",") + "节"
                 var id = data1.body[i]._id;
-                alert(id);
                 var reason = data1.body[i].reason
                 if (data1.body[i].responsed) {
                     var responsed = "已经批准过了"
@@ -78,9 +76,14 @@ $(document).ready(function () {
         })
     });
 
+
     //发送通知
     $("#form_send").click(function () {
-        $.post()
-        $("#form_send_detigal")
+        var title=$("#form_send_title").val();
+        $.post("../api/teacher-management/courses/"+course_id+"/notices",{"title":title,"content":$("#form_send_detigal").val()},function (data) {
+            alert(data.message);
+            location.reload();
+        })
+
     })
 });

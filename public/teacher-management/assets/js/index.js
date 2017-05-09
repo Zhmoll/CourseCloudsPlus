@@ -6,6 +6,9 @@ var choose_week;
 var courses;
 
 $(document).ready(function () {
+    $(".course").click(function () {
+        window.location.href = "form.html"+"?course="+$(this).attr("id");
+    })
     $("#name").text(localStorage.name);
     $("#profile").attr("src", localStorage.profile);
     $("#loginout").click(function () {
@@ -31,7 +34,8 @@ $(document).ready(function () {
                 //alert("data.message"+data.message);
                 return;
             }
-            alert(data.message);
+
+            //alert(data.message);
             console.log(data.body);
             courses = data.body;
             var to_weekday = (current_week_time.body.weekday == 0) ? 7 : (current_week_time.body.weekday);
@@ -40,15 +44,18 @@ $(document).ready(function () {
             choose_term = to_term;
             choose_week = to_week;
             reCourse(choose_term, choose_week);
-
             $(".course").click(function () {
-                window.location.href = "form.html"+"?course="+$(this).attr("id");
-            })
+                window.location.href = "form.html" + "?course=" + $(this).attr("id");
+            });
+
         });
     });
 
 });
 
+$(".course").click(function () {
+    window.location.href = "form.html" + "?course=" + $(this).attr("id");
+})
 // $("#selted option[value='"+msg.data.categoryId+"']").attr("selected","selected");
 //创建课程浮层
 function addCourse(day, col, num, course, color, teacher, id) {
@@ -150,6 +157,9 @@ $("#selected").on("change", function () {
     $aDiv.html('');  //id = div1 将aDiv用空白覆盖
     choose_week = parseInt($("option:selected", this).val());
     reCourse(choose_term, choose_week);
+    $(".course").click(function () {
+        window.location.href = "form.html"+"?course="+$(this).attr("id");
+    })
 });
 
 
@@ -159,6 +169,9 @@ $(window).resize(function () {
     var $aDiv = $("#div1");
     $aDiv.html('');  //id = div1
     reCourse(choose_term, choose_week);
+    $(".course").click(function () {
+        window.location.href = "form.html"+"?course="+$(this).attr("id");
+    })
 });
 
 // 画课
