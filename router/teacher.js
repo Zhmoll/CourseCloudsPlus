@@ -402,61 +402,10 @@ router.get('/coursetimes',
   mw.authority.check(10),
   (req, res, next) => {
     const userid = req.session.userid;
-    Course
-      .find({ teachers: { $all: [userid] }, deleted: false })
-      .populate({
-        path: 'teachers',
-        match: { deleted: false },
-        select: config.select.simple_teacher_info
-      })
-      .exec((err, courses) => {
-        if (err) return next(err);
-        const missions = [];
-        courses.forEach(course => {
-          const courseid = course.id;
-          missions.push(CourseTime
-            .find({ course: courseid, deleted: false })
-            .select('-deleted')
-          );
-        });
-        Promise.all(missions)
-          .then(results => {
-            const coursetimes = [];
-            for (let i = 0; i < courses.length; i++) {
-              results[i].forEach(item => {
-                item.course = courses[i];
-                coursetimes.push(item);
-              });
-            }
-            // 拿了course对象，返回了课表
-            const show = {};
-            coursetimes.forEach(coursetime => {
-              const { id, location, term, week, weekday, rows, remark } = coursetime;
-              const course_simple = _.pick(coursetime.course, ['id', 'cid', 'name', 'teachers']);
-              // 创建学期
-              if (!show[term])
-                show[term] = {};
-              // 创建周
-              if (!show[term][week])
-                show[term][week] = {};
-              // 创建周几
-              if (!show[term][week][weekday])
-                show[term][week][weekday] = [];
-              // 为周几添加课程
-              show[term][week][weekday].push({
-                coursetimeid: id,
-                course: course_simple,
-                rows: rows,
-                location: location,
-                remark: remark
-              });
-            });
-            res.json(new Response(3017, '教师获得课表成功', show));
-          })
-          .catch(e => {
-            return next(e);
-          });
-      });
+    Course.findCourseTimesByTeacherid(userid, (err, show) => {
+      if (err) return next(err);
+      res.json(new Response(3017, '教师获取课表成功', show));
+    });
   }
 );
 

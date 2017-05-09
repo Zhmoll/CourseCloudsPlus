@@ -12,22 +12,93 @@ const moment = require('moment');
 function subscribe(message, req, res, next) {
   const user = req.me;
   if (!user) {
-    return res.reply('欢迎关注云课平台！请点击下方“云课中心”按钮绑定学生身份。');
+    return res.reply('欢迎关注云课平台！请点击下方“云课中心”按钮绑定身份。');
   }
-  res.reply(`你好，${user.name}，欢迎回到云课平台！\n点击下方按钮看看有什么新鲜事吧！`);
+  let identity;
+  if (user.authority == 0)
+    identity = '未认证用户';
+  else if (0 <= user.authority && user.authority < 10)
+    identity = '学生';
+  else if (10 <= user.authority && user.authority < 100)
+    identity = '教师';
+  else
+    identity = '管理员';
+  res.reply(`你好，${user.name}，你的身份是${identity}，欢迎回到云课平台！`);
 }
 
 // 用户中心按钮
 function key_user_center(message, req, res, next) {
   // 微信用户已绑定平台账号
   const user = req.me;
-  const url = 'http://courseclouds.zhmoll.com/user-center/index.html';
+  const authority = user.authority;
+  let url;
+  if (authority == 1)
+    url = 'http://courseclouds.zhmoll.com/user-center/index.html';
+  else if (authority == 10)
+    url = 'http://courseclouds.zhmoll.com/teacher-management/index.html'
+  // todo
   return res.reply([{
-    title: '用户中心',
+    title: '云课中心',
     description: '欢迎回来，' + user.name + '！',
     picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
     url: url
   }]);
+}
+
+function _showToReplys(time, show) {
+  let courses;
+  let weekday;
+  switch (time.weekday) {
+    case 0: weekday = '周日'; break;
+    case 1: weekday = '周一'; break;
+    case 2: weekday = '周二'; break;
+    case 3: weekday = '周三'; break;
+    case 4: weekday = '周四'; break;
+    case 5: weekday = '周五'; break;
+    case 6: weekday = '周六'; break;
+  }
+  const result = [{ title: `今天是 第${time.week}周 ${weekday}` }];
+  if (show && show[time.term] && show[time.term][time.week] &&
+    show[time.term][time.week][time.weekday]) {
+    courses = show[time.term][time.week][time.weekday];
+    if (courses.length == 0) {
+      result.push({ title: '恭喜你，今天没课！' });
+      result.push({
+        title: '点我获得完整课程表',
+        url: 'http://courseclouds.zhmoll.com/user-center/course.html'
+      });
+      return res.reply(result);
+    }
+  }
+  else {
+    result.push({ title: '恭喜你，今天没课！' });
+    result.push({
+      title: '点我获得完整课程表',
+      url: 'http://courseclouds.zhmoll.com/user-center/course.html'
+    });
+    return res.reply(result);
+  }
+  courses.sort((a, b) => a.rows[0] - b.rows[0]);
+  courses.forEach(item => {
+    const name = item.course.name;
+    const rows = item.rows.toString();
+    const teachers = [];
+    item.course.teachers.forEach(teacher => {
+      teachers.push(teacher.name);
+    });
+    result.push({
+      title: `课程：${item.course.name} - ${item.course.cid}`
+      + '\n' + `时间：第${rows}节`
+      + '\n' + `老师：` + teachers.toString()
+      + '\n' + `地点：${item.location}`,
+      url: `http://courseclouds.zhmoll.com/user-center/inform.html?courseid=${item.course.id}&coursetimeid=${item.id}`
+    });
+  });
+  result.push({
+    title: '点我获得完整课程表',
+    url: 'http://courseclouds.zhmoll.com/user-center/course.html'
+  });
+  return result;
 }
 
 // 获取今日课表按钮
@@ -35,64 +106,18 @@ function key_today_courses(message, req, res, next) {
   const user = req.me;
   Term.getCurrentWeek(user.university, (err, time) => {
     if (err) return next(err);
-    UserCourseRelation.findCourseTimes(user.id, (err, show) => {
-      if (err) return next(err);
-      let courses;
-      let weekday;
-      switch (time.weekday) {
-        case 0: weekday = '周日'; break;
-        case 1: weekday = '周一'; break;
-        case 2: weekday = '周二'; break;
-        case 3: weekday = '周三'; break;
-        case 4: weekday = '周四'; break;
-        case 5: weekday = '周五'; break;
-        case 6: weekday = '周六'; break;
-      }
-      const result = [{ title: `今天是 第${time.week}周 ${weekday}` }];
-      if (show && show[time.term] && show[time.term][time.week] &&
-        show[time.term][time.week][time.weekday]) {
-        courses = show[time.term][time.week][time.weekday];
-        if (courses.length == 0) {
-          result.push({ title: '恭喜你，今天没课！' });
-          result.push({
-            title: '点我获得完整课程表',
-            url: 'http://courseclouds.zhmoll.com/user-center/course.html'
-          });
-          return res.reply(result);
-        }
-      }
-      else {
-        result.push({ title: '恭喜你，今天没课！' });
-        result.push({
-          title: '点我获得完整课程表',
-          url: 'http://courseclouds.zhmoll.com/user-center/course.html'
-        });
-        return res.reply(result);
-      }
-
-      courses.sort((a, b) => a.rows[0] - b.rows[0]);
-
-      courses.forEach(item => {
-        const name = item.course.name;
-        const rows = item.rows.toString();
-        const teachers = [];
-        item.course.teachers.forEach(teacher => {
-          teachers.push(teacher.name);
-        });
-        result.push({
-          title: `课程：${item.course.name} - ${item.course.cid}`
-          + '\n' + `时间：第${rows}节`
-          + '\n' + `老师：` + teachers.toString()
-          + '\n' + `地点：${item.location}`
-        });
+    if (user.authority == 1) {
+      UserCourseRelation.findCourseTimes(user.id, (err, show) => {
+        if (err) return next(err);
+        res.reply(_showToReplys(time, show));
       });
-
-      result.push({
-        title: '点我获得完整课程表',
-        url: 'http://courseclouds.zhmoll.com/user-center/course.html'
+    }
+    else if (user.authority == 10) {
+      Course.findCourseTimesByTeacherid(user.id, (err, show) => {
+        if (err) return next(err);
+        res.reply(_showToReplys(time, show));
       });
-      res.reply(result);
-    });
+    }
   });
 }
 
