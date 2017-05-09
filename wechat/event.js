@@ -76,7 +76,7 @@ function _showToReplys(time, show) {
       title: '点我获得完整课程表',
       url: 'http://courseclouds.zhmoll.com/user-center/course.html'
     });
-    return res.reply(result);
+    return result;
   }
   courses.sort((a, b) => a.rows[0] - b.rows[0]);
   courses.forEach(item => {
