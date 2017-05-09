@@ -36,21 +36,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="leave.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="leave.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-484">
-              <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+            <state relative-caret-position="1210">
+              <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
               <folding>
-                <element signature="e#3860#4513#0" expanded="false" />
-                <element signature="e#4562#5866#0" expanded="false" />
-                <element signature="e#5884#6352#0" expanded="false" />
-                <marker date="1494348010829" expanded="true" signature="2162:2172" ph="..." />
-                <marker date="1494348010829" expanded="true" signature="2746:2756" ph="..." />
-                <marker date="1494348010829" expanded="true" signature="3257:3267" ph="..." />
-                <marker date="1494348010829" expanded="true" signature="5224:5234" ph="..." />
-                <marker date="1494348010829" expanded="true" signature="5801:5811" ph="..." />
-                <marker date="1494348010829" expanded="true" signature="6305:6315" ph="..." />
+                <marker date="1494348366596" expanded="true" signature="2180:2190" ph="..." />
+                <marker date="1494348366596" expanded="true" signature="2764:2774" ph="..." />
+                <marker date="1494348366596" expanded="true" signature="3275:3285" ph="..." />
               </folding>
             </state>
           </provider>
@@ -66,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -220,8 +214,8 @@
         <option value="$USER_HOME$/Desktop/moment.js" />
         <option value="$PROJECT_DIR$/inform.html" />
         <option value="$PROJECT_DIR$/leave.html" />
-        <option value="$PROJECT_DIR$/assets/js/leave.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/assets/js/leave.js" />
       </list>
     </option>
   </component>
@@ -447,12 +441,12 @@
       <workItem from="1494241746233" duration="87000" />
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
-      <workItem from="1494347245712" duration="828000" />
+      <workItem from="1494347245712" duration="1115000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240130000" />
+    <option name="totallyTimeSpent" value="240417000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,7 +490,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -796,24 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-484">
-          <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-          <folding>
-            <element signature="e#3860#4513#0" expanded="false" />
-            <element signature="e#4562#5866#0" expanded="false" />
-            <element signature="e#5884#6352#0" expanded="false" />
-            <marker date="1494348010829" expanded="true" signature="2162:2172" ph="..." />
-            <marker date="1494348010829" expanded="true" signature="2746:2756" ph="..." />
-            <marker date="1494348010829" expanded="true" signature="3257:3267" ph="..." />
-            <marker date="1494348010829" expanded="true" signature="5224:5234" ph="..." />
-            <marker date="1494348010829" expanded="true" signature="5801:5811" ph="..." />
-            <marker date="1494348010829" expanded="true" signature="6305:6315" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -822,6 +798,18 @@
             <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#li#2;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="51" column="21" lean-forward="true" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
+          <folding>
+            <marker date="1494348366596" expanded="true" signature="2180:2190" ph="..." />
+            <marker date="1494348366596" expanded="true" signature="2764:2774" ph="..." />
+            <marker date="1494348366596" expanded="true" signature="3275:3285" ph="..." />
           </folding>
         </state>
       </provider>
