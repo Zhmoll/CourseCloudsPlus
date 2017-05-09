@@ -86,16 +86,16 @@ window.onload = function () {
             console.log(data);
             return;
         }
-        alert(data.message);
-        for(i=0;i<data.body.length;i++)
-        {
-            var id=data.body[i].notice.id;
-            var title=data.body[i].notice.title;
-            var teacher=data.body[i].notice.from.nicname;
-            var coursename=data.body[i].notice.course.name;
-            $.get("../api/notices/inbox/"+id,function (data1) {
-                var content=data1.body.notice.content;
-                $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><span class="date">'+title+'</span></p> <p><span>发送教师：</span><span class="date">'+teacher+'</span></p> <p><span>课程名：</span><span class="date">'+coursename+'</span></p> <p><span>内容：</span><span class="date">'+content +'</span></p> </li>')
+
+        for (i = 0; i < data.body.length; i++) {
+            console.log(data.body[i]);
+            var noticeid = data.body[i].notice._id;
+            var title = data.body[i].notice.title;
+            var teacher = data.body[i].notice.from.nicname;
+            var coursename = data.body[i].notice.course.name;
+            $.get("../api/notices/inbox/" + noticeid, function (data1) {
+                var content = data1.body.notice.content;
+                $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><span class="date">' + title + '</span></p> <p><span>发送教师：</span><span class="date">' + teacher + '</span></p> <p><span>课程名：</span><span class="date">' + coursename + '</span></p> <p><span>内容：</span><span class="date">' + content + '</span></p> </li>')
             })
         }
     });

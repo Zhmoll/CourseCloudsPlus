@@ -21,8 +21,8 @@
       <file leaf-file-name="inform.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inform.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="57" column="67" lean-forward="true" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
+            <state relative-caret-position="341">
+              <caret line="64" column="29" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="64" selection-end-column="29" />
               <folding>
                 <element signature="n#div#3;n#section#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#div#0;n#center#0;n#ul#0;n#div#0;n#div#3;n#section#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -35,11 +35,11 @@
       <file leaf-file-name="inform.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+            <state relative-caret-position="242">
+              <caret line="90" column="38" lean-forward="false" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-                <marker date="1494337886771" expanded="true" signature="2274:2285" ph="..." />
+                <marker date="1494338206134" expanded="true" signature="2274:2285" ph="..." />
               </folding>
             </state>
           </provider>
@@ -346,12 +346,12 @@
       <workItem from="1494238233764" duration="2829000" />
       <workItem from="1494241746233" duration="87000" />
       <workItem from="1494241858127" duration="628000" />
-      <workItem from="1494295991193" duration="15894000" />
+      <workItem from="1494295991193" duration="16212000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230047000" />
+    <option name="totallyTimeSpent" value="230365000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -363,7 +363,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="570" y="0" width="803" height="745" extended-state="0" />
+    <frame x="570" y="0" width="803" height="745" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22614379" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -673,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/inform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="57" column="67" lean-forward="true" selection-start-line="57" selection-start-column="67" selection-end-line="57" selection-end-column="67" />
+        <state relative-caret-position="341">
+          <caret line="64" column="29" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="64" selection-end-column="29" />
           <folding>
             <element signature="n#div#3;n#section#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#0;n#center#0;n#ul#0;n#div#0;n#div#3;n#section#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -685,11 +685,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="92" column="25" lean-forward="false" selection-start-line="92" selection-start-column="25" selection-end-line="92" selection-end-column="25" />
+        <state relative-caret-position="242">
+          <caret line="90" column="38" lean-forward="false" selection-start-line="90" selection-start-column="38" selection-end-line="90" selection-end-column="38" />
           <folding>
             <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-            <marker date="1494337886771" expanded="true" signature="2274:2285" ph="..." />
+            <marker date="1494338206134" expanded="true" signature="2274:2285" ph="..." />
           </folding>
         </state>
       </provider>
