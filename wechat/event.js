@@ -41,7 +41,7 @@ function key_user_center(message, req, res, next) {
   return res.reply([{
     title: '云课中心',
     description: '欢迎回来，' + user.name + '！',
-    picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+    picurl: 'http://courseclouds.zhmoll.com/user-center/assets/i/timg.jpg',
     url: url
   }]);
 }
@@ -297,7 +297,7 @@ function key_change_bind(message, req, res, next) {
   return res.reply([{
     title: '更换用户绑定',
     description: `您现在是以${user.university} ${user.uid} ${user.name}的${identity}身份绑定该微信公众号的，若要切换身份，请点击进入进行修改。`,
-    picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+    picurl: 'http://courseclouds.zhmoll.com/user-center/assets/i/timg.jpg',
     url: url
   }]);
 }
@@ -321,7 +321,7 @@ module.exports = (message, req, res, next) => {
           return res.reply([{
             title: '绑定云课平台账号',
             description: '绑定微信号和云课平台账号，无需登录即可享受云课平台全功能服务，消息通知第一时间抵达微信！',
-            picurl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png',
+            picurl: 'http://courseclouds.zhmoll.com/user-center/assets/i/timg.jpg',
             url: url
           }]);
         }
