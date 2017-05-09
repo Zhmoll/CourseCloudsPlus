@@ -169,5 +169,6 @@ window.onload = function () {
         }
 
     });
-    $(document).attr("title",coursename_full);
+    document.title=coursename_full;
+    // $(document).attr("title",coursename_full);
 };
