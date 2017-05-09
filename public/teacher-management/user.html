@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/form.js"></script>
+    <script src="assets/js/user.js"></script>
 </head>
 
 <body data-type="widgets">
@@ -56,16 +56,15 @@
                     <li data-am-popover="{content: '点击跳转到请假',theme:'sm' ,trigger: 'hover focus'}">
                         <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-envelope"></i>
-                            <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                            <span class="am-badge am-badge-success am-round item-feed-badge"></span>
                         </a>
-
                     </li>
 
                     <!-- 新提示 -->
                     <li data-am-popover="{content: '点击跳转到消息',theme:'sm' ,trigger: 'hover focus'}">
                         <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
                             <i class="am-icon-bell"></i>
-                            <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
+                            <span class="am-badge am-badge-warning am-round item-feed-badge"></span>
                         </a>
 
                         <!-- 弹出列表 -->
@@ -184,22 +183,7 @@
                             <tbody>
                             <tr class="gradeX">
                                 <td>姓名</td>
-                                <td>张鹏飞</td>
-
-                            </tr>
-                            <tr class="gradeX">
-                                <td>年级</td>
-                                <td>大三</td>
-
-                            </tr>
-                            <tr class="gradeX">
-                                <td>性别</td>
-                                <td>男</td>
-
-                            </tr>
-                            <tr class="gradeX">
-                                <td>出生地</td>
-                                <td>浙江</td>
+                                <td id="name">张鹏飞</td>
 
                             </tr>
                             <!-- more data -->

@@ -43,28 +43,29 @@ $(document).ready(function () {
             var to_term = current_week_time.body.term;
             choose_term = to_term;
             choose_week = to_week;
+
             reCourse(choose_term, choose_week);
             $(".course").click(function () {
-                window.location.href = "form.html" + "?course=" + $(this).attr("id");
+                window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
             });
 
         });
     });
 
 });
-
 $(".course").click(function () {
-    window.location.href = "form.html" + "?course=" + $(this).attr("id");
-})
+    window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
+});
 // $("#selted option[value='"+msg.data.categoryId+"']").attr("selected","selected");
 //创建课程浮层
-function addCourse(day, col, num, course, color, teacher, id) {
+function addCourse(day, col, num, course, color, teacher, id,coursetimeid,week) {
     var today = new Date();
     var weekday = today.getDay() == 0 ? 7 : today.getDay();
     //参数:day指周几, col指从第几节课开始,num指几节课,course指什么课
     var oDiv = $('<div></div>');
     $(oDiv).attr('id', id);
-    $(oDiv).attr("class", 'course');
+    $(oDiv).attr('id', id);
+    $(oDiv).attr("coursetimeid", coursetimeid);
     var oP = $('<p></p>');
     //var oSpanWeekDay = $('<span id=oSpanWeekDay></span>');
     var oSpanSelectcode = $('<span id=oSpanSelectcode></span>');
@@ -77,7 +78,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
             'backgroundColor': color,
             "position": "absolute",
             'left': left,
-            "font-size": "1px",
+            "font-size": "9px",
             'top': $("#1td").offset().top + 2 + ($("#1td").height() + 10.2) * (col - 1) + 'px'
         });
         oDiv.width($aTh.width() + 11);//某节课的宽度
@@ -103,13 +104,25 @@ function addCourse(day, col, num, course, color, teacher, id) {
         oP.css('paddingTop', parseInt((oDiv.height() - oP.height()) / 2) + 'px');
     }
     else {
-        oDiv.css({
-            'backgroundColor': color,
-            "position": "absolute",
-            'left': left,
-            "font-size": "1px",
-            'top': $("#1td").offset().top -110 + ($("#1td").height() + 7.7) * (col - 1) + 'px'
-        });
+        if(week==13){
+            oDiv.css({
+                'backgroundColor': color,
+                "position": "absolute",
+                'left': left,
+                "font-size": "10px",
+                'top': $("#1td").offset().top -140 + ($("#1td").height()-200) * (col - 1) + 'px'
+            });
+        }
+        else{
+            oDiv.css({
+                'backgroundColor': color,
+                "position": "absolute",
+                'left': left,
+                "font-size": "10px",
+                'top': $("#1td").offset().top -110 + ($("#1td").height() + 7.7) * (col - 1) + 'px'
+            });
+        }
+
         if (col == 1) {
             oDiv.css("top", $("#1td").offset().top + ($("#1td").height() + 7.5) * (col - 1) + 'px')
         }
@@ -156,10 +169,11 @@ $("#selected").on("change", function () {
     var $aDiv = $("#div1");
     $aDiv.html('');  //id = div1 将aDiv用空白覆盖
     choose_week = parseInt($("option:selected", this).val());
+
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
-        window.location.href = "form.html"+"?course="+$(this).attr("id");
-    })
+        window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
+    });
 });
 
 
@@ -168,6 +182,7 @@ $("#selected").on("change", function () {
 $(window).resize(function () {
     var $aDiv = $("#div1");
     $aDiv.html('');  //id = div1
+
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
         window.location.href = "form.html"+"?course="+$(this).attr("id");
@@ -195,7 +210,8 @@ function reCourse(term, week) {
                 var iCol = parseInt(current_course['rows'][0]);
                 var iNum = current_course['rows'].length;
                 var id = current_course.course.id;
-                addCourse(weekday, iCol, iNum, iCourse, colorArr1[colorNum], teacher, id);
+                var coursetimeid=current_course.coursetimeid;
+                addCourse(weekday, iCol, iNum, iCourse, colorArr1[colorNum], teacher, id,coursetimeid,week);
                 colorNum++;
                 if (colorNum == 25) colorNum = 0;
             }

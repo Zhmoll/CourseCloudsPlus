@@ -17,7 +17,12 @@
     <link rel="stylesheet" href="assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="assets/css/app.css">
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.qrcode.js"></script>
+
+    <script src="assets/js/qrcode.js"></script>
+
     <script src="assets/js/form.js"></script>
+
 </head>
 
 <body data-type="widgets">
@@ -28,7 +33,7 @@
         <!-- logo -->
 
         <div class="am-fl tpl-header-logo">
-            <center><h1 >朝阳小队管理员</h1></center>
+            <center><h1>朝阳小队管理员</h1></center>
         </div>
 
         <!-- 右侧内容 -->
@@ -57,7 +62,7 @@
                     <!-- 退出 -->
                     <li class="am-text-sm" id="loginout">
                         <a href="javascript:;">
-                            <span class="am-icon-sign-out" ></span> 退出
+                            <span class="am-icon-sign-out"></span> 退出
                         </a>
                     </li>
                 </ul>
@@ -158,7 +163,10 @@
 
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <center><div class="widget-title  am-cf">课程名称:<span id="course_name">数据结构。</span>上课时间：<span id="course_time">下午两天。</span><br>教师：<span id="teacher_name">张效伟。</span>上课地点：<span id="location">六教</span></div></center>
+                            <center>
+                                <div class="widget-title  am-cf">课程名称:<span id="course_name">数据结构。</span>上课时间：<span
+                                        id="course_time">下午两天。</span><br>上课地点：<span id="location">六教</span></div>
+                            </center>
                         </div>
                     </div>
 
@@ -168,38 +176,61 @@
                         </div>
                         <div class="widget-body  am-fr">
 
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                                 <div class="am-form-group">
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
-                                            <button type="button" class="am-btn am-btn-default am-btn-success" id="leave"><span class="am-icon-plus" ></span>批改假条</button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-secondary" id="inform"><span class="am-icon-save" ></span>发送通知</button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-warning" id="select"><span class="am-icon-archive"></span>修改课程</button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o" ></span>删除课程</button>
+                                            <button type="button" class=" am-btn am-btn-default am-btn-success"
+                                                    id="leave" style="margin-right: 10px"><span class="am-icon-plus"></span>批改假条
+                                            </button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-success"
+                                                    id="sign"
+                                                    data-am-modal="{target: '#my-alert'}" style="margin-right: 10px"><span class="am-icon-plus"></span>课程签到
+                                            </button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-secondary"
+                                                    id="inform" style="margin-right: 10px"><span class="am-icon-save"></span>发送通知
+                                            </button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-warning"
+                                                    id="select" style="margin-right: 10px"><span class="am-icon-archive"></span>修改课程
+                                            </button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-danger" id="delete"><span
+                                                    class="am-icon-trash-o" ></span>删除课程
+                                            </button>
+
+                                            <div class="am-modal am-modal-alert" tabindex="999" id="my-alert" style="z-index: 9999">
+                                                <div class="am-modal-dialog">
+                                                    <center><p>签到只持续三分钟</p></center>
+                                                    <div class="am-modal-bd" id="sign_picture">
+                                                    </div>
+                                                    <div class="am-modal-footer">
+                                                        <span class="am-modal-btn" id="download">下载结果</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!--<div class="am-u-sm-12 am-u-md-6 am-u-lg-3">-->
-                                <!--<div class="am-form-group tpl-table-list-select">-->
-                                    <!--<select data-am-selected="{btnSize: 'sm'}">-->
-                                        <!--<option value="option1">所有类别</option>-->
-                                        <!--<option value="option2">IT业界</option>-->
-                                        <!--<option value="option3">数码产品</option>-->
-                                        <!--<option value="option3">笔记本电脑</option>-->
-                                        <!--<option value="option3">平板电脑</option>-->
-                                        <!--<option value="option3">只能手机</option>-->
-                                        <!--<option value="option3">超极本</option>-->
-                                    <!--</select>-->
-                                <!--</div>-->
+                            <!--<div class="am-form-group tpl-table-list-select">-->
+                            <!--<select data-am-selected="{btnSize: 'sm'}">-->
+                            <!--<option value="option1">所有类别</option>-->
+                            <!--<option value="option2">IT业界</option>-->
+                            <!--<option value="option3">数码产品</option>-->
+                            <!--<option value="option3">笔记本电脑</option>-->
+                            <!--<option value="option3">平板电脑</option>-->
+                            <!--<option value="option3">只能手机</option>-->
+                            <!--<option value="option3">超极本</option>-->
+                            <!--</select>-->
+                            <!--</div>-->
                             <!--</div>-->
                             <!--<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">-->
-                                <!--<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">-->
-                                    <!--<input type="text" class="am-form-field ">-->
-                                    <!--<span class="am-input-group-btn">-->
-            <!--<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>-->
-          <!--</span>-->
-                                <!--</div>-->
+                            <!--<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">-->
+                            <!--<input type="text" class="am-form-field ">-->
+                            <!--<span class="am-input-group-btn">-->
+                            <!--<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>-->
+                            <!--</span>-->
+                            <!--</div>-->
                             <!--</div>-->
                         </div>
                     </div>
@@ -211,7 +242,8 @@
 
 
                             <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black "
+                                       id="example-r">
 
 
                                     <thead>
@@ -225,20 +257,20 @@
                                     </thead>
                                     <tbody id="list_leave">
                                     <!--<tr class="gradeX">-->
-                                        <!--<td>张童</td>-->
-                                        <!--<td>数据结构</td>-->
-                                        <!--<td>2016-09-26</td>-->
-                                        <!--<td>肚子疼</td>-->
-                                        <!--<td>-->
-                                            <!--<div class="tpl-table-black-operation">-->
-                                                <!--<a href="javascript:;">-->
-                                                    <!--<i class="am-icon-pencil"></i> 编辑-->
-                                                <!--</a>-->
-                                                <!--<a href="javascript:;" class="tpl-table-black-operation-del">-->
-                                                    <!--<i class="am-icon-trash"></i> 删除-->
-                                                <!--</a>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
+                                    <!--<td>张童</td>-->
+                                    <!--<td>数据结构</td>-->
+                                    <!--<td>2016-09-26</td>-->
+                                    <!--<td>肚子疼</td>-->
+                                    <!--<td>-->
+                                    <!--<div class="tpl-table-black-operation">-->
+                                    <!--<a href="javascript:;">-->
+                                    <!--<i class="am-icon-pencil"></i> 编辑-->
+                                    <!--</a>-->
+                                    <!--<a href="javascript:;" class="tpl-table-black-operation-del">-->
+                                    <!--<i class="am-icon-trash"></i> 删除-->
+                                    <!--</a>-->
+                                    <!--</div>-->
+                                    <!--</td>-->
                                     <!--</tr>-->
 
                                     <!-- more data -->
@@ -263,7 +295,7 @@
                     </div>
                     <div class="widget am-cf" id="inform_body">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl" >通知</div>
+                            <div class="widget-title am-fl">通知</div>
                             <div class="widget-function am-fr">
                                 <a href="javascript:;" class="am-icon-cog"></a>
                             </div>
@@ -274,22 +306,27 @@
 
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                                    <label class="am-u-sm-12 am-form-label am-text-left">标题 <span
+                                            class="tpl-form-line-small-title">Title</span></label>
                                     <div class="am-u-sm-12">
-                                        <input type="text" class="tpl-form-input am-margin-top-xs" id="form_send_title" placeholder="请输入标题文字">
+                                        <input type="text" class="tpl-form-input am-margin-top-xs" id="form_send_title"
+                                               placeholder="请输入标题文字">
                                         <small>请填写标题文字10-20字左右。</small>
                                     </div>
                                 </div>
                                 <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">通知内容</label>
+                                    <label class="am-u-sm-12 am-form-label  am-text-left">通知内容</label>
                                     <div class="am-u-sm-12 am-margin-top-xs">
-                                        <textarea class="" rows="10" id="form_send_detigal" placeholder="请输入通知内容"></textarea>
+                                        <textarea class="" rows="10" id="form_send_detigal"
+                                                  placeholder="请输入通知内容"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-12 am-u-sm-push-12">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " id="form_send">提交</button>
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success "
+                                                id="form_send">提交
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -308,15 +345,17 @@
 
                             <form class="am-form tpl-form-line-form">
                                 <div class="am-form-group">
-                                    <label  class="am-u-sm-3 am-form-label">上课地点<span class="tpl-form-line-small-title">location</span></label>
+                                    <label class="am-u-sm-3 am-form-label">上课地点<span class="tpl-form-line-small-title">location</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="course-location" placeholder="请输入上课地点">
+                                        <input type="text" class="tpl-form-input" id="course-location"
+                                               placeholder="请输入上课地点">
                                         <small></small>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">上课学期<span class="tpl-form-line-small-title">Term</span></label>
+                                    <label class="am-u-sm-3 am-form-label">上课学期<span
+                                            class="tpl-form-line-small-title">Term</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" id="term" placeholder="请输入上课学期">
                                         <small>输入格式：XXXX-XX</small>
@@ -324,7 +363,8 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">上课星期<span class="tpl-form-line-small-title">Week</span></label>
+                                    <label class="am-u-sm-3 am-form-label">上课星期<span
+                                            class="tpl-form-line-small-title">Week</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" id="week" placeholder="请输入上课星期">
                                         <small>输入格式：第X周。X为数字</small>
@@ -332,7 +372,8 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">上课日期<span class="tpl-form-line-small-title">Weekday</span></label>
+                                    <label class="am-u-sm-3 am-form-label">上课日期<span
+                                            class="tpl-form-line-small-title">Weekday</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" id="weekday" placeholder="请输入上课日期">
                                         <small>输入格式：星期X。X为数字(注：星期日填写星期7)</small>
@@ -340,7 +381,8 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">课程节数<span class="tpl-form-line-small-title">rows</span></label>
+                                    <label class="am-u-sm-3 am-form-label">课程节数<span
+                                            class="tpl-form-line-small-title">rows</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" id="rows" placeholder="请输入课程节数">
                                         <small>输入格式：X,X...。X位数字。数字间以","分割，","为英文符号</small>
@@ -349,7 +391,12 @@
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <center><button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " id="submit">提交</button></center>
+                                        <center>
+                                            <button type="button"
+                                                    class="am-btn am-btn-primary tpl-btn-bg-color-success " id="submit">
+                                                提交
+                                            </button>
+                                        </center>
                                     </div>
                                 </div>
                             </form>
@@ -365,7 +412,6 @@
     </div>
 
 </div>
-
 
 
 <script src="assets/js/amazeui.min.js"></script>
