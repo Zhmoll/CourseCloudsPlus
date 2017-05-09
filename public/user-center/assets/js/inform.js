@@ -36,13 +36,12 @@ window.onload = function () {
             return;
         }
         var coursetimes = data.body; // 是数组
-        var coursetimes_digital = '';
         for (i = 0; i < coursetimes.length; i++) {
             if (coursetimes[i].id == coursetimeid) {
                 $("#coursetime").append('<span>第' + coursetimes[i].weekday + '周 第' + coursetimes[i].rows.join(",") + '节 ' + course.teachers[i].name + '</span> ');
             }
             else {
-                $("#coursetime").append('<span style="color: red">第'+ coursetimes[i].week+'周 周' + coursetimes[i].weekday==0?7:coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</span> ');
+                $("#coursetime").append('<span style="color: red">第' + coursetimes[i].week + '周 周' + coursetimes[i].weekday == 0 ? 7 : coursetimes[i].weekday + '第' + coursetimes[i].rows.join(',') + '节</span> ');
             }
         }
     });
