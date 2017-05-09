@@ -43,6 +43,7 @@ $(document).ready(function () {
             var to_term = current_week_time.body.term;
             choose_term = to_term;
             choose_week = to_week;
+            $('.left-sidebar').removeClass('active');
             reCourse(choose_term, choose_week);
             $(".course").click(function () {
                 window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
@@ -52,7 +53,6 @@ $(document).ready(function () {
     });
 
 });
-
 $(".course").click(function () {
     window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
 });
@@ -169,6 +169,7 @@ $("#selected").on("change", function () {
     var $aDiv = $("#div1");
     $aDiv.html('');  //id = div1 将aDiv用空白覆盖
     choose_week = parseInt($("option:selected", this).val());
+    $('.left-sidebar').removeClass('active');
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
         window.location.href = "form.html" + "?course=" + $(this).attr("id")+"&coursetimeid="+$(this).attr("coursetimeid");
@@ -181,6 +182,7 @@ $("#selected").on("change", function () {
 $(window).resize(function () {
     var $aDiv = $("#div1");
     $aDiv.html('');  //id = div1
+    $('.left-sidebar').removeClass('active');
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
         window.location.href = "form.html"+"?course="+$(this).attr("id");

@@ -327,11 +327,6 @@ $('.tpl-skiner-content-bar').find('span').on('click', function() {
 
 
 
-window.onload=function () {
-    $('.tpl-header-switch-button').on('click', function() {
-        $('.tpl-content-wrapper').addClass('active');
-    })
-}
 // 侧边菜单开关
 
 
