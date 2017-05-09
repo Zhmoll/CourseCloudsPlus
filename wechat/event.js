@@ -191,7 +191,7 @@ function key_user_inbox(message, req, res, next) {
         let name = relation.notice.from.nickname;
         for (let i = 0; i < relation.notice.course.teachers.length; i++) {
           if (relation.notice.course.teachers[i].id == relation.notice.from.id) {
-            name = teacher.name;
+            name = relation.notice.course.teachers[i].name;
             break;
           }
         }
