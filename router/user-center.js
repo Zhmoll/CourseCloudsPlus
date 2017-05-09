@@ -34,7 +34,10 @@ router.get('/wechat_login', (req, res, next) => {
         delete req.session.url;
       }
       else {
-        res.redirect('http://courseclouds.zhmoll.com/user-center/index.html');
+        if (user.authority == 1)
+          return res.redirect('http://courseclouds.zhmoll.com/user-center/index.html');
+        else if (user.authority == 10)
+          return res.redirect('http://courseclouds.zhmoll.com/teacher-management/index.html');
       }
     });
   });
