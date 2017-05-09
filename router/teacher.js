@@ -259,7 +259,7 @@ router.post('/courses/:courseid/askforleave/:leaveid/allow',
 
 // 教师查询某节课所有的学生请假条（完成）
 // get /api/teacher-management/courses/:courseid/askforleave
-router.get('/api/teacher-management/courses/:courseid/askforleave',
+router.get('/courses/:courseid/askforleave',
   mw.authority.check(10),
   mw.course.checkOwnerRelation,
   (req, res, next) => {

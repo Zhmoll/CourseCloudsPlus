@@ -22,11 +22,10 @@ $(document).ready(function () {
       var to_term = current_week_time.body.term;
       choose_term = to_term;
       choose_week = to_week;
-      $("select option[value='"+to_week+"']").attr("select","selected");
+      $("select option[value='" + to_week + "']").attr("select", "selected");
       reCourse(choose_term, choose_week);
       $(".course").click(function () {
-        localStorage.courseid=this.attr("id");
-        window.location.href="inform.html";
+        window.location.href = 'inform.html?courseid=' + $(this).attr('id');
       })
     });
   });
@@ -154,7 +153,7 @@ function reCourse(term, week) {
       for (var j = 0; j < today_courses.length; j++) {	//循环第几节课
         var current_course = today_courses[j];
         var teachers = [];
-        current_course.course.teachers.forEach(function(teacher) {
+        current_course.course.teachers.forEach(function (teacher) {
           teachers.push(teacher.name);
         });
         var iCourse = current_course.course.name + '#' + teachers.toString() + '@' + current_course.location;

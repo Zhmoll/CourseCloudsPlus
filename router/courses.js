@@ -3,6 +3,7 @@ const router = express.Router();
 const mw = require('../lib/middleware');
 const { ResponseError, Response } = require('../lib/response');
 const CourseTimeLeave = require('../model/course-time-leave');
+const CourseTime = require('../model/course-times');
 const _ = require('lodash');
 
 // 获取某一课程信息（完成）
@@ -35,10 +36,17 @@ router.get('/:courseid/course-times',
   mw.course.findWithPrivateInfo,
   (req, res, next) => {
     const course = req.course;
-    course.findCourseTimes((err, show) => {
-      if (err) return next(err);
-      res.json(new Response(2202, '获取该课程的上课时间成功', show));
-    });
+    // course.findCourseTimes((err, show) => {
+    //   if (err) return next(err);
+    //   res.json(new Response(2202, '获取该课程的上课时间成功', show));
+    // });
+    CourseTime
+      .find({ course: course.id, deleted: false })
+      .select('-deleted')
+      .exec((err, coursetimes) => {
+        if (err) return next(err);
+        res.json(new Response(2202, '获取该课程的上课时间成功', coursetimes));
+      });
   }
 );
 
@@ -56,7 +64,7 @@ router.get('/:courseid/course-times/:coursetimeid',
 
 // 学生查询某节课的所有请假条（完成）
 // get /api/courses/:courseid/askforleave
-router.get('/api/courses/:courseid/askforleave',
+router.get('/:courseid/askforleave',
   mw.authority.check(1),
   mw.course.checkRelation,
   (req, res, next) => {
