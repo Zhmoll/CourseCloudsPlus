@@ -16,10 +16,8 @@ window.onload = function () {
             console.log(data);
             return;
         }
-
         var course = data.body;
         coursename_full=course.name;
-        document.title=course.name;
         $("#courseid").text(course.cid);
         $("#coursename").text(course.name);
         $("#courseintros").text(course.intros);
