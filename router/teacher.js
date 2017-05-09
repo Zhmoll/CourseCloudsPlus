@@ -269,7 +269,7 @@ router.get('/courses/:courseid/askforleave',
       .find({ course: courseid })
       .populate({
         path: 'user',
-        match: { deletd: false },
+        match: { deleted: false },
         select: 'id cid name nickname avatar'
       })
       .populate({
