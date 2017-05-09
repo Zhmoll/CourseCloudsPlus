@@ -168,6 +168,6 @@ window.onload = function () {
             alert("请输入请假原因");
         }
 
-    })
-    $("#title").text(coursename_full);
+    });
+    $(document).attr("title",coursename_full);
 };
