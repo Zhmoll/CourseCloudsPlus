@@ -48,13 +48,13 @@ function addCourse(day, col, num, course, color, teacher, id) {
   $aTh.width(0.15 * $(window).width());//课表的宽度
   //$aTh.eq(weekday-1).css("width",0.30*$(window).width());//当天的课表宽度
   var left = $aTh.eq(day - 1).offset().left;//课表到页边左距离
-  if (isPC()) {
+  if (!isPC()) {
     oDiv.css({
       'backgroundColor': color,
       "position": "absolute",
       'left': left,
       "font-size": "10px",
-      'top': $("#1td").offset().top + 2 + ($("#1td").height() + 10.2) * (col - 1) + 'px'
+      'top': $("#1td").offset().top + 1.3 + ($("#1td").height() + 10.2) * (col - 1) + 'px'
     });
     oDiv.width($aTh.width() + 11);//某节课的宽度
     if (num == 2)
