@@ -34,15 +34,15 @@
       <file leaf-file-name="inform.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="140" column="39" lean-forward="false" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
+            <state relative-caret-position="254">
+              <caret line="141" column="30" lean-forward="false" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
                 <element signature="e#1324#2454#0" expanded="false" />
                 <element signature="e#4035#4049#0" expanded="false" />
-                <marker date="1494340451068" expanded="true" signature="2132:2143" ph="..." />
-                <marker date="1494340451068" expanded="true" signature="4845:4856" ph="..." />
-                <marker date="1494340451068" expanded="true" signature="5313:5323" ph="..." />
+                <marker date="1494340538243" expanded="true" signature="2132:2143" ph="..." />
+                <marker date="1494340538243" expanded="true" signature="4845:4856" ph="..." />
+                <marker date="1494340538243" expanded="true" signature="5313:5323" ph="..." />
               </folding>
             </state>
           </provider>
@@ -350,12 +350,12 @@
       <workItem from="1494238233764" duration="2829000" />
       <workItem from="1494241746233" duration="87000" />
       <workItem from="1494241858127" duration="628000" />
-      <workItem from="1494295991193" duration="18439000" />
+      <workItem from="1494295991193" duration="18526000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232592000" />
+    <option name="totallyTimeSpent" value="232679000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -688,15 +688,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="140" column="39" lean-forward="false" selection-start-line="140" selection-start-column="39" selection-end-line="140" selection-end-column="39" />
+        <state relative-caret-position="254">
+          <caret line="141" column="30" lean-forward="false" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
           <folding>
             <element signature="n#!!block;n#getQueryString#0" expanded="false" />
             <element signature="e#1324#2454#0" expanded="false" />
             <element signature="e#4035#4049#0" expanded="false" />
-            <marker date="1494340451068" expanded="true" signature="2132:2143" ph="..." />
-            <marker date="1494340451068" expanded="true" signature="4845:4856" ph="..." />
-            <marker date="1494340451068" expanded="true" signature="5313:5323" ph="..." />
+            <marker date="1494340538243" expanded="true" signature="2132:2143" ph="..." />
+            <marker date="1494340538243" expanded="true" signature="4845:4856" ph="..." />
+            <marker date="1494340538243" expanded="true" signature="5313:5323" ph="..." />
           </folding>
         </state>
       </provider>

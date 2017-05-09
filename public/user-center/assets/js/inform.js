@@ -139,6 +139,7 @@ window.onload = function () {
             // $("#myleave").append('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + teacher + '</span></p> <p><span>上课时间：</span><span class="date">' + date + '</span></p> <p><span>请假原因：</span><span class="date">' + content + '</span></p><p><span>请假时间：</span><span class="date">' + content + '</span></p><p><span style="color: red">已允许</span></p></li>')
             $.get("../api/courses/" + courseid, function (data) {
                 console.log(data.body);
+                alert("success")
             })
 
 
