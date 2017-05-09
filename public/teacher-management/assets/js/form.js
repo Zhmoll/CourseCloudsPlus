@@ -27,7 +27,7 @@ $(document).ready(function () {
         })
     });
     if (course_id == null) {
-        window.location.href="index.html";
+        window.location.href = "index.html";
     }
     //alert(course_id);
     $("#leave").click(function () {
@@ -57,11 +57,11 @@ $(document).ready(function () {
         })
     });
     $("#sign").click(function () {
-        $.post("/api/teacher-management/courses/"+course_id+"/attends-check",{},function (data) {
+        $.post("/api/teacher-management/courses/" + course_id + "/attends-check", {}, function (data) {
             $('#sign_picture').html('');
             $('#sign_picture').qrcode(data.body.content);
             $("#download").click(function () {
-                $.get("../api/teacher-management/course/"+course_id+"/attends-check/"+data.body.content)
+                $.get("../api/teacher-management/course/" + course_id + "/attends-check/" + data.body.content)
             })
             //alert(data.body.content);
         })
@@ -90,17 +90,18 @@ $(document).ready(function () {
 
                 var name = data1.body[i].user.name;
                 //var course=data1.body[i].course.name.
-                var data = "第" + data1.body[i].courseTime.weekday + "周 " + "第" + data1.body[i].courseTime.rows.join(",") + "节"
+                var weekday_str = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                var data = "第" + data1.body[i].courseTime.week + "周 " + weekday_str[data1.body[i].courseTime.weekday] + " 第" + data1.body[i].courseTime.rows.join(",") + "节";
                 var id = data1.body[i]._id;
                 var reason = data1.body[i].reason
                 if (data1.body[i].responsed) {
                     if (data1.body[i].allow) {
-                        var responsed = "已批准"
+                        var responsed = "已同意"
                         $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
                         $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                     }
                     else {
-                        var responsed = "未通过";
+                        var responsed = "已拒绝";
                         $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
                         $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                     }
@@ -122,7 +123,7 @@ $(document).ready(function () {
         $(".yes").click(function () {
             var leaveid = $(this).attr("mycourse");
             //alert(leaveid+";"+course_id);
-            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", {"allow": true}, function (data) {
+            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", { "allow": true }, function (data) {
                 $('#' + leaveid).html("");
                 $('#' + leaveid).html(data.message);
             })
@@ -130,7 +131,7 @@ $(document).ready(function () {
         //拒绝假条
         $(".no").click(function () {
             var leaveid = $(this).attr("mycourse");
-            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", {"allow": false}, function (data) {
+            $.post("../api/teacher-management/courses/" + course_id + "/askforleave/" + leaveid + "/allow", { "allow": false }, function (data) {
                 $('#' + leaveid).html("");
                 $('#' + leaveid).html(data.message);
             })
