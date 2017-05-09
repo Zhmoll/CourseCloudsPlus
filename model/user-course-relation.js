@@ -76,8 +76,8 @@ UserCourseRelationSchema.statics.findCourseTimes = function (userid, callback) {
       Promise.all(missions)
         .then(shows => {
           const results = {};
-          shows.forEach(show=>{
-            _.merge(results,show);
+          shows.forEach(show => {
+            _.merge(results, show);
           });
           callback(null, results);
         })
@@ -101,7 +101,7 @@ UserCourseRelationSchema.methods.findCourseTimes = function (callback) {
   }, (err, relation) => {
     if (err) return callback(err);
     const course = relation.course;
-    CourseTime.find({ course: course.id, deleted: false }).exec((err, coursetimes) => {
+    CourseTime.find({ course: course.id, deleted: false }).sort('week').exec((err, coursetimes) => {
       if (err) return callback(err);
       // 拿了course对象，返回了课表
       const show = {};
