@@ -36,7 +36,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="leave.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="leave.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/leave.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-484">
@@ -66,15 +66,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+            <state relative-caret-position="220">
+              <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#li#1;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#li#2;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
@@ -220,9 +219,9 @@
         <option value="$PROJECT_DIR$/assets/js/index.js" />
         <option value="$USER_HOME$/Desktop/moment.js" />
         <option value="$PROJECT_DIR$/inform.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/leave.html" />
         <option value="$PROJECT_DIR$/assets/js/leave.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -448,12 +447,12 @@
       <workItem from="1494241746233" duration="87000" />
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
-      <workItem from="1494347245712" duration="760000" />
+      <workItem from="1494347245712" duration="828000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="240062000" />
+    <option name="totallyTimeSpent" value="240130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -789,19 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="39" column="17" lean-forward="false" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#li#1;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#li#2;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/leave.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -824,6 +810,18 @@
             <marker date="1494348010829" expanded="true" signature="5224:5234" ph="..." />
             <marker date="1494348010829" expanded="true" signature="5801:5811" ph="..." />
             <marker date="1494348010829" expanded="true" signature="6305:6315" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#li#0;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#li#2;n#ul#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
