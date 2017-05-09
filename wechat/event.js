@@ -190,7 +190,7 @@ function key_user_inbox(message, req, res, next) {
         // 课程相关群发
         results.push({
           title: `标题：${relation.notice.title}` +
-          '\n' + `来自：${relation.notice.from.nickname}` +
+          '\n' + `来自：${relation.notice.from.name}` +
           '\n' + `课堂：${relation.notice.course.name}` +
           '\n' + `时间：${sendtime}`,
           url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
