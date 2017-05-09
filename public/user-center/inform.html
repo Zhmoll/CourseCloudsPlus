@@ -27,7 +27,7 @@
                 <ul class="ui-list ui-list-pure ui-border-tb" id="course_detail">
                     <p class="demo-desc">课程详情</p>
                     <li class="ui-border-t">
-                    <p><span>课程号：</span><span id="courseid"> </span></p>
+                        <p><span>课程号：</span><span id="courseid"> </span></p>
                         <p><span>课程名：</span><span id="coursename"> </span></p>
                         <p><span>简介：</span><span id="courseintros"> </span></p>
                         <p><span>教师：</span><span id="teachername"> </span></p>
@@ -44,7 +44,7 @@
                 <ul class="ui-list ui-list-pure ui-border-tb" id="course_message">
                     <p class="demo-desc">上课时间</p>
                     <li class="ui-border-t" id="coursetime">
-                    
+
                     </li>
 
                 </ul>
@@ -55,14 +55,21 @@
 
             <div class="demo-block">
 
-                <ul class="ui-list ui-list-pure ui-border-tb">
+                <ul class="ui-list ui-list-pure ui-border-tb" id="coursemessage">
                     <p class="demo-desc">课程消息</p>
                     <li class="ui-border-t">
-                        <p><span>1.faycheng </span><span class="date"> 2月12日</span></p>
+                        <p><span>标题：</span><span class="date">title</span></p>
+                        <p><span>发送教师：</span><span class="date">teacher</span></p>
+                        <p><span>课程名：</span><span class="date">coursename</span></p>
+                        <p><span>内容：</span><span class="date">teacher</span></p>
                     </li>
                     <li class="ui-border-t">
-                        <p><span>2.faycheng </span><span class="date"> 2月12日</span></p>
+                        <p><span>标题</span><span class="date">title</span></p>
+                        <p><span>发送人：</span><span class="date">teacher</span></p>
+                        <p><span>课程名：</span><span class="date">coursename</span></p>
+                        <p><span>内容：</span><span class="date">teacher</span></p>
                     </li>
+
 
                 </ul>
             </div>
@@ -88,7 +95,7 @@
                                     <label>
                                         请假理由
                                     </label>
-                                    <input type="text" placeholder="请输入请假理由" />
+                                    <input type="text" placeholder="请输入请假理由"/>
                                 </div>
                             </form>
                         </div>
@@ -179,3 +186,8 @@
 
 </body>
 '<a src="profile.html?userid='+id+'">'+teachename+'</a>'
+'<li class="ui-border-t"><p><span>标题：</span><span class="date">title</span></p>
+    <p><span>发送教师：</span><span class="date">'+teacher+'</span></p>
+    <p><span>课程名：</span><span class="date">'+coursename+'</span></p>
+    <p><span>内容：</span><span class="date">'+teacher+'</span></p>
+</li>'
