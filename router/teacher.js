@@ -243,12 +243,14 @@ router.post('/courses/:courseid/askforleave/:leaveid/allow',
   mw.course.checkLeaveCourseRelation,
   (req, res, next) => {
     const leave = req.leave;
+    const allowBy = req.session.userid;
 
     if (leave.responsed) {
       return res.json(new ResponseError(4005, '该请假条已经批复'));
     }
 
-    const update = _.pick(req.body, ['allow', 'allowBy', 'allowInfo']);
+    const update = _.pick(req.body, ['allow', 'allowInfo']);
+    update.allowBy = allowBy;
     update.responsed = true;
     leave.update(update, (err, updated_leave) => {
       if (err) return next(err);
