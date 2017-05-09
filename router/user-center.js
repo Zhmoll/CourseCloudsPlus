@@ -40,6 +40,7 @@ router.get('/wechat_login', (req, res, next) => {
   });
 });
 
+router.get('/profile.html', checkLogin);
 router.get('/course.html', checkLogin);
 router.get('/courseform.html', checkLogin);
 router.get('/index.html', checkLogin);

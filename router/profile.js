@@ -98,7 +98,7 @@ router.post('/wechat/bind',
                 req.session.authority = user.authority;
                 res.json(new Response(2003, '绑定微信用户成功', {
                   id: user.id,
-                  avatar: user.avatar,
+                  avatar: url,
                   name: user.name,
                   nickname: user.nickname,
                   university: user.university,
