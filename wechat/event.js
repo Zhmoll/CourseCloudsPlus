@@ -206,7 +206,7 @@ function key_user_inbox(message, req, res, next) {
         });
       }
     });
-    results.push({ title: '点击查看完整消息收件箱', url: 'http://courseclouds.zhmoll.com/user-center/inbox' });
+    results.push({ title: '点击查看完整消息收件箱', url: 'http://courseclouds.zhmoll.com/user-center/receivemessage.html' });
     res.reply(results);
   });
 }
