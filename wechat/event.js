@@ -131,7 +131,9 @@ function key_today_courses(message, req, res, next) {
 function key_attend_course(message, req, res, next) {
   const user = req.me;
   const attendid = message.ScanCodeInfo.ScanResult;
-
+  if (user.authority != 1) {
+    return res.reply('你不是学生，不需要课堂签到哦！');
+  }
   CourseAttend.findById(attendid).exec((err, courseattend) => {
     if (!courseattend) {
       res.reply('找不到该签到');
