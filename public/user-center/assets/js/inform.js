@@ -93,6 +93,7 @@ window.onload = function () {
             var title = data.body[i].title;
             var teacher = data.body[i].from.name;
             $.get("../api/notices/inbox/" + noticeid, function (data1) {
+                console.log(data1.body);
                 var content = data1.body.notice.content;
                 $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><span class="date">' + title + '</span></p> <p><span>发送教师：</span><span class="date">' + teacher + '</span></p> <p><span>发送时间：</span><span class="date">' + date + '</span></p> <p><span>内容：</span><span class="date">' + content + '</span></p> </li>')
             })
@@ -102,7 +103,7 @@ window.onload = function () {
     $.get("../api/courses/" + courseid + "/askforleave", function (data) {
         if (data.code != 2205) {
             alert(data.message);
-            console.log(data);
+            // console.log(data);
             return;
         }
         for (i = 0; i < data.body.length; i++) {
@@ -137,7 +138,7 @@ window.onload = function () {
             //
             // $("#myleave").append('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + teacher + '</span></p> <p><span>上课时间：</span><span class="date">' + date + '</span></p> <p><span>请假原因：</span><span class="date">' + content + '</span></p><p><span>请假时间：</span><span class="date">' + content + '</span></p><p><span style="color: red">已允许</span></p></li>')
             $.get("../api/courses/" + courseid, function (data) {
-                console.log(data.body)
+                console.log(data.body);
             })
 
 
