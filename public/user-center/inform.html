@@ -26,14 +26,45 @@
 
                 <ul class="ui-list ui-list-pure ui-border-tb" id="course_detail">
                     <p class="demo-desc">课程详情</p>
-                    <!--<li class="ui-border-t">-->
-                    <!--<p><span>1.faycheng </span><span class="date"> 2月12日</span></p>-->
-                    <!--<h4>这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</h4>-->
-                    <!--</li>-->
-                    <!--<li class="ui-border-t">-->
-                    <!--<p><span>2.faycheng </span><span class="date"> 2月12日</span></p>-->
-                    <!--<h4>标题标题标题标题标题标题题标题标题标题标题标题标题标题标题标题</h4>-->
-                    <!--</li>-->
+                    <li class="ui-border-t">
+                    <p><span>课程号：</span><span id="courseid"> </span></p>
+                        <p><span>课程名：</span><span id="coursename"> </span></p>
+                        <p><span>简介：</span><span id="courseintros"> </span></p>
+                        <p><span>教师：</span><span id="teachername"> </span></p>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-item">
+
+            <div class="demo-block">
+
+                <ul class="ui-list ui-list-pure ui-border-tb" id="course_message">
+                    <p class="demo-desc">上课时间</p>
+                    <li class="ui-border-t">
+                    <p><span class="date" id="coursetime"> 2月12日</span></p>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-item">
+
+            <div class="demo-block">
+
+                <ul class="ui-list ui-list-pure ui-border-tb">
+                    <p class="demo-desc">课程消息</p>
+                    <li class="ui-border-t">
+                        <p><span>1.faycheng </span><span class="date"> 2月12日</span></p>
+                        <h4>这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</h4>
+                    </li>
+                    <li class="ui-border-t">
+                        <p><span>2.faycheng </span><span class="date"> 2月12日</span></p>
+                        <h4>标题标题标题标题标题标题题标题标题标题标题标题标题标题标题标题</h4>
+                    </li>
 
                 </ul>
             </div>
@@ -57,7 +88,7 @@
                             <form action="#">
                                 <div class="ui-form-item ui-border-b">
                                     <label>
-                                       请假理由
+                                        请假理由
                                     </label>
                                     <input type="text" placeholder="请输入请假理由" />
                                 </div>
@@ -73,43 +104,6 @@
                             </div>
                         </div>
                     </center>
-                </ul>
-            </div>
-        </div>
-        <div class="demo-item">
-
-            <div class="demo-block">
-
-                <ul class="ui-list ui-list-pure ui-border-tb" id="course_message">
-                    <p class="demo-desc">课程消息</p>
-                    <!--<li class="ui-border-t">-->
-                    <!--<p><span>1.faycheng </span><span class="date"> 2月12日</span></p>-->
-                    <!--<h4>这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</h4>-->
-                    <!--</li>-->
-                    <!--<li class="ui-border-t">-->
-                    <!--<p><span>2.faycheng </span><span class="date"> 2月12日</span></p>-->
-                    <!--<h4>标题标题标题标题标题标题题标题标题标题标题标题标题标题标题标题</h4>-->
-                    <!--</li>-->
-
-                </ul>
-            </div>
-        </div>
-
-        <div class="demo-item">
-
-            <div class="demo-block">
-
-                <ul class="ui-list ui-list-pure ui-border-tb">
-                    <p class="demo-desc">课程消息</p>
-                    <li class="ui-border-t">
-                        <p><span>1.faycheng </span><span class="date"> 2月12日</span></p>
-                        <h4>这本书太赞了，每次看都有不一样的体会和感悟，超级喜欢！期待大结局。</h4>
-                    </li>
-                    <li class="ui-border-t">
-                        <p><span>2.faycheng </span><span class="date"> 2月12日</span></p>
-                        <h4>标题标题标题标题标题标题题标题标题标题标题标题标题标题标题标题</h4>
-                    </li>
-
                 </ul>
             </div>
         </div>
@@ -186,3 +180,4 @@
 </footer>
 
 </body>
+'<a src="profile.html?userid='+id+'">'+teachename+'</a>'

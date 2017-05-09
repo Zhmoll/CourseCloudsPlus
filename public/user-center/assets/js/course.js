@@ -25,14 +25,14 @@ $(document).ready(function () {
             //$("select option[value='" + to_week + "']").attr("select", "selected");
             reCourse(choose_term, choose_week);
             $(".course").click(function () {
-                window.location.href = "inform.html" + "?course=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
+                window.location.href = "inform.html" + "?courseid=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
             });
         });
     });
 
 });
 $(".course").click(function () {
-    window.location.href = "inform.html" + "?course=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
+    window.location.href = "inform.html" + "?courseid=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
 });
 //创建课程浮层
 function addCourse(day, col, num, course, color, teacher, id, coursetimeid) {
@@ -136,7 +136,7 @@ $("#selected").on("change", function () {
     choose_week = parseInt($("option:selected", this).val());
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
-        window.location.href = "inform.html" + "?course=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
+        window.location.href = "inform.html" + "?courseid=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
     });
 });
 
@@ -146,7 +146,7 @@ $(window).resize(function () {
     $aDiv.html('');  //id = div1
     reCourse(choose_term, choose_week);
     $(".course").click(function () {
-        window.location.href = "inform.html" + "?course=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
+        window.location.href = "inform.html" + "?courseid=" + $(this).attr("id") + "&coursetimeid=" + $(this).attr("coursetimeid");
     });
 });
 

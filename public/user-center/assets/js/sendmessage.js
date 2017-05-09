@@ -12,7 +12,7 @@ window.onload = function () {
             for (i = 0; i < data1.body.length; i++) {
                 id = data1.body[i].notice.id;
                 $.get("http://courseclouds.zhmoll.com/api/notices/outbox/" + id, function (data2) {
-                    alert("data2.message:"+data2.message);
+                    //alert("data2.message:"+data2.message);
                     name = data2.body.notice.course.name;
                     content = data2.body.notice.content;
                     to = data2.body.to[0].nickname;
