@@ -140,26 +140,22 @@ window.onload = function () {
             }
             if(data.body[i].allow==true){
                 $.get("../api/users/"+userid,function (data1) {
+                    console.log(data1.body);
                     var teachername=data1.body.nickname;
-                    $("#myleave").preappend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">已允许</span></p><p><span >允许人</span><span>'+teachername+'</span></p></li>')
+                    $("#myleave").prepend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">已允许</span></p><p><span >允许人</span><span>'+teachername+'</span></p></li>')
                 })
             }
             else
             {
                 if(data.body[i].allow==false)
                 {
-                    $("#myleave").preappend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">已拒绝</span></p></li>')
+                    $("#myleave").prepend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">已拒绝</span></p></li>')
                 }
                 else
                 {
-                    $("#myleave").preappend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">未处理</span></p></li>')
+                    $("#myleave").prepend('<li class="ui-border-t"><p><span>课程名：</span><span class="date">' + coursename_full + '</span></p> <p><span>上课时间：</span><span class="date"> + 第' + coursetimes.week + '周 ' + weekday + ' 第' + coursetimes.rows.join(',') + '节' + '</span></p> <p><span>请假原因：</span><span class="date">' + reason + '</span></p><p><span>请假时间：</span><span class="date">' + time + '</span></p><p><span style="color: red">未处理</span></p></li>')
                 }
             }
-
-
-
-
-
         }
 
     });
