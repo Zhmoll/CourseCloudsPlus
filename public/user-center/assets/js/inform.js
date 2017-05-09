@@ -6,6 +6,7 @@ function getQueryString(name) {
 }
 var coursename_full
 window.onload = function () {
+    $("#name").text(localStorage.name);
     var courseid = getQueryString('courseid');
     var coursetimeid = getQueryString('coursetimeid');
     // 获取课程详情
@@ -168,4 +169,5 @@ window.onload = function () {
         }
 
     })
+    $("#title").text(coursename_full);
 };
