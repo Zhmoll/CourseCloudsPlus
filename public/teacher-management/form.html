@@ -158,7 +158,7 @@
 
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <center><div class="widget-title  am-cf">课程名称:<span>数据结构。</span>上课时间：<span>下午两天。</span><br>教师：<span>张效伟。</span>上课地点：<span>六教</span></div></center>
+                            <center><div class="widget-title  am-cf">课程名称:<span id="course_name">数据结构。</span>上课时间：<span id="course_time">下午两天。</span><br>教师：<span id="teacher_name">张效伟。</span>上课地点：<span id="location">六教</span></div></center>
                         </div>
                     </div>
 
@@ -173,8 +173,8 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button type="button" class="am-btn am-btn-default am-btn-success" id="leave"><span class="am-icon-plus" ></span>批改假条</button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save" id="inform"></span>发送通知</button>
-                                            <button type="button" class="am-btn am-btn-default am-btn-warning"><span class="am-icon-archive" id="select"></span>修改课程</button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-secondary" id="inform"><span class="am-icon-save" ></span>发送通知</button>
+                                            <button type="button" class="am-btn am-btn-default am-btn-warning" id="select"><span class="am-icon-archive"></span>修改课程</button>
                                             <button type="button" class="am-btn am-btn-default am-btn-danger"><span class="am-icon-trash-o" ></span>删除课程</button>
                                         </div>
                                     </div>
@@ -217,29 +217,29 @@
                                     <thead>
                                     <tr>
                                         <th>学生姓名</th>
-                                        <th>课程</th>
+
                                         <th>时间</th>
                                         <th>理由</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="gradeX">
-                                        <td>张童</td>
-                                        <td>数据结构</td>
-                                        <td>2016-09-26</td>
-                                        <td>肚子疼</td>
-                                        <td>
-                                            <div class="tpl-table-black-operation">
-                                                <a href="javascript:;">
-                                                    <i class="am-icon-pencil"></i> 编辑
-                                                </a>
-                                                <a href="javascript:;" class="tpl-table-black-operation-del">
-                                                    <i class="am-icon-trash"></i> 删除
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <tbody id="list_leave">
+                                    <!--<tr class="gradeX">-->
+                                        <!--<td>张童</td>-->
+                                        <!--<td>数据结构</td>-->
+                                        <!--<td>2016-09-26</td>-->
+                                        <!--<td>肚子疼</td>-->
+                                        <!--<td>-->
+                                            <!--<div class="tpl-table-black-operation">-->
+                                                <!--<a href="javascript:;">-->
+                                                    <!--<i class="am-icon-pencil"></i> 编辑-->
+                                                <!--</a>-->
+                                                <!--<a href="javascript:;" class="tpl-table-black-operation-del">-->
+                                                    <!--<i class="am-icon-trash"></i> 删除-->
+                                                <!--</a>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
 
                                     <!-- more data -->
                                     </tbody>
@@ -272,46 +272,17 @@
 
                             <form class="am-form tpl-form-border-form">
 
-                                <div class="am-form-group">
-                                    <h3>课程选择<sup class="am-text-danger">*</sup> （选择 1 项）</h3>
-                                    <label class="am-radio">
-                                        <input type="radio" name="cbx" value="ip" data-am-ucheck required
-                                               minchecked="1" maxchecked="1"> 信号与系统
-                                    </label>
-                                    <label class="am-radio">
-                                        <input type="radio" name="cbx" value="im" data-am-ucheck> 数据库
-                                    </label>
-                                    <label class="am-radio">
-                                        <input type="radio" name="cbx" value="mbp" data-am-ucheck>通信原理
-                                    </label>
-                                    <label class="am-radio">
-                                        <input type="radio" name="cbx" value="sf" data-am-ucheck>计算机网络
-                                    </label>
-                                </div>
-
-                                <!--<div class="am-form-group">-->
-                                <!--<label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">作者 <span class="tpl-form-line-small-title">Author</span></label>-->
-                                <!--<div class="am-u-sm-12  am-margin-top-xs">-->
-                                <!--<select data-am-selected="{searchBox: 1}" style="display: none;">-->
-                                <!--<option value="a">-The.CC</option>-->
-                                <!--<option value="b">夕风色</option>-->
-                                <!--<option value="o">Orange</option>-->
-                                <!--</select>-->
-
-                                <!--</div>-->
-                                <!--</div>-->
-
 
                                 <div class="am-form-group">
                                     <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">通知内容</label>
                                     <div class="am-u-sm-12 am-margin-top-xs">
-                                        <textarea class="" rows="10" id="user-intro" placeholder="请输入通知内容"></textarea>
+                                        <textarea class="" rows="10" id="form_send_detigal" placeholder="请输入通知内容"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-12 am-u-sm-push-12">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success " id="form_send">提交</button>
                                     </div>
                                 </div>
                             </form>

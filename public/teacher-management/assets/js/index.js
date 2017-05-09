@@ -26,27 +26,30 @@ $(document).ready(function () {
             alert("current_week_time.message:"+current_week_time.message);
             return;
         }
-        $.get("../api/profile/coursetimes", function (data, status) {
-            if (data && data.code != 2207) {
-                alert("data.message"+data.message);
+        $.get("../api/teacher-management/coursetimes", function (data, status) {
+            if (data && data.code != 3017) {
+                //alert("data.message"+data.message);
                 return;
             }
+            alert(data.message);
+            console.log(data.body);
             courses = data.body;
             var to_weekday = (current_week_time.body.weekday == 0) ? 7 : (current_week_time.body.weekday);
             var to_week = current_week_time.body.week;
             var to_term = current_week_time.body.term;
             choose_term = to_term;
             choose_week = to_week;
-            $(" select option[value='"+to_week+"']").attr("select","selected");
             reCourse(choose_term, choose_week);
+
             $(".course").click(function () {
-                window.location.href = "form.html"+"?course="+this.attr("id");
+                window.location.href = "form.html"+"?course="+$(this).attr("id");
             })
         });
     });
 
 });
 
+// $("#selted option[value='"+msg.data.categoryId+"']").attr("selected","selected");
 //创建课程浮层
 function addCourse(day, col, num, course, color, teacher, id) {
     var today = new Date();
@@ -98,7 +101,7 @@ function addCourse(day, col, num, course, color, teacher, id) {
             "position": "absolute",
             'left': left,
             "font-size": "1px",
-            'top': $("#1td").offset().top + 2 + ($("#1td").height() + 7.5) * (col - 1) + 'px'
+            'top': $("#1td").offset().top -110 + ($("#1td").height() + 7.7) * (col - 1) + 'px'
         });
         if (col == 1) {
             oDiv.css("top", $("#1td").offset().top + ($("#1td").height() + 7.5) * (col - 1) + 'px')
@@ -141,6 +144,15 @@ function isPC() {
     return flag;
 }
 
+// 点击菜单选项
+$("#selected").on("change", function () {
+    var $aDiv = $("#div1");
+    $aDiv.html('');  //id = div1 将aDiv用空白覆盖
+    choose_week = parseInt($("option:selected", this).val());
+    reCourse(choose_term, choose_week);
+});
+
+
 
 //动态调整课程框宽度
 $(window).resize(function () {
@@ -151,6 +163,7 @@ $(window).resize(function () {
 
 // 画课
 function reCourse(term, week) {
+
     //定义颜色
     var colorArr1 = ['rgb(255,125,84)', 'rgb(0,143,209)', 'rgb(255, 177,54)', 'rgb(245,72,130)', 'rgb(255,75,90)', 'rgb(180,89,212)', 'rgb(0,179,190)', 'rgb(44,110,213)', 'rgb(0,173,95)', 'rgb(255,131,0)', 'rgb(241,70,78)', 'rgb(196,65,163)', 'rgb(255,195,56)', 'rgb(222,48,119)', 'rgb(254,91,94)', 'rgb(128,88,189)', 'rgb(66,114,215)', 'rgb(0,181,233)', 'rgb(0,178,111)', 'rgb(87,184,70)', 'rgb(255,224,72)', 'rgb(255,137,47)', 'rgb(255,95,61)', 'rgb(228,93,39)', 'rgb(255,169,48)', 'rgb(255,115,133)', 'rgb(118, 190,172)', 'rgb(147, 206, 97)', 'rgb(217,144,181)', 'rgb(97, 189, 230)', 'rgb(238, 196, 115)', 'rgb(138, 216, 162)', 'rgb(202, 165, 158)', 'rgb(222, 196, 145)', 'rgb(97, 189, 230)', 'rgb(134, 167, 234)', 'rgb(165, 156, 219)', 'rgb(118, 190,172)', 'rgb(147, 206, 97)', 'rgb(217,144,181)', 'rgb(97, 189, 230)', 'rgb(238, 196, 115)', 'rgb(138, 216, 162)', 'rgb(202, 165, 158)', 'rgb(145, 180, 215)', 'rgb(222, 196, 145)'];
     var colorNum = 0;
