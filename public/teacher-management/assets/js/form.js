@@ -60,6 +60,9 @@ $(document).ready(function () {
         $.post("/api/teacher-management/courses/"+course_id+"/attends-check",{},function (data) {
             $('#sign_picture').html('');
             $('#sign_picture').qrcode(data.body.content);
+            $("#download").click(function () {
+                $.get("../api/teacher-management/course/"+course_id+"/attends-check/"+data.body.content)
+            })
             //alert(data.body.content);
         })
     });
