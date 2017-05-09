@@ -37,7 +37,7 @@ api.sendNoticeTemplate = (notice, openid, sender) => {
   // 内容：{{keyword2.DATA}}
   // 来自：{{keyword3.DATA}}                       
   // {{remark.DATA}}
-  const url = 'http://courseclouds.zhmoll.com/user-center/inbox.html?noticeid=' + notice.id;
+  const url = 'http://courseclouds.zhmoll.com/user-center/notice.html?noticeid=' + notice.id;
   const data = {
     "first": {
       "value": "你收到了一条新消息",
@@ -63,6 +63,7 @@ api.sendNoticeTemplate = (notice, openid, sender) => {
   return api.sendTemplate('ox9xPt0eMSkEGZ_M0qQ8oADBCeF8', templateId, url, data, (err, result) => {
     if (err)
       return console.error(err);
+    console.log(result);
   });
 }
 

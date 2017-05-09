@@ -15,6 +15,26 @@ const querystring = require('querystring');
 const { ResponseError, Response } = require('../lib/response');
 const _ = require('lodash');
 
+// 教师查询自己上的课程
+// get /api/teacher-management/courses
+router.get('/courses',
+  mw.authority.check(10),
+  function (req, res, next) {
+    const teacherid = req.session.userid;
+    Course
+      .find({ teachers: { $all: [teacherid] }, deleted: false })
+      .populate({
+        path: 'teachers',
+        match: { deleted: false },
+        select: config.select.simple_teacher_info
+      })
+      .exec((err, courses) => {
+        if (err) return next(err)
+        res.json(new Response(3018, '教师获得教授课程成功', courses));
+      });
+  }
+);
+
 // 教师添加课程（完成）
 // post /api/teacher-management/courses
 router.post('/courses',
