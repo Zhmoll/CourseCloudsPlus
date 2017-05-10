@@ -35,6 +35,9 @@ window.onload = function () {
             element += '<li class="ui-border-t">内容：</li>';
             element += '<li class="ui-border-t">' + content + '</li>';
             var course = data.body.notice.course;
+            var from_name = data.body.notice.from.nickname;
+            var from_id = data.body.notice.from.id;
+            var from_avatar = data.body.notice.from.avatar;
             if (course) {
                 // 如果信件是由教师群发的
                 for (var i = 0; i < course.teachers.length; i++) {
@@ -44,10 +47,6 @@ window.onload = function () {
                     + data.body.notice.course.id + '">' + data.body.notice.course.cid + ' - '
                     + data.body.notice.course.name + '</a></span></li>';
             }
-            var from_name = data.body.notice.from.nickname;
-            var from_id = data.body.notice.from.id;
-            var from_avatar = data.body.notice.from.avatar;
-
             element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid='
                 + from_id + '">' + from_name + '</a></span></li>';
             element += '</ul>';
