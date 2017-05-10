@@ -28,6 +28,7 @@ router.get('/addcourse.html', checkLogin);
 router.get('/addcoursedetail.html', checkLogin);
 router.get('/calendar.html', checkLogin);
 router.get('/chart.html', checkLogin);
+router.get('/coursedetail.html', checkLogin);
 router.get('/form.html', checkLogin);
 router.get('/index.html', checkLogin);
 router.get('/leave.html', checkLogin);

@@ -28,7 +28,7 @@ window.onload = function () {
             element += '<li class="ui-border-t">标题：' + title + '</li>';
             element += '<li class="ui-border-t">时间：' + time + '</li>';
             element += '<li class="ui-border-t">内容：</li>';
-            element += '<li class="ui-border-t">' + content + '</li>';
+            element += '<li class="ui-border-t"><p>' + content + '</p></li>';
             var course = data.body.notice.course;
             var from_name = data.body.notice.from.nickname;
             var from_id = data.body.notice.from.id;
