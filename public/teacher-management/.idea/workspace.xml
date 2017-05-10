@@ -83,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addcourse.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="addcourse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/addcourse.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
@@ -93,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addcoursedetail.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addcoursedetail.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/addcoursedetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="41" column="211" lean-forward="true" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="211" />
+            <state relative-caret-position="130">
+              <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -202,8 +202,8 @@
         <option value="$PROJECT_DIR$/user.html" />
         <option value="$PROJECT_DIR$/addcoursedetail.html" />
         <option value="$PROJECT_DIR$/addcourse.html" />
-        <option value="$PROJECT_DIR$/assets/js/addcoursedetail.js" />
         <option value="$PROJECT_DIR$/assets/js/addcourse.js" />
+        <option value="$PROJECT_DIR$/assets/js/addcoursedetail.js" />
       </list>
     </option>
   </component>
@@ -396,15 +396,15 @@
       <workItem from="1494323131804" duration="4123000" />
       <workItem from="1494346049463" duration="1149000" />
       <workItem from="1494382994314" duration="4520000" />
-      <workItem from="1494387625803" duration="845000" />
+      <workItem from="1494387625803" duration="1064000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81916000" />
+    <option name="totallyTimeSpent" value="82135000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="754" extended-state="1" />
+    <frame x="-8" y="-8" width="1378" height="754" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17388059" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -755,14 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/addcoursedetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="41" column="211" lean-forward="true" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="211" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/addcoursedetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="517">
@@ -778,6 +770,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="23" column="88" lean-forward="false" selection-start-line="23" selection-start-column="88" selection-end-line="23" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/addcoursedetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
           <folding />
         </state>
       </provider>
