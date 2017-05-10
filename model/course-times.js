@@ -15,7 +15,7 @@ const schema = {
   rows: [{ type: Number }],       // 1,2,3,……,12 分别代表第一、第二……第十二节课
 
   remark: { type: String },       // 备注
-  createdAt: { type: Date, default: new Date() },
+  createdAt: { type: Date, default: Date.now },
   deleted: { type: Boolean, default: false }
 };
 
