@@ -8,7 +8,7 @@ window.onload = function () {
     $("#name").text(localStorage.name);
     $("#title_imagine").attr("src",localStorage.profile);
     var userid = getQueryString('userid');
-    $.get("..//api/users/"+userid,function (data) {
+    $.get("../api/users/"+userid,function (data) {
         console.log(data.body);
     })
 };
