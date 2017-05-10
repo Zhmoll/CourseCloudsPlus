@@ -17,6 +17,7 @@ window.onload = function () {
             return;
         }
         for (i = 0; i < data.body.length; i++) {
+            console.log(data.body[i]);
             var noticeid = data.body[i]._id;
             var date = data.body[i].createdAt;
             var title = data.body[i].title;

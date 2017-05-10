@@ -50,8 +50,8 @@
       <file leaf-file-name="receivemessage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/receivemessage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+            <state relative-caret-position="297">
+              <caret line="28" column="80" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -60,10 +60,10 @@
       <file leaf-file-name="receivemessage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="33" column="30" lean-forward="false" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="396">
+              <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
               <folding>
-                <marker date="1494382272833" expanded="false" signature="3620:6546" ph="//..." />
+                <marker date="1494382378613" expanded="false" signature="3659:6585" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -210,8 +210,8 @@
         <option value="$PROJECT_DIR$/profile.html" />
         <option value="$PROJECT_DIR$/assets/js/index.js" />
         <option value="$PROJECT_DIR$/sendmessage.html" />
-        <option value="$PROJECT_DIR$/assets/js/receivemessage.js" />
         <option value="$PROJECT_DIR$/receivemessage.html" />
+        <option value="$PROJECT_DIR$/assets/js/receivemessage.js" />
       </list>
     </option>
   </component>
@@ -420,12 +420,12 @@
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
       <workItem from="1494347245712" duration="1625000" />
-      <workItem from="1494375140216" duration="7079000" />
+      <workItem from="1494375140216" duration="7185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248006000" />
+    <option name="totallyTimeSpent" value="248112000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -790,18 +790,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="33" column="30" lean-forward="false" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        <state relative-caret-position="396">
+          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
           <folding>
-            <marker date="1494382272833" expanded="false" signature="3620:6546" ph="//..." />
+            <marker date="1494382378613" expanded="false" signature="3659:6585" ph="//..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/receivemessage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+        <state relative-caret-position="297">
+          <caret line="28" column="80" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="80" />
           <folding />
         </state>
       </provider>
