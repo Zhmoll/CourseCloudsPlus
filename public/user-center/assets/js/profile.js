@@ -15,10 +15,46 @@ window.onload = function () {
         }
         console.log(data.body);
         $("#title_imagine").attr("src",data.body.avatar);
-        $("#username").text(data.body.name);
-        $("#nickname").text(data.body.nickname);
-        $("#school").text(data.body.school);
-        $("#uid").text(data.body.uid);
-        $("#university").text(data.body.university);
+        if(data.body.name!='')
+        {
+            $("#username").text(data.body.name);
+        }
+        else {
+            $("#username").text("未公开");
+        }
+        if(data.body.name!='')
+        {
+            $("#nickname").text(data.body.nickname);
+
+        }
+        else {
+            $("#nickname").text("未公开");
+        }
+        if(data.body.name!='')
+        {
+            $("#school").text(data.body.school);
+
+        }
+        else {
+            $("#school").text("未公开");
+        }
+        if(data.body.name!='')
+        {
+            $("#uid").text(data.body.uid);
+
+        }
+        else {
+            $("#uid").text("未公开");
+        }
+        if(data.body.name!='')
+        {
+            $("#university").text(data.body.university);
+        }
+        else {
+            $("#university").text("未公开");
+        }
+
+
+
     })
 };
