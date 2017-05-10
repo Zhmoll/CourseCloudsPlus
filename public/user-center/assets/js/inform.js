@@ -95,7 +95,7 @@ window.onload = function () {
             var title = notice.title;
             var sender_name = notice.from.name;
             var sender_id = notice.from._id;
-            $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?=noticeid=' + noticeid + '"><span class="date">' + title + '</span></a></p> <p><span>来自：</span><a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid=' + senderid + '"><span class="date">' + teacher + '</span></a></p><p><span>时间：</span><span class="date">' + time + '</span></p></li>')
+            $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?=noticeid=' + noticeid + '"><span class="date">' + title + '</span></a></p> <p><span>来自：</span><a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid=' + sender_id + '"><span class="date">' + sender_name + '</span></a></p><p><span>时间：</span><span class="date">' + time + '</span></p></li>')
         });
     });
     // 获取假条反馈
