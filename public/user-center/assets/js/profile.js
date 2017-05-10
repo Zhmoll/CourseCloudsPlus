@@ -8,53 +8,55 @@ window.onload = function () {
     $("#name").text(localStorage.name);
     // $("#title_imagine").attr("src",localStorage.profile);
     var userid = getQueryString('userid');
-    $.get("../api/users/"+userid,function (data) {
-        if(data.code!=2100){
+    $.get("../api/users/" + userid, function (data) {
+        if (data.code != 2100) {
             alert(data.message);
             return
         }
         console.log(data.body);
-        $("#title_imagine").attr("src",data.body.avatar);
-        if(data.body.name==''||typeof data.body.name==undefined)
-        {
-            $("#username").text("未公开");
-
-        }
-        else {
+        $("#title_imagine").attr("src", data.body.avatar);
+        if (data.body && data.body.name) {
             $("#username").text(data.body.name);
         }
-        if(data.body.nickname==''||typeof data.body.nickname==undefined)
-        {
-
-            $("#nickname").text("未公开");
-        }
         else {
+            $("#username").text("未公开");
+        }
+
+        if (data.body && data.body.nickname) {
             $("#nickname").text(data.body.nickname);
         }
-        if(data.body.school==''||typeof data.body.school==undefined)
-        {
-
-            $("#school").text("未公开");
-        }
         else {
+            $("#nickname").text("未公开");
+        }
+
+        if (data.body && data.body.school) {
             $("#school").text(data.body.school);
         }
-        if(data.body.uid==''||typeof data.body.uid==undefined)
-        {
-
-            $("#uid").text("未公开");
-        }
         else {
+            $("#school").text("未公开");
+        }
+
+        if (data.body && data.body.uid) {
             $("#uid").text(data.body.uid);
         }
-        if(data.body.university==''||typeof data.body.university==undefined)
-        {
-
-            $("#university").text("未公开");
-        }
         else {
+            $("#uid").text("未公开");
+        }
+
+        if (data.body && data.body.university) {
             $("#university").text(data.body.university);
         }
+        else {
+            $("#university").text("未公开");
+        }
+
+        if (data.body && data.body.description) {
+            $("#description").text(data.body.description);
+        }
+        else {
+            $("#description").text("未公开");
+        }
+
 
 
 
