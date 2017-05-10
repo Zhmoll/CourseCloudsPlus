@@ -71,6 +71,7 @@ NoticeSchema.statics.findByCourseid = function (courseid, callback) {
   return this
     .find({ course: courseid, deleted: false })
     .select('-deleted -content -course')
+    .sort('-id')
     .populate({
       path: 'from',
       match: { deleted: false },
