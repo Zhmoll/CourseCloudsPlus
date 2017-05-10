@@ -22,7 +22,7 @@ window.onload = function () {
         else {
             $("#username").text("未公开");
         }
-        if(data.body.name!='')
+        if(data.body.nickname!='')
         {
             $("#nickname").text(data.body.nickname);
 
@@ -30,7 +30,7 @@ window.onload = function () {
         else {
             $("#nickname").text("未公开");
         }
-        if(data.body.name!='')
+        if(data.body.school!='')
         {
             $("#school").text(data.body.school);
 
@@ -38,7 +38,7 @@ window.onload = function () {
         else {
             $("#school").text("未公开");
         }
-        if(data.body.name!='')
+        if(data.body.uid!='')
         {
             $("#uid").text(data.body.uid);
 
@@ -46,7 +46,7 @@ window.onload = function () {
         else {
             $("#uid").text("未公开");
         }
-        if(data.body.name!='')
+        if(data.body.university!='')
         {
             $("#university").text(data.body.university);
         }
