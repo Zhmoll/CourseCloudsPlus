@@ -57,14 +57,15 @@ $(document).ready(function () {
         })
     });
     $("#sign").click(function () {
+        var content1
         $.post("/api/teacher-management/courses/" + course_id + "/attends-check", {}, function (data) {
             $('#sign_picture').html('');
             $('#sign_picture').qrcode(data.body.content);
-            $("#download").click(function () {
-                $.get("../api/teacher-management/course/" + course_id + "/attends-check/" + data.body.content)
-            })
+            content1=data.body.content;
+
             //alert(data.body.content);
         })
+        $.get("../api/teacher-management/course/" + course_id + "/attends-check/" + content1);
     });
 
     $.get("../api/courses/" + course_id, function (data1) {
