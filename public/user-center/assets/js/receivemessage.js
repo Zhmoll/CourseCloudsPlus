@@ -53,7 +53,7 @@ window.onload = function () {
     else {
         // 显示收件箱
         $.get("../api/notices/inbox", function (data) {
-            if (data1.code != 2305) {
+            if (data.code != 2305) {
                 $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "无消息" + "</h4></li></ul>");
                 $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                 alert(data1.message);
@@ -66,7 +66,7 @@ window.onload = function () {
                 var item = '<li class="ui-border-t">';
                 var title = notice.title;
                 var time = moment(notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
-                item += '<span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?noticeid=' + notice.id + '">标题：' + title + '</a></span><br />';
+                item += '<span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?noticeid=' + notice._id + '">标题：' + title + '</a></span><br />';
                 item += '<span>时间：' + time + '</span><br />';
                 var course = notice.course;
                 var from_name = notice.from.nickname;
