@@ -42,7 +42,6 @@ window.onload=function () {
             $.post("../api/teacher-management/courses/"+courseid+"/course-times",[{"location":$("#course-location").val()},{"term":$("#term").val()},{"week":week},{"weekday":weekday},{"rows":rows},{"remark":''}],function (data) {
                 if(data.code==3005){
                     alert(data.message);
-                    localStorage.courseid='';
                     window.location.href="index.html";
                 }
                 else alert(data.message);
