@@ -39,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="275">
-              <caret line="102" column="9" lean-forward="false" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
+              <caret line="99" column="7" lean-forward="true" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
               </folding>
@@ -60,10 +60,10 @@
       <file leaf-file-name="receivemessage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+            <state relative-caret-position="462">
+              <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
               <folding>
-                <marker date="1494382665995" expanded="false" signature="3689:6615" ph="//..." />
+                <marker date="1494382780357" expanded="false" signature="3692:6618" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -420,12 +420,12 @@
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
       <workItem from="1494347245712" duration="1625000" />
-      <workItem from="1494375140216" duration="7477000" />
+      <workItem from="1494375140216" duration="7589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248404000" />
+    <option name="totallyTimeSpent" value="248516000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -765,7 +765,7 @@
     <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
-          <caret line="102" column="9" lean-forward="false" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
+          <caret line="99" column="7" lean-forward="true" selection-start-line="99" selection-start-column="7" selection-end-line="99" selection-end-column="7" />
           <folding>
             <element signature="n#!!block;n#getQueryString#0" expanded="false" />
           </folding>
@@ -798,10 +798,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+        <state relative-caret-position="462">
+          <caret line="30" column="6" lean-forward="true" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
           <folding>
-            <marker date="1494382665995" expanded="false" signature="3689:6615" ph="//..." />
+            <marker date="1494382780357" expanded="false" signature="3692:6618" ph="//..." />
           </folding>
         </state>
       </provider>
