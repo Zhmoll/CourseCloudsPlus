@@ -37,9 +37,9 @@ window.onload=function () {
             for (i=0;i<strs.length ;i++ )
             {
                 rows[i]=parseInt(strs[i]); //分割后的字符输出
-                alert(typeof rows[i]);
+                //alert(typeof rows[i]);
             }
-            $.post("http://courseclouds.zhmoll.com/api/teacher-management/courses/"+courseid+"/course-times",{"location":$("#course-location").val(),"term":$("#term").val(),"week":week,"weekday":weekday,"rows":rows,"remark":''},function (data) {
+            $.post("../api/teacher-management/courses/"+courseid+"/course-times",{"location":$("#course-location").val(),"term":$("#term").val(),"week":week,"weekday":weekday,"rows":rows,"remark":''},function (data) {
                 if(data.code==3005){
                     alert(data.message);
                     localStorage.courseid='';
