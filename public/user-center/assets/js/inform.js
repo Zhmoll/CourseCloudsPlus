@@ -88,19 +88,15 @@ window.onload = function () {
             console.log(data);
             return;
         }
-
-        for (i = 0; i < data.body.length; i++) {
-            // console.log(data.body[i]);
-            var noticeid = data.body[i]._id;
-            var date = data.body[i].createdAt;
-            var title = data.body[i].title;
-            var teacher = data.body[i].from.name;
-            $.get("../api/notices/inbox/" + noticeid, function (data1) {
-                console.log(data1.body);
-                var content = data1.body.notice.content;
-                $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><span class="date">' + title + '</span></p> <p><span>发送教师：</span><span class="date">' + teacher + '</span></p> <p><span>发送时间：</span><span class="date">' + date + '</span></p> <p><span>内容：</span><span class="date">' + content + '</span></p> </li>')
-            })
-        }
+        var notices = data.body;
+        notices.forEach(function (notice) {
+            var noticeid = notice._id;
+            var time = moment(notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
+            var title = notice.title;
+            var sender_name = notice.from.name;
+            var sender_id = notice.from._id;
+            $("#coursemessage").append('<li class="ui-border-t"><p><span>标题：</span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?=noticeid=' + noticeid + '"><span class="date">' + title + '</span></a></p> <p><span>来自：</span><a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid=' + senderid + '"><span class="date">' + teacher + '</span></a></p><p><span>时间：</span><span class="date">' + time + '</span></p></li>')
+        });
     });
     // 获取假条反馈
     $.get("../api/courses/" + courseid + "/askforleave", function (data) {
