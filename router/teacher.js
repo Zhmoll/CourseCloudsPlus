@@ -42,8 +42,8 @@ router.post('/courses',
   mw.authority.check(10),
   function (req, res, next) {
     const teacherid = req.session.userid;
-    const data = _.pick(req.body, ['cid', 'name', 'intros', 'teachers']);
-
+    const data = _.pick(req.body, ['cid', 'name', 'intros']);
+    data.teachers = [teacherid];
     Course.create(data, (err, course) => {
       if (err) return next(err);
       return res.json(new Response(3001, '成功创建课程', course));

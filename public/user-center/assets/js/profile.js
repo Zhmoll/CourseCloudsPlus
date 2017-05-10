@@ -8,12 +8,13 @@ window.onload = function () {
     $("#name").text(localStorage.name);
     // $("#title_imagine").attr("src",localStorage.profile);
     var userid = getQueryString('userid');
-    if (userid != localStorage.userid) {
+    if (userid && userid != localStorage.userid) {
         $.get("../api/users/" + userid, function (data) {
             if (data.code != 2100) {
                 alert(data.message);
                 return
             }
+            window.title = data.body.nickname;
             $("#title_imagine").attr("src", data.body.avatar);
 
             if (data.body.name) $("#username").text(data.body.name);
