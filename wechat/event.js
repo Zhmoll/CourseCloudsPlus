@@ -200,7 +200,7 @@ function key_user_inbox(message, req, res, next) {
           '\n' + `来自：${name}` +
           '\n' + `课堂：${relation.notice.course.name}` +
           '\n' + `时间：${sendtime}`,
-          url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
+          url: 'http://courseclouds.zhmoll.com/user-center/receivemessage.html?noticeid=' + relation.notice.id
         });
       }
       else {
@@ -209,7 +209,7 @@ function key_user_inbox(message, req, res, next) {
           title: `标题：${relation.notice.title}` +
           '\n' + `来自：${relation.notice.from.nickname}` +
           '\n' + `时间：${sendtime}`,
-          url: 'http://courseclouds.zhmoll.com/user-center/inbox?noticeid=' + relation.notice.id
+          url: 'http://courseclouds.zhmoll.com/user-center/receivemessage.html?noticeid=' + relation.notice.id
         });
       }
     });

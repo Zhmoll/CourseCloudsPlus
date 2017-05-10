@@ -1,5 +1,12 @@
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return null;
+}
+
 window.onload = function () {
-    if (typeof(localStorage.signin) == "undefined") {
+    if (typeof (localStorage.signin) == "undefined") {
         window.location.href = "register.html";
     }
     else {
@@ -7,38 +14,60 @@ window.onload = function () {
             window.location.href = "register.html";
         }
     }
-    if (localStorage.signin) {
-        $("#name").text(localStorage.name);
+    var noticeid = getQueryString('noticeid');
+    if (noticeid) {
+        // 显示单个信件
+        $.get('../api/notices/inbox/' + noticeid, function (data) {
+            if (data.code != 2301) {
+                $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "找不到该消息" + "</h4></li></ul>");
+                $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+                alert(data1.message);
+                return;
+            }
+            var element = '<ul class="ul1" id="ul2">';
+
+            var title = data.body.notice.title;
+            var content = data.body.notice.content;
+            var time = moment(data.body.notice.createdAt).format('LLL');
+
+            element += '<li class="ui-border-t">标题：' + title + '</li>';
+            element += '<li class="ui-border-t">时间：' + time + '</li>';
+            element += '<li class="ui-border-t">内容：</li>';
+            element += '<li class="ui-border-t">' + content + '</li>';
+            var course = data.body.notice.course;
+            if (course) {
+                // 如果信件是由教师群发的
+                for (var i = 0; i < course.teachers.length; i++) {
+                    if (course.teachers[i].id == from_id) from_name = course.teachers[i].name;
+                }
+                element += '<li class="ui-border-t"><span>课程：<a href="http://courseclouds.zhmoll.com/user-center/inform.html?courseid='
+                    + data.body.notice.course.id + '">' + data.body.notice.course.cid + ' - '
+                    + data.body.notice.course.name + '</a></span></li>';
+            }
+            var from_name = data.body.from.nickname;
+            var from_id = data.body.from.id;
+            var from_avatar = data.body.from.avatar;
+
+            element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid=?"'
+                + from_id + '">' + from_name + '</a></span></li>';
+            element += '</ul>';
+            $("#div1").append(element);
+            $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
+        });
     }
     else {
-        $("#name").text('');
-    }
-    //发件箱
-    $.get("http://courseclouds.zhmoll.com/api/notices/inbox", function (data1) {
-            if (data1.code == 2305) {
-                alert(data1.message);
-                for (i = 0; i < data1.body.length; i++) {
-                    id = data1.body[i].notice.id;
-                    $.get("http://courseclouds.zhmoll.com/api/notices/inbox/" + id, function (data2) {
-                        name = data2.body.notice.course.name;
-                        content = data2.body.notice.content;
-                        from = data2.body.from.nickname;
-                        $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "课程名：" + name + "。" + "</span><span class=" + "date>" + "发件人：" + from + "</span></p><h4>" + "消息：" + content + "</h4></li></ul>");
-                        $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
-                    })
-
-                }
-            }
-            else {
+        // 显示收件箱
+        $.get("../api/notices/inbox", function (data1) {
+            if (data1.code != 2305) {
                 $("#div1").append("<ul class=" + "ul1" + " id='ul2'" + "> <li class=" + "ui-border-t " + "id=" + "li1" + "> <p><span>" + "</span><span class=" + "date>" + "</span></p><h4>" + "无消息" + "</h4></li></ul>");
                 $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                 alert(data1.message);
-
+                return;
             }
 
-        }
-    )
+        });
+    }
     $(".ul1").css({
         "margin-bottom": 0 + "px"
-    })
+    });
 };
