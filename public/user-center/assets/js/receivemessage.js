@@ -48,7 +48,7 @@ window.onload = function () {
             var from_id = data.body.notice.from.id;
             var from_avatar = data.body.notice.from.avatar;
 
-            element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid=?"'
+            element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid='
                 + from_id + '">' + from_name + '</a></span></li>';
             element += '</ul>';
             $("#div1").append(element);
