@@ -18,12 +18,12 @@ window.onload = function () {
         }
         for (i = 0; i < data.body.length; i++) {
             console.log(data.body[i]);
-            var noticeid = data.body[i]._id;
-            var date = data.body[i].createdAt;
-            var title = data.body[i].title;
-            var teacher = data.body[i].from.name;
+            var noticeid = data.body[i].notice._id;
+            var date = data.body[i].notice.createdAt;
+            var title = data.body[i].notice.title;
+            var teacher = data.body[i].notice.from.name;
             $.get("../api/notices/inbox/" + noticeid, function (data1) {
-                console.log(data1.body);
+                //console.log(data1.body);
                 var content = data1.body.notice.content;
                 $("#receivemessage").append('<li class="ui-border-t"><p><span>标题：</span><span class="date">' + title + '</span></p> <p><span>发送教师：</span><span class="date">' + teacher + '</span></p> <p><span>发送时间：</span><span class="date">' + date + '</span></p> <p><span>内容：</span><span class="date">' + content + '</span></p> </li>')
             })

@@ -47,23 +47,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receivemessage.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="receivemessage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/receivemessage.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
-              <caret line="28" column="80" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="80" />
+              <caret line="28" column="82" lean-forward="true" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="receivemessage.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="receivemessage.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="220">
+              <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
               <folding>
-                <marker date="1494382378613" expanded="false" signature="3659:6585" ph="//..." />
+                <marker date="1494382665995" expanded="false" signature="3689:6615" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -420,12 +420,12 @@
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
       <workItem from="1494347245712" duration="1625000" />
-      <workItem from="1494375140216" duration="7185000" />
+      <workItem from="1494375140216" duration="7477000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248112000" />
+    <option name="totallyTimeSpent" value="248404000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -788,21 +788,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-          <folding>
-            <marker date="1494382378613" expanded="false" signature="3659:6585" ph="//..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/receivemessage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
-          <caret line="28" column="80" lean-forward="false" selection-start-line="28" selection-start-column="66" selection-end-line="28" selection-end-column="80" />
+          <caret line="28" column="82" lean-forward="true" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/receivemessage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="21" column="53" lean-forward="true" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+          <folding>
+            <marker date="1494382665995" expanded="false" signature="3689:6615" ph="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
