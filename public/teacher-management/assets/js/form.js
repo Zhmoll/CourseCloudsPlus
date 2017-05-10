@@ -98,18 +98,18 @@ $(document).ready(function () {
                 if (data1.body[i].responsed) {
                     if (data1.body[i].allow) {
                         var responsed = "已同意"
-                        $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
+                        $("#list_leave").append("<tr class=" + "gradeX" + "> <a href="+"user.js?userid="+data1.body[i].user+"><td class=" + "am-text-middle" + ">" + name + "</td></a><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
                         $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                     }
                     else {
                         var responsed = "已拒绝";
-                        $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
+                        $("#list_leave").append("<tr class=" + "gradeX" + "> <a href="+"user.js?userid="+data1.body[i].user+"><td class=" + "am-text-middle" + ">" + name + "</td></a><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + ">" + responsed + "</td> </tr>");
                         $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                     }
                 }
 
                 else {
-                    $('#list_leave').append('<tr class="gradeX"><td class="am-text-middle">' + name + '</td><td class="am-text-middle">' + data + '</td> <td class="am-text-middle">' + reason + '</td> <td class="am-text-middle"> <div class="tpl-table-black-operation" id="' + id + '"> <a class="yes" mycourse="' + id + '"> <i class="am-icon-pencil">' + '</i> 同意 </a><a class="no tpl-table-black-operation-del" mycourse="' + id + '" > <i class="am-icon-trash"></i> 拒绝 </a> </div> </td> </tr>');
+                    $('#list_leave').append('<tr class="gradeX"><a href='+"user.js?userid="+data1.body[i].user+"><td class=" + "am-text-middle" + ">" + name + "</td></a><td class="+"am-text-middle"+'>' + data + '</td> <td class="am-text-middle">' + reason + '</td> <td class="am-text-middle"> <div class="tpl-table-black-operation" id="' + id + '"> <a class="yes" mycourse="' + id + '"> <i class="am-icon-pencil">' + '</i> 同意 </a><a class="no tpl-table-black-operation-del" mycourse="' + id + '" > <i class="am-icon-trash"></i> 拒绝 </a> </div> </td> </tr>');
                     // $("#list_leave").append("<tr class=" + "gradeX" + "> <td class=" + "am-text-middle" + ">" + name + "</td><td class=" + "am-text-middle" + ">" + data + "</td> <td class=" + "am-text-middle" + ">" + reason + "</td>  <td class=" + "am-text-middle" + "> <div class=" + "tpl-table-black-operation"  + "> <a " + "class=''"+"> <i class=" + "am-icon-pencil"+" yes" + " value=" + id + "></i> 同意 </a> <a " +"class=''"+ "class=" + "no tpl-table-black-operation-del" + "> <i class=" + "am-icon-trash" + " value=" + id + "></i> 拒绝 </a> </div> </td> </tr>");
                     $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
                 }

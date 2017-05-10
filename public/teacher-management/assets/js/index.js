@@ -9,6 +9,9 @@ $(document).ready(function () {
     $(".course").click(function () {
         window.location.href = "form.html"+"?course="+$(this).attr("id");
     })
+    $("#user").click(function () {
+        window.location.href="user.html?userid="+localStorage.id;
+    })
     $("#name").text(localStorage.name);
     $("#profile").attr("src", localStorage.profile);
     $("#loginout").click(function () {
