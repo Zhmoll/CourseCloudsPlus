@@ -37,17 +37,17 @@
       <file leaf-file-name="inform.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+            <state relative-caret-position="418">
+              <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-                <element signature="e#4270#4923#0" expanded="false" />
-                <element signature="e#6296#6764#0" expanded="false" />
-                <marker date="1494378853361" expanded="true" signature="2255:2266" ph="..." />
-                <marker date="1494378853361" expanded="true" signature="5634:5641" ph="..." />
-                <marker date="1494378853361" expanded="true" signature="5634:5646" ph="..." />
-                <marker date="1494378853361" expanded="true" signature="6213:6223" ph="..." />
-                <marker date="1494378853361" expanded="true" signature="6717:6727" ph="..." />
+                <element signature="e#4290#4943#0" expanded="false" />
+                <element signature="e#6316#6784#0" expanded="false" />
+                <marker date="1494378957753" expanded="true" signature="2275:2286" ph="..." />
+                <marker date="1494378957753" expanded="true" signature="5654:5661" ph="..." />
+                <marker date="1494378957753" expanded="true" signature="5654:5666" ph="..." />
+                <marker date="1494378957753" expanded="true" signature="6233:6243" ph="..." />
+                <marker date="1494378957753" expanded="true" signature="6737:6747" ph="..." />
               </folding>
             </state>
           </provider>
@@ -379,12 +379,12 @@
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
       <workItem from="1494347245712" duration="1625000" />
-      <workItem from="1494375140216" duration="3692000" />
+      <workItem from="1494375140216" duration="3838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244619000" />
+    <option name="totallyTimeSpent" value="244765000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -738,17 +738,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="24" column="44" lean-forward="true" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        <state relative-caret-position="418">
+          <caret line="24" column="12" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
           <folding>
             <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-            <element signature="e#4270#4923#0" expanded="false" />
-            <element signature="e#6296#6764#0" expanded="false" />
-            <marker date="1494378853361" expanded="true" signature="2255:2266" ph="..." />
-            <marker date="1494378853361" expanded="true" signature="5634:5641" ph="..." />
-            <marker date="1494378853361" expanded="true" signature="5634:5646" ph="..." />
-            <marker date="1494378853361" expanded="true" signature="6213:6223" ph="..." />
-            <marker date="1494378853361" expanded="true" signature="6717:6727" ph="..." />
+            <element signature="e#4290#4943#0" expanded="false" />
+            <element signature="e#6316#6784#0" expanded="false" />
+            <marker date="1494378957753" expanded="true" signature="2275:2286" ph="..." />
+            <marker date="1494378957753" expanded="true" signature="5654:5661" ph="..." />
+            <marker date="1494378957753" expanded="true" signature="5654:5666" ph="..." />
+            <marker date="1494378957753" expanded="true" signature="6233:6243" ph="..." />
+            <marker date="1494378957753" expanded="true" signature="6737:6747" ph="..." />
           </folding>
         </state>
       </provider>
