@@ -22,7 +22,7 @@ document.ready = function click_button() {
         $.post("http://courseclouds.zhmoll.com/api/profile/wechat/bind", data, function (data, state) {
             if (data.code == 2003) {
                 alert("绑定微信成功");
-                localStorage.id = data.body.id;
+                localStorage.userid = data.body.id;
                 localStorage.name = data.body.name;
                 localStorage.nickname = data.body.nickname;
                 localStorage.signin = 1;
