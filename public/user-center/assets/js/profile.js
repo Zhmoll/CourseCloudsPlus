@@ -42,6 +42,9 @@ window.onload = function () {
                 }
             } else $(".identity").hide();
 
+            if (data.body.nickname) $("#nickname").text(data.body.nickname);
+            else $(".nickname").hide();
+
             if (data.body.description) $("#description").text(data.body.description);
             else $(".description").hide();
 

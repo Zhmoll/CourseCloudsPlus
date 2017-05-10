@@ -33,7 +33,7 @@ const schema = {
    * - - - - - - - - - - - - - - - - - - - - - -
    */
   nickname: { type: String },
-  gender: { type: String, enum: [0, 1, 2] },
+  gender: { type: Number, enum: [0, 1, 2] },
   avatar: { type: String },
   description: { type: String },
 

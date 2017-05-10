@@ -38,7 +38,7 @@ router.get('/courses',
 // 教师添加课程（完成）
 // post /api/teacher-management/courses
 router.post('/courses',
-  mw.params.exist('cid name intros teachers'),
+  mw.params.exist('cid name intros'),
   mw.authority.check(10),
   function (req, res, next) {
     const teacherid = req.session.userid;
