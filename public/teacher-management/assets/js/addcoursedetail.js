@@ -12,6 +12,21 @@ courseid = getQueryString("courseid");
 window.onload=function () {
     $("#name").text(localStorage.name);
     $("#profile").attr("src", localStorage.profile);
+    $("#loginout").click(function () {
+        $.get("../api/users/logout", function (data) {
+            if (data.code == 2006) {
+                localStorage.signin = 0;
+                window.location.href = "login.html";
+            }
+            else {
+                localStorage.signin = 0;
+                window.location.href = "login.html";
+            }
+        })
+    });
+    if (courseid == null) {
+        window.location.href = "index.html";
+    }
     $("#submit").click(function () {
         if($("#week").val()!=''&&$("#course-location").val()!=''&&$("#term").val()!=''&&$("#weekday").val()!=''&&$("#rows").val()!=''){
             var week=$("#week").val().replace(/[^0-9]/ig,"");
