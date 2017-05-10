@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
+    <title>用户信息</title>
     <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,15 +20,17 @@
     <script src="assets/js/user.js"></script>
 </head>
 
-<body data-type="widgets">
+<body data-type="widgets" style="max-height: 100px">
 <script src="assets/js/theme.js"></script>
-<div class="am-g tpl-g">
+<div class="am-g tpl-g" style="max-height: 100px">
     <!-- 头部 -->
     <header>
         <!-- logo -->
-        <center>
-            <div style="z-index: -9999"><h1>朝阳小队管理员</h1></div>
-        </center>
+
+        <div class="am-fl tpl-header-logo">
+            <center><h1 >云课教师端</h1></center>
+        </div>
+
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
             <!-- 侧边切换 -->
@@ -49,31 +51,13 @@
                 <ul>
                     <!-- 欢迎语 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
-                    </li>
-
-                    <!-- 新邮件 -->
-                    <li data-am-popover="{content: '点击跳转到请假',theme:'sm' ,trigger: 'hover focus'}">
-                        <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
-                            <i class="am-icon-envelope"></i>
-                            <span class="am-badge am-badge-success am-round item-feed-badge"></span>
-                        </a>
-                    </li>
-
-                    <!-- 新提示 -->
-                    <li data-am-popover="{content: '点击跳转到消息',theme:'sm' ,trigger: 'hover focus'}">
-                        <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                            <i class="am-icon-bell"></i>
-                            <span class="am-badge am-badge-warning am-round item-feed-badge"></span>
-                        </a>
-
-                        <!-- 弹出列表 -->
+                        <a href="javascript:;">欢迎你, <span></span> </a>
                     </li>
 
                     <!-- 退出 -->
-                    <li class="am-text-sm">
+                    <li class="am-text-sm" id="loginout">
                         <a href="javascript:;">
-                            <span class="am-icon-sign-out" id="loginout"></span> 退出
+                            <span class="am-icon-sign-out" ></span> 退出
                         </a>
                     </li>
                 </ul>
@@ -81,53 +65,39 @@
         </div>
 
     </header>
-    <!-- 风格切换 -->
-    <div class="tpl-skiner">
-        <div class="tpl-skiner-toggle am-icon-cog">
-        </div>
-        <div class="tpl-skiner-content">
-            <div class="tpl-skiner-content-title">
-                选择主题
-            </div>
-            <div class="tpl-skiner-content-bar">
-                <span class="skiner-color skiner-white" data-color="theme-white"></span>
-                <span class="skiner-color skiner-black" data-color="theme-black"></span>
-            </div>
-        </div>
-    </div>
     <!-- 侧边导航栏 -->
     <div class="left-sidebar">
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="assets/img/user04.png" alt="">
+                    <img src="assets/img/user04.png" alt="" id="profile">
                 </div>
-                <span class="user-panel-logged-in-text">
+                <span class="user-panel-logged-in-text" id="name">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+              小张
           </span>
-                <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+                <a href="user.html" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
             </div>
         </div>
 
 
         <!-- 菜单 -->
         <ul class="sidebar-nav">
-            <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
+            <li class="sidebar-nav-heading"><span class="sidebar-nav-heading-info">功能</span></li>
             <li class="sidebar-nav-link">
                 <a href="index.html">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="tables.html">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
+                <a href="form.html">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i>群告知
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="calendar.html">
-                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                <a href="leave.html">
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i>请假条
                 </a>
             </li>
             <li class="sidebar-nav-link">
@@ -135,6 +105,25 @@
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
 
                 </a>
+            </li>
+
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 课表
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link">
+                        <a href="addcourse.html">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span>增加课程
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="addcoursedetail.html">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span>修改课程
+                        </a>
+                    </li>
+                </ul>
             </li>
 
 
