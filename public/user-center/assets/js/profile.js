@@ -14,7 +14,7 @@ window.onload = function () {
                 alert(data.message);
                 return
             }
-            window.title = data.body.nickname;
+            document.title = data.body.nickname;
             $("#title_imagine").attr("src", data.body.avatar);
 
             if (data.body.name) $("#username").text(data.body.name);
