@@ -13,7 +13,7 @@ window.onload = function () {
             alert(data.message);
             return
         }
-        //console.log(data.body);
+        console.log(data.body);
         $("#title_imagine").attr("src",data.body.avatar);
         $("#username").text(data.body.name);
         $("#nickname").text(data.body.nickname);
