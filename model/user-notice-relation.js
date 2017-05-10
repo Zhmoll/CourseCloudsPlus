@@ -38,7 +38,7 @@ UserNoticeRelationSchema.statics.findByReceiverId = function (id, callback) {
         {
           path: 'from',
           match: { deleted: false },
-          select: 'id nickname avatar'
+          select: 'id nickname name avatar'
         }
       ]
     })

@@ -59,6 +59,7 @@ window.onload = function () {
                 alert(data1.message);
                 return;
             }
+            console.log(notices);
             var notices = data.body;
             var element = '<ul class="ul1" id="ul2">';
 
