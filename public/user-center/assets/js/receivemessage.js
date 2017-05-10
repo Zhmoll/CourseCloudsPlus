@@ -44,7 +44,7 @@ window.onload = function () {
                     if (course.teachers[i].id == from_id) from_name = course.teachers[i].name;
                 }
                 element += '<li class="ui-border-t"><span>课程：<a href="http://courseclouds.zhmoll.com/user-center/inform.html?courseid='
-                    + data.body.notice.course.id + '">' + data.body.notice.course.cid + ' - '
+                    + data.body.notice.course._id + '">' + data.body.notice.course.cid + ' - '
                     + data.body.notice.course.name + '</a></span></li>';
             }
             element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid='
