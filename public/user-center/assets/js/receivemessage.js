@@ -59,11 +59,12 @@ window.onload = function () {
                 alert(data1.message);
                 return;
             }
-            
-            var notices = data.body;
+
+            var relations = data.body;
             var element = '<ul class="ul1" id="ul2">';
-            console.log(notices);
-            notices.forEach(function (notice) {
+
+            relations.forEach(function (relation) {
+                var notice = relation.notice;
                 var item = '<li class="ui-border-t">';
                 var title = notice.title;
                 var time = moment(notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
