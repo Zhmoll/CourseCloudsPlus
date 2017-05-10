@@ -72,7 +72,7 @@ window.onload = function () {
                 item += '<span>时间：' + time + '</span><br />';
                 var course = notice.course;
                 var from_name = notice.from.nickname;
-                var from_id = notice.from.id;
+                var from_id = notice.from._id;
                 var from_avatar = notice.from.avatar;
                 if (course) {
                     // 如果信件是由教师群发的
