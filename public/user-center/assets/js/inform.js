@@ -22,7 +22,7 @@ window.onload = function () {
         $("#coursename").text(course.name);
         $("#courseintros").text(course.intros);
         for (i = 0; i < course.teachers.length; i++) {
-            $("#teachername").append('<a src="profile.html?userid=' + course.teachers[i].id + '">' + course.teachers[i].name + '</a> ');
+            $("#teachername").append('<a href="profile.html?userid=' + course.teachers[i].id + '">' + course.teachers[i].name + '</a> ');
         }
         // cid:
         // name:

@@ -6,9 +6,19 @@ function getQueryString(name) {
 }
 window.onload = function () {
     $("#name").text(localStorage.name);
-    $("#title_imagine").attr("src",localStorage.profile);
+    // $("#title_imagine").attr("src",localStorage.profile);
     var userid = getQueryString('userid');
     $.get("../api/users/"+userid,function (data) {
-        console.log(data.body);
+        if(data.code!=2100){
+            alert(data.message);
+            return
+        }
+        //console.log(data.body);
+        $("#title_imagine").attr("src",data.body.avatar);
+        $("#username").text(data.body.name);
+        $("#nickname").text(data.body.nickname);
+        $("#school").text(data.body.school);
+        $("#uid").text(data.body.uid);
+        $("#university").text(data.body.university);
     })
 };
