@@ -3,5 +3,8 @@ window.onload = function () {
     $("#name").click(function () {
         window.location.href='profile.html?userid='+localStorage.userid;
     })
+    $("#title_imagine").click(function () {
+        window.location.href='profile.html?userid='+localStorage.userid;
+    })
     $("#title_imagine").attr("src",localStorage.profile);
 };
