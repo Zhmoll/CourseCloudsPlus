@@ -15,43 +15,45 @@ window.onload = function () {
         }
         console.log(data.body);
         $("#title_imagine").attr("src",data.body.avatar);
-        if(data.body.name!='')
+        if(data.body.name==''||typeof data.body.name==undefined)
         {
+            $("#username").text("未公开");
+
+        }
+        else {
             $("#username").text(data.body.name);
         }
-        else {
-            $("#username").text("未公开");
-        }
-        if(data.body.nickname!='')
+        if(data.body.nickname==''||typeof data.body.nickname==undefined)
         {
-            $("#nickname").text(data.body.nickname);
 
-        }
-        else {
             $("#nickname").text("未公开");
         }
-        if(data.body.school!='')
-        {
-            $("#school").text(data.body.school);
-
-        }
         else {
+            $("#nickname").text(data.body.nickname);
+        }
+        if(data.body.school==''||typeof data.body.school==undefined)
+        {
+
             $("#school").text("未公开");
         }
-        if(data.body.uid!='')
-        {
-            $("#uid").text(data.body.uid);
-
-        }
         else {
+            $("#school").text(data.body.school);
+        }
+        if(data.body.uid==''||typeof data.body.uid==undefined)
+        {
+
             $("#uid").text("未公开");
         }
-        if(data.body.university!='')
+        else {
+            $("#uid").text(data.body.uid);
+        }
+        if(data.body.university==''||typeof data.body.university==undefined)
         {
-            $("#university").text(data.body.university);
+
+            $("#university").text("未公开");
         }
         else {
-            $("#university").text("未公开");
+            $("#university").text(data.body.university);
         }
 
 
