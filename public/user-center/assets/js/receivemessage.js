@@ -28,7 +28,7 @@ window.onload = function () {
 
             var title = data.body.notice.title;
             var content = data.body.notice.content;
-            var time = moment(data.body.notice.createdAt).format('LLL');
+            var time = moment(data.body.notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
 
             element += '<li class="ui-border-t">标题：' + title + '</li>';
             element += '<li class="ui-border-t">时间：' + time + '</li>';
@@ -50,6 +50,7 @@ window.onload = function () {
             element += '<li class="ui-border-t"><span>来自：<a href="http://courseclouds.zhmoll.com/user-center/profile.html?userid='
                 + from_id + '">' + from_name + '</a></span></li>';
             element += '</ul>';
+            $('#top_title').hide();
             $("#div1").append(element);
             $(".ul1").addClass("ui-list ui-list-pure ui-border-tb");
         });
