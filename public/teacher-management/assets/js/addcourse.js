@@ -1,11 +1,12 @@
 window.onload=function () {
+    $("#name").text(localStorage.name);
+    $("#profile").attr("src", localStorage.profile);
     $("#submit").click(function () {
         if($("#course-id").val()!=''&&$("#course-name").val()!=''&&$("#teacher-name").val()!=''){
-            $.post("http://courseclouds.zhmoll.com/api/teacher-management/courses",{"cid":$("#course-id").val(),"name":$("#course-name").val(),"intros":$("#course-intros").val(),"teachers":$("#teacher-name").val()},function (data) {
+            $.post("../api/teacher-management/courses",{"cid":$("#course-id").val(),"name":$("#course-name").val(),"intros":$("#course-intros").val(),"teachers":$("#teacher-name").val()},function (data) {
                 if(data.code==3001){
                     alert(data.message);
-                    localStorage.courseid=$("#course-id").val();
-                    window.location.href="addcoursedetail.html";
+                    window.location.href="addcoursedetail.html？courseid="+$("#course-id").val();
                 }
                 else alert(data.message);
             })
