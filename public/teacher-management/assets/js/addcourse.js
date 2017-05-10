@@ -17,6 +17,7 @@ window.onload=function () {
     $("#submit").click(function () {
         if($("#course-id").val()!=''&&$("#course-name").val()!=''){
             $.post("../api/teacher-management/courses",{"cid":$("#course-id").val(),"name":$("#course-name").val(),"intros":$("#course-intros").val()},function (data) {
+                console.log(data.body);
                 if(data.code==3001){
                     alert(data.message);
                     console.log(data.body);
