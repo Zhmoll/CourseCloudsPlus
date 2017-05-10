@@ -19,7 +19,8 @@ window.onload=function () {
             $.post("../api/teacher-management/courses",{"cid":$("#course-id").val(),"name":$("#course-name").val(),"intros":$("#course-intros").val()},function (data) {
                 if(data.code==3001){
                     alert(data.message);
-                    window.location.href="addcoursedetail.html?courseid="+$("#course-id").val();
+                    console.log(data.body);
+                    window.location.href="addcoursedetail.html?courseid="+data.body.id;
                 }
                 else alert(data.message);
             })
