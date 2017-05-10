@@ -66,7 +66,7 @@ window.onload = function () {
                 var item = '<li class="ui-border-t">';
                 var title = notice.title;
                 var time = moment(notice.createdAt).format('YY年MM月DD日 HH:mm:ss');
-                item += '<span>标题：' + title + '</span><br />';
+                item += '<span><a href="http://courseclouds.zhmoll.com/user-center/receivemessage.html?noticeid=' + notice.id + '">标题：' + title + '</a></span><br />';
                 item += '<span>时间：' + time + '</span><br />';
                 var course = notice.course;
                 var from_name = notice.from.nickname;
