@@ -17,7 +17,7 @@ window.onload = function () {
             return;
         }
         var course = data.body;
-        coursename_full=course.name;
+        coursename_full = course.name;
         $("#courseid").text(course.cid);
         $("#coursename").text(course.name);
         $("#courseintros").text(course.intros);
@@ -64,7 +64,7 @@ window.onload = function () {
                     weekday = '周六';
                     break;
             }
-            if (coursetimes[i]._id == coursetimeid) {
+            if (coursetimeid && coursetimes[i]._id == coursetimeid) {
                 $("#coursetime").append('<p><span  style="color: red;">第' + coursetimes[i].week + '周 ' + weekday + ' 第' + coursetimes[i].rows.join(',') + '节</span> </p>');
             }
             else {
@@ -158,14 +158,17 @@ window.onload = function () {
 
     });
     $("#leave_click").click(function () {
-        if($("#leave_reason").val()!=''){
+        if (!coursetimeid) {
+            return alert('请在课程表中选择指定上课时间进行请假！');
+        }
+        if ($("#leave_reason").val() != '') {
             //alert($("#leave_reason").val());
-            $.post("../api/courses/"+courseid+"/course-times/"+coursetimeid+"/askforleave",{"reason":$("#leave_reason").val()},function (data) {
+            $.post("../api/courses/" + courseid + "/course-times/" + coursetimeid + "/askforleave", { "reason": $("#leave_reason").val() }, function (data) {
                 alert(data.message);
                 location.reload();
             })
         }
-        else{
+        else {
             alert("请输入请假原因");
         }
 
