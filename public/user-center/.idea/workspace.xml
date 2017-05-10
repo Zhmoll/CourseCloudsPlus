@@ -34,18 +34,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="porfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/porfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1782">
-              <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="profile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/profile.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -58,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inform.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inform.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
+            <state relative-caret-position="132">
               <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
@@ -73,6 +61,26 @@
                 <marker date="1494375704551" expanded="true" signature="6186:6196" ph="..." />
                 <marker date="1494375704551" expanded="true" signature="6690:6700" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -369,12 +377,12 @@
       <workItem from="1494241858127" duration="628000" />
       <workItem from="1494295991193" duration="25149000" />
       <workItem from="1494347245712" duration="1625000" />
-      <workItem from="1494375140216" duration="1868000" />
+      <workItem from="1494375140216" duration="2257000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242795000" />
+    <option name="totallyTimeSpent" value="243184000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,13 +431,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://F:/迅雷下载/data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -700,20 +701,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/porfile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1782">
           <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#!!block;n#getQueryString#0" expanded="false" />
+            <element signature="e#4243#4896#0" expanded="false" />
+            <element signature="e#6269#6737#0" expanded="false" />
+            <marker date="1494375704551" expanded="true" signature="2228:2239" ph="..." />
+            <marker date="1494375704551" expanded="true" signature="5607:5614" ph="..." />
+            <marker date="1494375704551" expanded="true" signature="5607:5619" ph="..." />
+            <marker date="1494375704551" expanded="true" signature="6186:6196" ph="..." />
+            <marker date="1494375704551" expanded="true" signature="6690:6700" ph="..." />
           </folding>
         </state>
       </provider>
@@ -728,20 +736,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/inform.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-            <element signature="e#4243#4896#0" expanded="false" />
-            <element signature="e#6269#6737#0" expanded="false" />
-            <marker date="1494375704551" expanded="true" signature="2228:2239" ph="..." />
-            <marker date="1494375704551" expanded="true" signature="5607:5614" ph="..." />
-            <marker date="1494375704551" expanded="true" signature="5607:5619" ph="..." />
-            <marker date="1494375704551" expanded="true" signature="6186:6196" ph="..." />
-            <marker date="1494375704551" expanded="true" signature="6690:6700" ph="..." />
-          </folding>
+        <state relative-caret-position="44">
+          <caret line="2" column="34" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
