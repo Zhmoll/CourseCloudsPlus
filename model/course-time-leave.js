@@ -22,6 +22,7 @@ CourseTimeLeaveSchema.statics.findByUserIdAndCourseId = function (userid, course
   this
     .find({ user: userid, course: courseid, deleted: false })
     .select('-deleted')
+    .sort('-_id')
     .populate({
       path: 'courseTime',
       match: { deleted: false },
