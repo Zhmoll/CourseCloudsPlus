@@ -132,8 +132,7 @@
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="1" />
               <folding>
                 <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-                <element signature="e#439#2701#0" expanded="false" />
-                <element signature="e#2711#4918#0" expanded="false" />
+                <element signature="e#2829#5036#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -788,8 +787,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="5" selection-end-column="1" />
           <folding>
             <element signature="n#!!block;n#getQueryString#0" expanded="false" />
-            <element signature="e#439#2701#0" expanded="false" />
-            <element signature="e#2711#4918#0" expanded="false" />
+            <element signature="e#2829#5036#0" expanded="false" />
           </folding>
         </state>
       </provider>
